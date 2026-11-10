@@ -1,0 +1,35 @@
+{
+  "origin_week": "2016-11-28T00:00:00",
+  "t_max": 172,
+  "last_week": "2020-03-16T00:00:00",
+  "n_item_shop_week": 1282200,
+  "n_product_week": 90467,
+  "partial_first_weeks": 0,
+  "products_without_usable_image": [
+    4442
+  ],
+  "sales_conservation": {
+    "sales_csv": 1599100.0,
+    "item_shop_week": 1599100.0,
+    "product_week": 1599100.0
+  },
+  "lifecycle_curve_before_calibration_end": {
+    "0": 1.8445,
+    "1": 1.5013,
+    "2": 1.4496,
+    "3": 1.4356,
+    "4": 1.4542,
+    "5": 1.4726,
+    "6": 1.4253,
+    "7": 1.2777,
+    "8": 1.1198,
+    "9": 0.9033,
+    "10": 0.737,
+    "11": 0.6042
+  },
+  "gt_missing_share": {
+    "gt_category": 0.052870107331955296,
+    "gt_color": 0.052870107331955296,
+    "gt_fabric": 0.08867321785844562
+  }
+}

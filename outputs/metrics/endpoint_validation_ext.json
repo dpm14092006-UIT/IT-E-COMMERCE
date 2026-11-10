@@ -1,0 +1,195 @@
+{
+  "theta": {
+    "theta": 0.20479441264601317,
+    "rule": "median_abs",
+    "n_calibration": 11998,
+    "last_origin_used": 79,
+    "calibration_end_t": 83
+  },
+  "n_eligible_all_periods": 26770,
+  "n_scored_rows": 3773,
+  "class_distribution": {
+    "Declining": {
+      "n": 1936,
+      "share": 0.5131195335276968
+    },
+    "Stable": {
+      "n": 1704,
+      "share": 0.4516300026504108
+    },
+    "Emerging": {
+      "n": 133,
+      "share": 0.03525046382189239
+    }
+  },
+  "diffs": {
+    "catboost: knn_resnet50 - own_history": {
+      "estimate": -0.0002435422036312085,
+      "ci_low": -0.012652571728997749,
+      "ci_high": 0.011407614605496393,
+      "n_boot": 1000,
+      "n_origins": 23
+    },
+    "catboost: knn_fashionclip - own_history": {
+      "estimate": -0.0028580900424046707,
+      "ci_low": -0.014301605040934664,
+      "ci_high": 0.005762418477970292,
+      "n_boot": 1000,
+      "n_origins": 23
+    },
+    "catboost: knn_novelty_resnet50 - own_history": {
+      "estimate": -0.006469364438178138,
+      "ci_low": -0.03426199866449667,
+      "ci_high": 0.011348311767013904,
+      "n_boot": 1000,
+      "n_origins": 23
+    },
+    "catboost: knn_novelty_fashionclip - own_history": {
+      "estimate": -0.0037190542369068824,
+      "ci_low": -0.028947368878630288,
+      "ci_high": 0.018022500995766084,
+      "n_boot": 1000,
+      "n_origins": 23
+    },
+    "catboost: knn_resnet50 - resnet50_context": {
+      "estimate": 0.01040898665026524,
+      "ci_low": -0.008835355745385045,
+      "ci_high": 0.025203196953834533,
+      "n_boot": 1000,
+      "n_origins": 23
+    },
+    "catboost: resnet50_context - own_history": {
+      "estimate": -0.010652528853896448,
+      "ci_low": -0.032137768384989975,
+      "ci_high": 0.012870597205165077,
+      "n_boot": 1000,
+      "n_origins": 23
+    },
+    "lightgbm: knn_resnet50 - own_history": {
+      "estimate": -0.0005822195838611766,
+      "ci_low": -0.013644772964916512,
+      "ci_high": 0.004914715121214917,
+      "n_boot": 1000,
+      "n_origins": 23
+    },
+    "lightgbm: knn_fashionclip - own_history": {
+      "estimate": -0.0006859391272204807,
+      "ci_low": -0.02192187183540054,
+      "ci_high": 0.0075566326533836855,
+      "n_boot": 1000,
+      "n_origins": 23
+    },
+    "lightgbm: knn_novelty_resnet50 - own_history": {
+      "estimate": -0.0014977436611331996,
+      "ci_low": -0.024154006735340926,
+      "ci_high": 0.011794205990852135,
+      "n_boot": 1000,
+      "n_origins": 23
+    },
+    "lightgbm: knn_novelty_fashionclip - own_history": {
+      "estimate": 0.00696082626837824,
+      "ci_low": -0.01844072969442527,
+      "ci_high": 0.015095319032516593,
+      "n_boot": 1000,
+      "n_origins": 23
+    },
+    "lightgbm: knn_resnet50 - resnet50_context": {
+      "estimate": 0.031164386492142926,
+      "ci_low": 0.013179731231800784,
+      "ci_high": 0.052912646694188915,
+      "n_boot": 1000,
+      "n_origins": 23
+    },
+    "lightgbm: resnet50_context - own_history": {
+      "estimate": -0.0317466060760041,
+      "ci_low": -0.05926712535916664,
+      "ci_high": -0.016728215766795538,
+      "n_boot": 1000,
+      "n_origins": 23
+    },
+    "random_forest: knn_resnet50 - own_history": {
+      "estimate": -0.0057923224813510865,
+      "ci_low": -0.01852353251441848,
+      "ci_high": 0.0011562596696220004,
+      "n_boot": 1000,
+      "n_origins": 23
+    },
+    "random_forest: knn_fashionclip - own_history": {
+      "estimate": -0.010396597391931106,
+      "ci_low": -0.029099578568566254,
+      "ci_high": 0.0010779139401532467,
+      "n_boot": 1000,
+      "n_origins": 23
+    },
+    "random_forest: knn_novelty_resnet50 - own_history": {
+      "estimate": -0.008964436177449575,
+      "ci_low": -0.020827356796376352,
+      "ci_high": -0.001213986989503871,
+      "n_boot": 1000,
+      "n_origins": 23
+    },
+    "random_forest: knn_novelty_fashionclip - own_history": {
+      "estimate": -0.009597220221557512,
+      "ci_low": -0.023068625048780742,
+      "ci_high": -0.0019531493289113634,
+      "n_boot": 1000,
+      "n_origins": 23
+    },
+    "random_forest: knn_resnet50 - resnet50_context": {
+      "estimate": 0.006762124259156788,
+      "ci_low": -0.003124535625200053,
+      "ci_high": 0.021623618364415884,
+      "n_boot": 1000,
+      "n_origins": 23
+    },
+    "random_forest: resnet50_context - own_history": {
+      "estimate": -0.012554446740507874,
+      "ci_low": -0.03816833228970286,
+      "ci_high": 0.0017987497181865568,
+      "n_boot": 1000,
+      "n_origins": 23
+    },
+    "xgboost: knn_resnet50 - own_history": {
+      "estimate": -0.008915624107400433,
+      "ci_low": -0.030372767024344764,
+      "ci_high": 0.0029486827737080514,
+      "n_boot": 1000,
+      "n_origins": 23
+    },
+    "xgboost: knn_fashionclip - own_history": {
+      "estimate": -0.011007983554335077,
+      "ci_low": -0.027393888671030518,
+      "ci_high": -0.004497246832898318,
+      "n_boot": 1000,
+      "n_origins": 23
+    },
+    "xgboost: knn_novelty_resnet50 - own_history": {
+      "estimate": -0.008614779302641207,
+      "ci_low": -0.03178362354694968,
+      "ci_high": 0.009445387483599443,
+      "n_boot": 1000,
+      "n_origins": 23
+    },
+    "xgboost: knn_novelty_fashionclip - own_history": {
+      "estimate": -0.009083043259570323,
+      "ci_low": -0.02782641319407154,
+      "ci_high": 0.005806434004848783,
+      "n_boot": 1000,
+      "n_origins": 23
+    },
+    "xgboost: knn_resnet50 - resnet50_context": {
+      "estimate": -0.0011413713381179802,
+      "ci_low": -0.010280030001063738,
+      "ci_high": 0.00676657792637452,
+      "n_boot": 1000,
+      "n_origins": 23
+    },
+    "xgboost: resnet50_context - own_history": {
+      "estimate": -0.007774252769282453,
+      "ci_low": -0.03042124607627951,
+      "ci_high": 0.008431115009938874,
+      "n_boot": 1000,
+      "n_origins": 23
+    }
+  }
+}

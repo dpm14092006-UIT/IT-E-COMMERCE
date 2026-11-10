@@ -1,0 +1,11 @@
+model,class_weighting,params,macro_f1,n_scored
+tcn,none,"{'lookback': 8, 'channels': 64, 'kernel_size': 3, 'dilations': [1, 2, 4], 'dropout': 0.2, 'learning_rate': 0.001, 'batch_size': 64, 'max_epochs': 100, 'patience': 10}",0.6618397194116482,449
+tcn,none,"{'lookback': 4, 'channels': 16, 'kernel_size': 2, 'dilations': [1, 2, 4], 'dropout': 0.2, 'learning_rate': 0.003, 'batch_size': 64, 'max_epochs': 100, 'patience': 10}",0.6592459226216247,449
+tcn,none,"{'lookback': 4, 'channels': 64, 'kernel_size': 2, 'dilations': [1, 2, 4], 'dropout': 0.1, 'learning_rate': 0.0003, 'batch_size': 64, 'max_epochs': 100, 'patience': 10}",0.6551956881107208,449
+tcn,none,"{'lookback': 8, 'channels': 32, 'kernel_size': 2, 'dilations': [1, 2, 4], 'dropout': 0.3, 'learning_rate': 0.0003, 'batch_size': 64, 'max_epochs': 100, 'patience': 10}",0.6509348449827255,449
+tcn,none,"{'lookback': 8, 'channels': 32, 'kernel_size': 3, 'dilations': [1, 2, 4], 'dropout': 0.2, 'learning_rate': 0.0003, 'batch_size': 64, 'max_epochs': 100, 'patience': 10}",0.6493080771403211,449
+tcn,none,"{'lookback': 4, 'channels': 32, 'kernel_size': 3, 'dilations': [1, 2, 4], 'dropout': 0.2, 'learning_rate': 0.003, 'batch_size': 64, 'max_epochs': 100, 'patience': 10}",0.6475061515132662,449
+tcn,none,"{'lookback': 4, 'channels': 32, 'kernel_size': 2, 'dilations': [1, 2, 4], 'dropout': 0.1, 'learning_rate': 0.001, 'batch_size': 64, 'max_epochs': 100, 'patience': 10}",0.6412839266627816,449
+tcn,none,"{'lookback': 12, 'channels': 64, 'kernel_size': 3, 'dilations': [1, 2, 4], 'dropout': 0.2, 'learning_rate': 0.001, 'batch_size': 64, 'max_epochs': 100, 'patience': 10}",0.6401701224895352,449
+tcn,none,"{'lookback': 12, 'channels': 32, 'kernel_size': 2, 'dilations': [1, 2, 4], 'dropout': 0.1, 'learning_rate': 0.0003, 'batch_size': 64, 'max_epochs': 100, 'patience': 10}",0.634625322997416,449
+tcn,none,"{'lookback': 12, 'channels': 64, 'kernel_size': 3, 'dilations': [1, 2, 4], 'dropout': 0.2, 'learning_rate': 0.003, 'batch_size': 64, 'max_epochs': 100, 'patience': 10}",0.5969989341732321,449

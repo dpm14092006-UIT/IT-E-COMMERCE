@@ -1,0 +1,13 @@
+{
+  "model": "random_forest",
+  "class_weighting": "none",
+  "params": {
+    "n_estimators": 300,
+    "max_depth": 10,
+    "min_samples_leaf": 5,
+    "min_samples_split": 2,
+    "max_features": "sqrt"
+  },
+  "macro_f1": 0.6548886880801774,
+  "n_scored": 449
+}

@@ -1,0 +1,29 @@
+# 4.8 – 4.9: thí nghiệm so sánh, ablation, robustness.
+
+ablation:                           # 4.8.3 — nested; B4 được tách để cô lập Google Trends
+  configurations:
+    B1: [B1]
+    B2: [B1, B2]
+    B3: [B1, B2, B3]
+    B4a: [B1, B2, B3, B4a]          # + calendar
+    B4b: [B1, B2, B3, B4a, B4b]     # + Google Trends  (B4a -> B4b = giá trị của GT)
+    M: [M]                          # chỉ rollout / vòng đời / calendar (kiểm tra tính "cơ học")
+  models: [tcn, catboost, lightgbm, random_forest]
+
+encoder_comparison:                 # 4.8.2 — RQ1
+  groupings: [fashionclip, resnet50, attribute]
+
+common_endpoint:                    # 4.8.4 — RQ3, product–week endpoint
+  configurations: [own_history, attribute_context, fashionclip_context, resnet50_context]
+  product_origin_age_weeks: [3, 7]  # cần 4 tuần quá khứ + 4 tuần tương lai trong cửa sổ 12 tuần
+  context_variables: [sales, discount]
+
+robustness:                         # 4.9
+  k_values: [10, 15, 20, 25, 30]
+  threshold_quantiles: [0.33, 0.40, 0.60, 0.67]
+  lookbacks: [4, 8, 12]
+  alternative_targets:
+    - raw_sales                     # Δ trên Sales thay vì SPAP
+    - shop_exposure                 # Sales / số item–shop active
+    - age_adjusted                  # sales / E[sales | tuổi shop] (khử vòng đời + rollout); thay incumbent_cohort
+  weighting: [none, n_shops]

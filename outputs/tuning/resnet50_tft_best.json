@@ -1,0 +1,16 @@
+{
+  "model": "tft",
+  "class_weighting": "none",
+  "params": {
+    "lookback": 4,
+    "hidden_size": 16,
+    "attention_heads": 2,
+    "dropout": 0.3,
+    "learning_rate": 0.003,
+    "batch_size": 64,
+    "max_epochs": 100,
+    "patience": 10
+  },
+  "macro_f1": 0.6455964144910604,
+  "n_scored": 449
+}

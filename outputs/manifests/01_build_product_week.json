@@ -1,0 +1,278 @@
+{
+  "stage": "01_build_product_week",
+  "time": "2026-10-12T14:11:52",
+  "python": "3.11.9",
+  "platform": "Windows-10-10.0.26300-SP0",
+  "packages": {
+    "numpy": "2.4.6",
+    "pandas": "2.3.3",
+    "sklearn": "1.4.2",
+    "xgboost": "3.2.0",
+    "lightgbm": "4.6.0",
+    "catboost": "1.2.10",
+    "torch": "2.14.0+cpu",
+    "torchvision": "0.29.0+cpu",
+    "transformers": "5.13.0"
+  },
+  "config_sha256": "9dd718e95575c2bc041b65ab1bc03d17f8749751321c96e6d5ba016239ad7139",
+  "config": {
+    "project": {
+      "name": "visual-style-trend-forecasting",
+      "seed": 2026
+    },
+    "paths": {
+      "raw": "Data/extracted/visuelle2",
+      "images": "Data/extracted/visuelle2/images",
+      "interim": "outputs/interim",
+      "embeddings": "outputs/embeddings",
+      "clusters": "outputs/clusters",
+      "panels": "outputs/panels",
+      "features": "outputs/features",
+      "tuning": "outputs/tuning",
+      "predictions": "outputs/predictions",
+      "metrics": "outputs/metrics",
+      "reports": "outputs/reports",
+      "figures": "outputs/figures",
+      "manifests": "outputs/manifests"
+    },
+    "data": {
+      "n_relative_weeks": 12,
+      "week_anchor": "monday",
+      "panel_end": null,
+      "use_weather": false,
+      "use_customer_data": false
+    },
+    "partition": {
+      "calibration_end": "2018-07-02",
+      "validation_start": "2018-07-02",
+      "development_end": "2018-12-31",
+      "test_start": "2019-01-07",
+      "test_end": null,
+      "catalogue_cutoff": "2018-12-31"
+    },
+    "visual": {
+      "encoders": {
+        "fashionclip": {
+          "checkpoint": "patrickjohncyh/fashion-clip",
+          "batch_size": 64
+        },
+        "resnet50": {
+          "weights": "IMAGENET1K_V2",
+          "batch_size": 64
+        }
+      },
+      "device": "auto",
+      "alpha_background": "white",
+      "kmeans": {
+        "k_grid": [
+          10,
+          15,
+          20,
+          25,
+          30
+        ],
+        "n_init": 20,
+        "max_iter": 500,
+        "stability_seeds": 10
+      },
+      "selection": {
+        "min_cluster_size": 30,
+        "min_stability_ari": 0.7,
+        "min_eligible_dev_origins_per_style": 20
+      },
+      "selected": {
+        "encoder": "resnet50",
+        "k": 20
+      },
+      "inspection": {
+        "n_near_centroid": 12,
+        "n_random": 12
+      }
+    },
+    "grouping": {
+      "attribute_keys": [
+        "category"
+      ]
+    },
+    "panel": {
+      "active_definition": "observation_window",
+      "weighting": "none",
+      "new_product_age_weeks": 1,
+      "inventory": {
+        "enabled": false
+      },
+      "gtrends": {
+        "enabled": true,
+        "missing_sentinel": -1,
+        "renormalize": "expanding_max",
+        "terms": [
+          "category",
+          "color",
+          "fabric"
+        ]
+      }
+    },
+    "features": {
+      "lags": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "windows": [
+        4,
+        8
+      ],
+      "growth_horizons": [
+        1,
+        4
+      ],
+      "calendar_period": 52,
+      "variables": {
+        "sales": [
+          "lag",
+          "ma",
+          "growth",
+          "trend",
+          "vol"
+        ],
+        "spap": [
+          "lag",
+          "ma",
+          "growth",
+          "trend",
+          "vol"
+        ],
+        "active_products": [
+          "lag",
+          "growth"
+        ],
+        "shop_exposure": [
+          "lag",
+          "growth"
+        ],
+        "price": [
+          "lag"
+        ],
+        "discount": [
+          "lag",
+          "ma"
+        ],
+        "mean_age": [],
+        "share_new": [],
+        "gt_category": [
+          "lag",
+          "growth",
+          "trend"
+        ],
+        "gt_color": [
+          "lag",
+          "growth",
+          "trend"
+        ],
+        "gt_fabric": [
+          "lag",
+          "growth",
+          "trend"
+        ]
+      },
+      "primary_blocks": [
+        "B1",
+        "B2",
+        "B3",
+        "B4a",
+        "B4b"
+      ]
+    },
+    "target": {
+      "horizon": 4,
+      "past_window": 4,
+      "min_active_weeks_per_window": 4,
+      "threshold": {
+        "rule": "median_abs",
+        "fallback_quantile": 0.5,
+        "sensitivity_quantiles": [
+          0.33,
+          0.4,
+          0.6,
+          0.67
+        ]
+      }
+    },
+    "eligibility": {
+      "min_history_weeks": 16,
+      "require_active_at_origin": true
+    },
+    "validation": {
+      "refit_every": 1,
+      "tuning_refit_every": 4,
+      "class_weighting": [
+        "none",
+        "balanced"
+      ],
+      "n_iter": 20
+    },
+    "evaluation": {
+      "zero_division": 0,
+      "bootstrap": {
+        "n_boot": 2000,
+        "block_length": 4,
+        "alpha": 0.05
+      }
+    }
+  },
+  "inputs": [],
+  "outputs": [
+    {
+      "path": "E:\\IT in E-commerce\\outputs\\interim\\item_shop_week.parquet",
+      "sha256": "40903c5ed5e77427429b3dc47778d0909802f947ba6887709000800965cd8eb9"
+    },
+    {
+      "path": "E:\\IT in E-commerce\\outputs\\interim\\product_week.parquet",
+      "sha256": "f1f988ee119f4e2b7ca55518a594b3408d683c921df899572b3718f924ecb7f4"
+    },
+    {
+      "path": "E:\\IT in E-commerce\\outputs\\interim\\products.parquet",
+      "sha256": "a2b38d927e173108ccca7172b23be2f13df4599b0289678eb4c49eae76721b3d"
+    },
+    {
+      "path": "E:\\IT in E-commerce\\outputs\\interim\\calendar.json",
+      "sha256": "58f96c23238959222d2907b0f646d8dbb05f8b0e87cb278f1dff015661d0dafa"
+    }
+  ],
+  "extra": {
+    "origin_week": "2016-11-28T00:00:00",
+    "t_max": 172,
+    "last_week": "2020-03-16T00:00:00",
+    "n_item_shop_week": 1282200,
+    "n_product_week": 90467,
+    "partial_first_weeks": 0,
+    "products_without_usable_image": [
+      4442
+    ],
+    "sales_conservation": {
+      "sales_csv": 1599100.0,
+      "item_shop_week": 1599100.0,
+      "product_week": 1599100.0
+    },
+    "lifecycle_curve_before_calibration_end": {
+      "0": 1.8445,
+      "1": 1.5013,
+      "2": 1.4496,
+      "3": 1.4356,
+      "4": 1.4542,
+      "5": 1.4726,
+      "6": 1.4253,
+      "7": 1.2777,
+      "8": 1.1198,
+      "9": 0.9033,
+      "10": 0.737,
+      "11": 0.6042
+    },
+    "gt_missing_share": {
+      "gt_category": 0.052870107331955296,
+      "gt_color": 0.052870107331955296,
+      "gt_fabric": 0.08867321785844562
+    }
+  }
+}

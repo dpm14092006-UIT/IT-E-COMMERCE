@@ -1,0 +1,88 @@
+{
+  "dataset": "resnet50__k10",
+  "response": "spap",
+  "theta": {
+    "theta": 0.26821917750664515,
+    "rule": "median_abs",
+    "n_calibration": 756,
+    "last_origin_used": 79,
+    "calibration_end_t": 83
+  },
+  "origin_sets": {
+    "calibration_end": 83,
+    "development_end": 109,
+    "validation": [
+      83,
+      105
+    ],
+    "test": [
+      110,
+      168
+    ]
+  },
+  "calibration": {
+    "class_distribution": {
+      "Declining": {
+        "n": 139,
+        "share": 0.21855345911949686
+      },
+      "Stable": {
+        "n": 327,
+        "share": 0.5141509433962265
+      },
+      "Emerging": {
+        "n": 170,
+        "share": 0.2672955974842767
+      }
+    }
+  },
+  "validation": {
+    "origins": [
+      83,
+      105
+    ],
+    "n_forecasted": 230,
+    "n_scorable": 230,
+    "coverage": 1.0,
+    "class_distribution": {
+      "Declining": {
+        "n": 50,
+        "share": 0.21739130434782608
+      },
+      "Stable": {
+        "n": 120,
+        "share": 0.5217391304347826
+      },
+      "Emerging": {
+        "n": 60,
+        "share": 0.2608695652173913
+      }
+    },
+    "styles_with_eligible_rows": 10
+  },
+  "test": {
+    "origins": [
+      110,
+      168
+    ],
+    "n_forecasted": 590,
+    "n_scorable": 590,
+    "coverage": 1.0,
+    "class_distribution": {
+      "Declining": {
+        "n": 187,
+        "share": 0.3169491525423729
+      },
+      "Stable": {
+        "n": 288,
+        "share": 0.488135593220339
+      },
+      "Emerging": {
+        "n": 115,
+        "share": 0.19491525423728814
+      }
+    },
+    "styles_with_eligible_rows": 10
+  },
+  "n_features": 72
+}

@@ -1,0 +1,223 @@
+{
+  "theta": {
+    "theta": 0.20479441264601317,
+    "rule": "median_abs",
+    "n_calibration": 11998,
+    "last_origin_used": 79,
+    "calibration_end_t": 83
+  },
+  "n_eligible_all_periods": 26770,
+  "n_scored_rows": 9714,
+  "class_distribution": {
+    "Declining": {
+      "n": 4730,
+      "share": 0.48692608606135473
+    },
+    "Stable": {
+      "n": 4504,
+      "share": 0.46366069590282066
+    },
+    "Emerging": {
+      "n": 480,
+      "share": 0.04941321803582458
+    }
+  },
+  "diffs": {
+    "catboost: resnet50ft_context - own_history": {
+      "estimate": -0.0027039399485242477,
+      "ci_low": -0.011599445934344827,
+      "ci_high": 0.00629216465693721,
+      "n_boot": 1000,
+      "n_origins": 59
+    },
+    "catboost: resnet50ft_context - resnet50_context": {
+      "estimate": -0.0009385265928824049,
+      "ci_low": -0.007906028023716894,
+      "ci_high": 0.007318577265561538,
+      "n_boot": 1000,
+      "n_origins": 59
+    },
+    "catboost: resnet50_context - own_history": {
+      "estimate": -0.0017654133556418428,
+      "ci_low": -0.01043333754902514,
+      "ci_high": 0.005431586852552827,
+      "n_boot": 1000,
+      "n_origins": 59
+    },
+    "catboost: fashionclip_context - own_history": {
+      "estimate": 0.0027104140925654496,
+      "ci_low": -0.008781460137615485,
+      "ci_high": 0.011953901047775292,
+      "n_boot": 1000,
+      "n_origins": 59
+    },
+    "catboost: attribute_context - own_history": {
+      "estimate": 0.002027541944323308,
+      "ci_low": -0.009310923387050623,
+      "ci_high": 0.012658363532089564,
+      "n_boot": 1000,
+      "n_origins": 59
+    },
+    "catboost: resnet50_context - attribute_context": {
+      "estimate": -0.0037929552999651506,
+      "ci_low": -0.01051536815502514,
+      "ci_high": 0.00228189057511954,
+      "n_boot": 1000,
+      "n_origins": 59
+    },
+    "catboost: fashionclip_context - attribute_context": {
+      "estimate": 0.0006828721482421418,
+      "ci_low": -0.007187807988297273,
+      "ci_high": 0.006075844081649065,
+      "n_boot": 1000,
+      "n_origins": 59
+    },
+    "lightgbm: resnet50ft_context - own_history": {
+      "estimate": -0.0030418519999571014,
+      "ci_low": -0.014398396570796826,
+      "ci_high": 0.009839963236832294,
+      "n_boot": 1000,
+      "n_origins": 59
+    },
+    "lightgbm: resnet50ft_context - resnet50_context": {
+      "estimate": -0.002661057330692329,
+      "ci_low": -0.015297799565323955,
+      "ci_high": 0.015389129337603665,
+      "n_boot": 1000,
+      "n_origins": 59
+    },
+    "lightgbm: resnet50_context - own_history": {
+      "estimate": -0.00038079466926477235,
+      "ci_low": -0.013651410480803053,
+      "ci_high": 0.010446406986385237,
+      "n_boot": 1000,
+      "n_origins": 59
+    },
+    "lightgbm: fashionclip_context - own_history": {
+      "estimate": 0.0001190074237557015,
+      "ci_low": -0.00809330166890614,
+      "ci_high": 0.009497161684143206,
+      "n_boot": 1000,
+      "n_origins": 59
+    },
+    "lightgbm: attribute_context - own_history": {
+      "estimate": -0.011215286085286547,
+      "ci_low": -0.02572836729798055,
+      "ci_high": 0.003944980274384136,
+      "n_boot": 1000,
+      "n_origins": 59
+    },
+    "lightgbm: resnet50_context - attribute_context": {
+      "estimate": 0.010834491416021774,
+      "ci_low": -0.005637713359803073,
+      "ci_high": 0.02534840679752827,
+      "n_boot": 1000,
+      "n_origins": 59
+    },
+    "lightgbm: fashionclip_context - attribute_context": {
+      "estimate": 0.011334293509042248,
+      "ci_low": -0.0024316454553031663,
+      "ci_high": 0.023689114225220093,
+      "n_boot": 1000,
+      "n_origins": 59
+    },
+    "random_forest: resnet50ft_context - own_history": {
+      "estimate": -0.004158634389675231,
+      "ci_low": -0.01126949362200601,
+      "ci_high": 0.0034154076737971124,
+      "n_boot": 1000,
+      "n_origins": 59
+    },
+    "random_forest: resnet50ft_context - resnet50_context": {
+      "estimate": 0.0007761091703565315,
+      "ci_low": -0.007063897987909129,
+      "ci_high": 0.008505359146400049,
+      "n_boot": 1000,
+      "n_origins": 59
+    },
+    "random_forest: resnet50_context - own_history": {
+      "estimate": -0.004934743560031762,
+      "ci_low": -0.01126009213681908,
+      "ci_high": 0.003412523988435502,
+      "n_boot": 1000,
+      "n_origins": 59
+    },
+    "random_forest: fashionclip_context - own_history": {
+      "estimate": -0.007988853732077805,
+      "ci_low": -0.015887721046328917,
+      "ci_high": 0.0009060330517535159,
+      "n_boot": 1000,
+      "n_origins": 59
+    },
+    "random_forest: attribute_context - own_history": {
+      "estimate": -0.010623529450053182,
+      "ci_low": -0.021418925690959965,
+      "ci_high": -3.83606445534326e-05,
+      "n_boot": 1000,
+      "n_origins": 59
+    },
+    "random_forest: resnet50_context - attribute_context": {
+      "estimate": 0.005688785890021419,
+      "ci_low": -0.0016049423442148852,
+      "ci_high": 0.01479756953493409,
+      "n_boot": 1000,
+      "n_origins": 59
+    },
+    "random_forest: fashionclip_context - attribute_context": {
+      "estimate": 0.0026346757179753766,
+      "ci_low": -0.0027556188535654198,
+      "ci_high": 0.008404361596362882,
+      "n_boot": 1000,
+      "n_origins": 59
+    },
+    "xgboost: resnet50ft_context - own_history": {
+      "estimate": -0.01032934249961781,
+      "ci_low": -0.01996443362298767,
+      "ci_high": -0.00013499485322064509,
+      "n_boot": 1000,
+      "n_origins": 59
+    },
+    "xgboost: resnet50ft_context - resnet50_context": {
+      "estimate": -0.006206924810435388,
+      "ci_low": -0.013726791450600611,
+      "ci_high": 0.0055507971465098655,
+      "n_boot": 1000,
+      "n_origins": 59
+    },
+    "xgboost: resnet50_context - own_history": {
+      "estimate": -0.004122417689182423,
+      "ci_low": -0.015328660274565116,
+      "ci_high": 0.0029128862852090282,
+      "n_boot": 1000,
+      "n_origins": 59
+    },
+    "xgboost: fashionclip_context - own_history": {
+      "estimate": -0.0020760593497305413,
+      "ci_low": -0.011569185705928723,
+      "ci_high": 0.005680900822126907,
+      "n_boot": 1000,
+      "n_origins": 59
+    },
+    "xgboost: attribute_context - own_history": {
+      "estimate": -0.010933806796507461,
+      "ci_low": -0.022229764407037056,
+      "ci_high": -6.478709295917318e-05,
+      "n_boot": 1000,
+      "n_origins": 59
+    },
+    "xgboost: resnet50_context - attribute_context": {
+      "estimate": 0.006811389107325039,
+      "ci_low": -0.006410968734848635,
+      "ci_high": 0.018778990070052414,
+      "n_boot": 1000,
+      "n_origins": 59
+    },
+    "xgboost: fashionclip_context - attribute_context": {
+      "estimate": 0.00885774744677692,
+      "ci_low": -0.0050903185532703895,
+      "ci_high": 0.021066665021630546,
+      "n_boot": 1000,
+      "n_origins": 59
+    }
+  }
+}

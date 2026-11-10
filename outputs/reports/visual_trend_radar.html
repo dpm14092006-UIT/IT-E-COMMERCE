@@ -1,0 +1,62 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>Visual Trend Radar</title>
+<style>
+:root{--bg:#fcfcfb;--card:#ffffff;--ink:#0b0b0b;--sub:#52514e;--mut:#898781;--line:rgba(11,11,11,.10);--e:#1baf7a;--e-ink:#04342c;--d:#eb6834;--d-ink:#4a1b0c}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1a1a19;--card:#232321;--ink:#f0efec;--sub:#c3c2b7;--line:rgba(255,255,255,.10)}}
+:root[data-theme="dark"]{--bg:#1a1a19;--card:#232321;--ink:#f0efec;--sub:#c3c2b7;--line:rgba(255,255,255,.10)}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:1180px;margin:0 auto;padding:24px 16px 48px}
+h1{font-size:22px;font-weight:500;margin:0 0 4px}h2{font-size:17px;font-weight:500;margin:32px 0 8px}
+.sub{color:var(--sub);margin:0 0 20px;font-size:14px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.kpi{background:var(--card);border:.5px solid var(--line);border-radius:12px;padding:14px 16px}
+.kpi b{display:block;font-size:24px;font-weight:500}.kpi span{font-size:13px;color:var(--sub)}
+.bar{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+button{font:inherit;font-size:13px;background:transparent;color:var(--ink);border:.5px solid var(--mut);border-radius:8px;padding:6px 12px;cursor:pointer}
+button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.wrap{overflow-x:auto}.grid{display:grid;gap:2px;font-size:11px;min-width:760px}
+.c{height:22px;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:11px;cursor:pointer}
+.E{background:var(--e);color:var(--e-ink)}.D{background:var(--d);color:var(--d-ink)}
+.S{background:var(--card);color:var(--mut);border:.5px solid var(--line)}.N{background:transparent}
+.miss{box-shadow:inset 0 0 0 2px var(--ink)}
+.nm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:12px;padding-right:6px}.hd{color:var(--mut);text-align:center}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--sub)}.legend span{display:flex;align-items:center;gap:6px}
+.sw{width:18px;height:14px;border-radius:3px;display:inline-block}
+table{border-collapse:collapse;width:100%;font-size:13px}th,td{text-align:left;padding:6px 8px;border-bottom:.5px solid var(--line)}
+th{color:var(--sub);font-weight:500}td.num{text-align:right;font-variant-numeric:tabular-nums}
+.pbar{display:flex;height:10px;border-radius:3px;overflow:hidden;min-width:120px}
+#detail{background:var(--card);border:.5px solid var(--line);border-radius:12px;padding:12px 16px;margin-top:12px;font-size:13px;color:var(--sub)}
+.note{font-size:12px;color:var(--mut);margin-top:8px}
+</style></head><body><main>
+<h1>Visual Trend Radar</h1>
+<p class="sub">Dự báo hướng 4 tuần (Emerging / Stable / Declining) của 20 visual style (ResNet-50, K = 20), final test 2019-01-07 → 2020-02-17. Mô hình: catboost. Dự báo chỉ dùng thông tin có tại forecast origin.</p>
+<div class="kpis">
+<div class="kpi"><span>Macro-F1 (test)</span><b>0.648</b><span>persistence 0.444</span></div>
+<div class="kpi"><span>Dự báo đúng hướng</span><b>68%</b><span>trên 1,159 style × tuần</span></div>
+<div class="kpi"><span>Cảnh báo Emerging đúng</span><b>78%</b><span>bắt được 45% số Emerging</span></div>
+<div class="kpi"><span>Cảnh báo Declining đúng</span><b>72%</b><span>bắt được 56% số Declining</span></div>
+</div>
+<h2>Bản đồ xu hướng theo tháng</h2>
+<div class="legend"><span><i class="sw E"></i>Emerging</span><span><i class="sw S"></i>Stable</span><span><i class="sw D"></i>Declining</span><span><i class="sw S miss"></i>Dự báo sai so với thực tế</span></div>
+<div class="bar"><button id="bp" aria-pressed="true">Dự báo</button><button id="bt" aria-pressed="false">Thực tế</button></div>
+<div class="wrap"><div class="grid" id="grid"></div></div>
+<div id="detail">Chọn một ô để xem chi tiết.</div>
+<p class="note">Mỗi ô là trạng thái chiếm đa số trong các forecast origin của tháng. Cột cuối: tỉ lệ đúng theo tuần của style.</p>
+<h2>Dự báo mới nhất (origin 2020-02-17)</h2>
+<div class="wrap"><table><thead><tr><th>Style</th><th>Dự báo</th><th>Xác suất D / S / E</th><th class="num">SPAP log-growth 4 tuần</th><th class="num">Đúng (test)</th></tr></thead><tbody id="latest"></tbody></table></div>
+<p class="note">Đây là trend intelligence hỗ trợ buyer/merchandiser, không phải số lượng nhập hàng (Methodology 4.10). Tên style là bản nháp, chờ Người 2/Người 4 duyệt. Các sóng đồng loạt trùng lịch mùa của retailer; khác biệt giữa các style trong cùng tháng mới là tín hiệu riêng của từng phong cách.</p>
+</main><script>
+const D={"months": ["2019-01", "2019-02", "2019-03", "2019-04", "2019-05", "2019-06", "2019-07", "2019-08", "2019-09", "2019-10", "2019-11", "2019-12", "2020-01", "2020-02"], "names": ["Váy/áo họa tiết hoa", "Áo len trơn dài tay", "Đồ đen dáng rộng", "Quần dáng ôm tối màu/kẻ", "Blouse sáng màu/pastel", "Áo sát nách", "Áo len dệt kim mélange", "Jumpsuit/chân váy/short (hỗn hợp)", "Blazer/áo khoác tailored", "Quần đen ống côn", "Áo dài tay họa tiết hoa", "Váy suông họa tiết", "Áo phao/áo khoác mùa đông", "Váy dài hoa nền tối", "Áo ngắn tay ren/chất liệu nổi", "Áo khoác da/biker", "Váy xoè màu (doll dress)", "Áo dài tay đen/cardigan", "Áo thun in hình (graphic)", "Jeans"], "pred": [[2, 2, 2, 1, 1, 1, 0, 0, 1, 1, 1, 1, 2, -1], [0, 1, 2, 1, 0, 1, 0, 1, 2, 1, 1, 1, 0, 0], [1, 1, 2, 2, 1, 1, 0, 1, 1, 1, 1, 0, 0, 1], [0, 1, 1, 1, 1, 0, 0, 1, 2, 1, 1, 0, 1, 0], [1, 1, 1, 1, 1, 1, 0, 0, 1, 2, 1, 1, 0, 0], [1, 1, 1, 2, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1], [0, 0, 1, 1, 1, 0, 0, 1, 1, 2, 1, 1, 0, 0], [1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0], [0, 1, 2, 1, 1, 0, 0, 0, 2, 1, 1, 0, 0, 0], [1, 1, 1, 1, 1, 1, 0, 0, 2, 1, 0, 0, 0, 1], [1, 2, 1, 1, 2, 1, 0, 0, 2, 1, 1, 0, 0, 0], [0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1], [0, 1, 1, 2, -1, -1, -1, 1, 2, 2, 1, 1, 0, 0], [1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 2], [0, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0], [0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0], [1, 1, 2, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0], [0, 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 0, 0], [1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0], [1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1]], "true": [[2, 2, 2, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, -1], [0, 1, 2, 1, 1, 1, 0, 2, 2, 1, 1, 1, 0, 0], [1, 1, 2, 2, 1, 1, 0, 1, 2, 1, 1, 0, 0, 0], [0, 1, 1, 1, 1, 1, 0, 1, 2, 1, 1, 1, 0, 0], [0, 2, 1, 1, 1, 1, 0, 0, 1, 2, 2, 1, 1, 0], [0, 1, 2, 2, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0], [0, 0, 2, 2, 0, 1, 0, 1, 1, 2, 2, 1, 0, 0], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0], [0, 1, 2, 1, 1, 1, 1, 0, 2, 1, 1, 1, 0, 0], [0, 1, 1, 1, 2, 1, 0, 1, 2, 1, 1, 0, 0, 0], [1, 1, 1, 0, 2, 1, 0, 1, 2, 1, 1, 0, 0, 0], [0, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0], [0, 1, 1, 1, -1, -1, -1, 2, 2, 1, 1, 1, 0, 0], [1, 2, 2, 2, 1, 1, 0, 0, 0, 2, 1, 0, 0, 0], [0, 2, 2, 1, 0, 2, 1, 1, 1, 1, 1, 1, 0, 0], [2, 2, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 0, 0], [0, 2, 2, 2, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0], [0, 1, 1, 1, 0, 2, 1, 2, 2, 1, 1, 1, 0, 0], [1, 2, 2, 1, 0, 1, 0, 1, 2, 1, 1, 1, 0, 0], [1, 1, 1, 1, 1, 1, 0, 1, 1, 2, 1, 1, 0, 0]], "acc": [0.727, 0.644, 0.719, 0.695, 0.695, 0.729, 0.576, 0.763, 0.695, 0.61, 0.655, 0.78, 0.622, 0.61, 0.746, 0.525, 0.763, 0.746, 0.576, 0.661], "latest": [{"name": "Váy dài hoa nền tối", "cls": "E", "pd": 0.169, "ps": 0.357, "pe": 0.474, "g": -0.095, "acc": 0.61}, {"name": "Váy/áo họa tiết hoa", "cls": "S", "pd": 0.202, "ps": 0.429, "pe": 0.368, "g": -0.916, "acc": 0.727}, {"name": "Jeans", "cls": "S", "pd": 0.164, "ps": 0.544, "pe": 0.292, "g": -0.629, "acc": 0.661}, {"name": "Quần đen ống côn", "cls": "S", "pd": 0.39, "ps": 0.463, "pe": 0.147, "g": -0.968, "acc": 0.61}, {"name": "Đồ đen dáng rộng", "cls": "S", "pd": 0.379, "ps": 0.483, "pe": 0.137, "g": -1.527, "acc": 0.719}, {"name": "Áo sát nách", "cls": "D", "pd": 0.621, "ps": 0.306, "pe": 0.073, "g": -0.907, "acc": 0.729}, {"name": "Váy xoè màu (doll dress)", "cls": "D", "pd": 0.611, "ps": 0.32, "pe": 0.069, "g": -0.966, "acc": 0.763}, {"name": "Jumpsuit/chân váy/short (hỗn hợp)", "cls": "D", "pd": 0.604, "ps": 0.327, "pe": 0.069, "g": -0.903, "acc": 0.763}, {"name": "Áo dài tay họa tiết hoa", "cls": "D", "pd": 0.641, "ps": 0.3, "pe": 0.06, "g": -0.857, "acc": 0.655}, {"name": "Váy suông họa tiết", "cls": "D", "pd": 0.608, "ps": 0.334, "pe": 0.058, "g": -1.255, "acc": 0.78}, {"name": "Áo ngắn tay ren/chất liệu nổi", "cls": "D", "pd": 0.525, "ps": 0.419, "pe": 0.056, "g": -1.397, "acc": 0.746}, {"name": "Áo khoác da/biker", "cls": "D", "pd": 0.627, "ps": 0.319, "pe": 0.053, "g": -1.449, "acc": 0.525}, {"name": "Quần dáng ôm tối màu/kẻ", "cls": "D", "pd": 0.624, "ps": 0.323, "pe": 0.053, "g": -1.638, "acc": 0.695}, {"name": "Blouse sáng màu/pastel", "cls": "D", "pd": 0.535, "ps": 0.416, "pe": 0.049, "g": -0.433, "acc": 0.695}, {"name": "Áo dài tay đen/cardigan", "cls": "D", "pd": 0.658, "ps": 0.319, "pe": 0.023, "g": -1.192, "acc": 0.746}, {"name": "Áo thun in hình (graphic)", "cls": "D", "pd": 0.745, "ps": 0.235, "pe": 0.02, "g": -0.744, "acc": 0.576}, {"name": "Áo len trơn dài tay", "cls": "D", "pd": 0.852, "ps": 0.128, "pe": 0.02, "g": -1.213, "acc": 0.644}, {"name": "Áo phao/áo khoác mùa đông", "cls": "D", "pd": 0.761, "ps": 0.224, "pe": 0.015, "g": -0.75, "acc": 0.622}, {"name": "Blazer/áo khoác tailored", "cls": "D", "pd": 0.877, "ps": 0.114, "pe": 0.009, "g": -1.4, "acc": 0.695}, {"name": "Áo len dệt kim mélange", "cls": "D", "pd": 0.915, "ps": 0.081, "pe": 0.004, "g": -1.984, "acc": 0.576}]};const L=['D','S','E'],LN={D:'Declining',S:'Stable',E:'Emerging'};
+const g=document.getElementById('grid');g.style.gridTemplateColumns='190px repeat('+D.months.length+',minmax(0,1fr)) 48px';
+function draw(mode){let h='<div></div>'+D.months.map(m=>'<div class="hd">'+m.slice(2).replace('-','/')+'</div>').join('')+'<div class="hd">Đúng</div>';
+D.names.forEach((n,i)=>{h+='<div class="nm" title="'+n+'">'+n+'</div>';D.months.forEach((m,j)=>{const p=D.pred[i][j],t=D.true[i][j],v=mode==='p'?p:t;
+if(v<0){h+='<div class="c N"></div>';return}const miss=mode==='p'&&t>=0&&p!==t;
+h+='<div class="c '+L[v]+(miss?' miss':'')+'" data-i="'+i+'" data-j="'+j+'">'+L[v]+'</div>'});
+h+='<div style="text-align:right;color:var(--sub);font-variant-numeric:tabular-nums">'+Math.round(D.acc[i]*100)+'%</div>'});g.innerHTML=h}
+g.addEventListener('click',e=>{const c=e.target.closest('.c[data-i]');if(!c)return;const i=+c.dataset.i,j=+c.dataset.j,p=D.pred[i][j],t=D.true[i][j];
+document.getElementById('detail').textContent=D.names[i]+' · '+D.months[j]+': dự báo '+LN[L[p]]+', thực tế '+(t<0?'chưa quan sát':LN[L[t]])+(t<0?'':(p!==t?' (sai)':' (đúng)'))});
+const bp=document.getElementById('bp'),bt=document.getElementById('bt');
+bp.onclick=()=>{draw('p');bp.setAttribute('aria-pressed','true');bt.setAttribute('aria-pressed','false')};
+bt.onclick=()=>{draw('t');bt.setAttribute('aria-pressed','true');bp.setAttribute('aria-pressed','false')};draw('p');
+document.getElementById('latest').innerHTML=D.latest.map(r=>'<tr><td>'+r.name+'</td><td><span class="sw '+r.cls+'" style="vertical-align:-2px"></span> '+LN[r.cls]+'</td><td><div class="pbar" title="D '+r.pd+' / S '+r.ps+' / E '+r.pe+'"><span style="width:'+r.pd*100+'%;background:var(--d)"></span><span style="width:'+r.ps*100+'%;background:var(--line)"></span><span style="width:'+r.pe*100+'%;background:var(--e)"></span></div></td><td class="num">'+(r.g===null?'—':(r.g>0?'+':'')+r.g.toFixed(2))+'</td><td class="num">'+Math.round(r.acc*100)+'%</td></tr>').join('');
+</script></body></html>

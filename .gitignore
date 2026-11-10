@@ -218,3 +218,15 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+.mypy_cache/
+.ruff_cache/
+.figure_backups/
+.figure_qa/
+outputs/web/ui-review/backups/
+outputs/archive/
+Data/downloads/
+Data/

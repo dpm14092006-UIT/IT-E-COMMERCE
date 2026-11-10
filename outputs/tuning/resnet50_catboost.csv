@@ -1,0 +1,21 @@
+model,class_weighting,params,macro_f1,n_scored
+catboost,none,"{'iterations': 500, 'learning_rate': 0.05, 'depth': 3, 'l2_leaf_reg': 1}",0.6861350645240153,449
+catboost,none,"{'iterations': 800, 'learning_rate': 0.02, 'depth': 6, 'l2_leaf_reg': 1}",0.6726842191639509,449
+catboost,none,"{'iterations': 300, 'learning_rate': 0.1, 'depth': 3, 'l2_leaf_reg': 10}",0.6723131940523245,449
+catboost,none,"{'iterations': 800, 'learning_rate': 0.05, 'depth': 6, 'l2_leaf_reg': 1}",0.6716327329770966,449
+catboost,none,"{'iterations': 300, 'learning_rate': 0.1, 'depth': 4, 'l2_leaf_reg': 3}",0.6672337409179514,449
+catboost,none,"{'iterations': 300, 'learning_rate': 0.05, 'depth': 6, 'l2_leaf_reg': 3}",0.6662439828993753,449
+catboost,none,"{'iterations': 500, 'learning_rate': 0.05, 'depth': 3, 'l2_leaf_reg': 10}",0.66389764472826,449
+catboost,balanced,"{'iterations': 300, 'learning_rate': 0.1, 'depth': 4, 'l2_leaf_reg': 3}",0.6585521275675496,449
+catboost,balanced,"{'iterations': 800, 'learning_rate': 0.05, 'depth': 6, 'l2_leaf_reg': 1}",0.6496263414342511,449
+catboost,none,"{'iterations': 800, 'learning_rate': 0.02, 'depth': 3, 'l2_leaf_reg': 3}",0.6496091163505718,449
+catboost,balanced,"{'iterations': 300, 'learning_rate': 0.1, 'depth': 3, 'l2_leaf_reg': 10}",0.644618107620925,449
+catboost,balanced,"{'iterations': 800, 'learning_rate': 0.02, 'depth': 6, 'l2_leaf_reg': 1}",0.6428975531899733,449
+catboost,none,"{'iterations': 500, 'learning_rate': 0.02, 'depth': 4, 'l2_leaf_reg': 10}",0.6362737239882058,449
+catboost,balanced,"{'iterations': 500, 'learning_rate': 0.05, 'depth': 3, 'l2_leaf_reg': 1}",0.6327962387499634,449
+catboost,none,"{'iterations': 300, 'learning_rate': 0.02, 'depth': 6, 'l2_leaf_reg': 10}",0.631753681904803,449
+catboost,balanced,"{'iterations': 500, 'learning_rate': 0.02, 'depth': 4, 'l2_leaf_reg': 10}",0.6309318717461657,449
+catboost,balanced,"{'iterations': 500, 'learning_rate': 0.05, 'depth': 3, 'l2_leaf_reg': 10}",0.627162531618951,449
+catboost,balanced,"{'iterations': 300, 'learning_rate': 0.02, 'depth': 6, 'l2_leaf_reg': 10}",0.6195291958547495,449
+catboost,balanced,"{'iterations': 300, 'learning_rate': 0.05, 'depth': 6, 'l2_leaf_reg': 3}",0.6153094847164583,449
+catboost,balanced,"{'iterations': 800, 'learning_rate': 0.02, 'depth': 3, 'l2_leaf_reg': 3}",0.6111129364026312,449

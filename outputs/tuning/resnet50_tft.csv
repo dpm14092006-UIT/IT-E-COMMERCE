@@ -1,0 +1,11 @@
+model,class_weighting,params,macro_f1,n_scored
+tft,none,"{'lookback': 4, 'hidden_size': 16, 'attention_heads': 2, 'dropout': 0.3, 'learning_rate': 0.003, 'batch_size': 64, 'max_epochs': 100, 'patience': 10}",0.6455964144910604,449
+tft,none,"{'lookback': 4, 'hidden_size': 32, 'attention_heads': 2, 'dropout': 0.2, 'learning_rate': 0.003, 'batch_size': 64, 'max_epochs': 100, 'patience': 10}",0.6305239564980799,449
+tft,none,"{'lookback': 12, 'hidden_size': 16, 'attention_heads': 2, 'dropout': 0.2, 'learning_rate': 0.001, 'batch_size': 64, 'max_epochs': 100, 'patience': 10}",0.614985330625141,449
+tft,none,"{'lookback': 8, 'hidden_size': 16, 'attention_heads': 2, 'dropout': 0.3, 'learning_rate': 0.001, 'batch_size': 64, 'max_epochs': 100, 'patience': 10}",0.6102803985480896,449
+tft,none,"{'lookback': 8, 'hidden_size': 32, 'attention_heads': 2, 'dropout': 0.1, 'learning_rate': 0.003, 'batch_size': 64, 'max_epochs': 100, 'patience': 10}",0.6086085684249406,449
+tft,none,"{'lookback': 8, 'hidden_size': 32, 'attention_heads': 2, 'dropout': 0.1, 'learning_rate': 0.0003, 'batch_size': 64, 'max_epochs': 100, 'patience': 10}",0.5995713654916911,449
+tft,none,"{'lookback': 12, 'hidden_size': 16, 'attention_heads': 2, 'dropout': 0.1, 'learning_rate': 0.003, 'batch_size': 64, 'max_epochs': 100, 'patience': 10}",0.5801525932560415,449
+tft,none,"{'lookback': 4, 'hidden_size': 64, 'attention_heads': 2, 'dropout': 0.1, 'learning_rate': 0.001, 'batch_size': 64, 'max_epochs': 100, 'patience': 10}",0.5756479895854768,449
+tft,none,"{'lookback': 4, 'hidden_size': 64, 'attention_heads': 2, 'dropout': 0.3, 'learning_rate': 0.0003, 'batch_size': 64, 'max_epochs': 100, 'patience': 10}",0.5516875516875518,449
+tft,none,"{'lookback': 8, 'hidden_size': 64, 'attention_heads': 2, 'dropout': 0.3, 'learning_rate': 0.0003, 'batch_size': 64, 'max_epochs': 100, 'patience': 10}",0.5140328842526055,449

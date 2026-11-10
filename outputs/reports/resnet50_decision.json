@@ -1,0 +1,19 @@
+{
+  "operating_point": {
+    "min_prob": 0.5,
+    "min_margin": 0.0,
+    "chosen_on": "validation"
+  },
+  "stage": "test",
+  "quality": {
+    "n": 1159,
+    "emerging_alerts": 138,
+    "emerging_alert_precision": 0.782608695652174,
+    "emerging_recall": 0.45188284518828453,
+    "false_emerging_alerts": 30,
+    "missed_emerging_as_stable": 122,
+    "declining_alerts": 265,
+    "declining_alert_precision": 0.7169811320754716,
+    "declining_recall": 0.5571847507331378
+  }
+}

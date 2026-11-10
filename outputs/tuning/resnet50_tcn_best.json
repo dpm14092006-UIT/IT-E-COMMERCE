@@ -1,0 +1,21 @@
+{
+  "model": "tcn",
+  "class_weighting": "none",
+  "params": {
+    "lookback": 8,
+    "channels": 64,
+    "kernel_size": 3,
+    "dilations": [
+      1,
+      2,
+      4
+    ],
+    "dropout": 0.2,
+    "learning_rate": 0.001,
+    "batch_size": 64,
+    "max_epochs": 100,
+    "patience": 10
+  },
+  "macro_f1": 0.6618397194116482,
+  "n_scored": 449
+}

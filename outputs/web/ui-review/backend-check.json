@@ -1,0 +1,140 @@
+{
+  "checks": [
+    {
+      "name": "HTML served with cache refresh",
+      "passed": true
+    },
+    {
+      "name": "All models ready",
+      "passed": true,
+      "health": {
+        "status": "ready",
+        "encoders": [
+          "resnet50",
+          "fashionclip"
+        ],
+        "segmentation": "SegFormer",
+        "max_upload_bytes": 15728640,
+        "groups_per_encoder": {
+          "resnet50": 20,
+          "fashionclip": 20
+        }
+      }
+    },
+    {
+      "name": "Forecasts, histories and 20 groups per encoder",
+      "passed": true
+    },
+    {
+      "name": "Catalogue image",
+      "passed": true
+    },
+    {
+      "name": "Unknown catalogue item rejected",
+      "passed": true
+    },
+    {
+      "name": "Invalid image rejected",
+      "passed": true
+    },
+    {
+      "name": "Empty image rejected",
+      "passed": true
+    },
+    {
+      "name": "Invalid segmentation mode rejected",
+      "passed": true
+    },
+    {
+      "name": "Oversized upload rejected",
+      "passed": true
+    },
+    {
+      "name": "Missing file rejected",
+      "passed": true
+    },
+    {
+      "name": "Expired scan token rejected",
+      "passed": true
+    },
+    {
+      "name": "Missing saved style rejected",
+      "passed": true
+    },
+    {
+      "name": "API stays responsive during inference",
+      "passed": true,
+      "latency_seconds": 0.016
+    },
+    {
+      "name": "Real image analysis: auto",
+      "passed": true,
+      "seconds": 1.28
+    },
+    {
+      "name": "Analysis contract: auto",
+      "passed": true
+    },
+    {
+      "name": "Forecast lookup for auto/resnet50",
+      "passed": true
+    },
+    {
+      "name": "Forecast lookup for auto/fashionclip",
+      "passed": true
+    },
+    {
+      "name": "Real image analysis: off",
+      "passed": true,
+      "seconds": 0.27
+    },
+    {
+      "name": "Analysis contract: off",
+      "passed": true
+    },
+    {
+      "name": "Forecast lookup for off/resnet50",
+      "passed": true
+    },
+    {
+      "name": "Forecast lookup for off/fashionclip",
+      "passed": true
+    },
+    {
+      "name": "Real image analysis: main",
+      "passed": true,
+      "seconds": 1.42
+    },
+    {
+      "name": "Analysis contract: main",
+      "passed": true
+    },
+    {
+      "name": "Forecast lookup for main/resnet50",
+      "passed": true
+    },
+    {
+      "name": "Forecast lookup for main/fashionclip",
+      "passed": true
+    },
+    {
+      "name": "Real image analysis: all",
+      "passed": true,
+      "seconds": 1.45
+    },
+    {
+      "name": "Analysis contract: all",
+      "passed": true
+    },
+    {
+      "name": "Forecast lookup for all/resnet50",
+      "passed": true
+    },
+    {
+      "name": "Forecast lookup for all/fashionclip",
+      "passed": true
+    }
+  ],
+  "passed": 29,
+  "total": 29
+}
