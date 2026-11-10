@@ -1,0 +1,144 @@
+{
+  "sales": {
+    "rows_item_shop": 106850,
+    "n_products": 5355,
+    "n_shops": 110,
+    "duplicate_item_shop": 0,
+    "products_per_season": {
+      "AW17": 852,
+      "AW18": 944,
+      "AW19": 1054,
+      "SS17": 901,
+      "SS18": 758,
+      "SS19": 846
+    },
+    "release_weekday_share_monday": 1.0,
+    "release_first": "2016-11-28T00:00:00",
+    "release_last": "2019-12-30T00:00:00",
+    "last_observed_week": "2020-03-16T00:00:00",
+    "share_products_multi_release_date": 0.919140989729225,
+    "release_spread_weeks": {
+      "count": 5355.0,
+      "mean": 5.3,
+      "std": 5.67,
+      "min": 0.0,
+      "25%": 2.0,
+      "50%": 4.0,
+      "75%": 7.0,
+      "max": 66.0
+    },
+    "zero_share_by_relative_week": [
+      0.0025,
+      0.2683,
+      0.2871,
+      0.2918,
+      0.2976,
+      0.3111,
+      0.3518,
+      0.4035,
+      0.4656,
+      0.5279,
+      0.5988,
+      0.6644
+    ],
+    "negative_sales_cells": 3386,
+    "negative_cells_by_relative_week": {
+      "4": 893,
+      "5": 961,
+      "9": 804,
+      "10": 728
+    },
+    "min_sales_cell": -3.0,
+    "missing_sales_cells": 0,
+    "attribute_cardinality": {
+      "category": 27,
+      "color": 10,
+      "fabric": 59
+    },
+    "restock_to_12w_sales_ratio": {
+      "count": 106850.0,
+      "mean": 1.526,
+      "std": 0.459,
+      "min": 0.071,
+      "25%": 1.222,
+      "50%": 1.417,
+      "75%": 1.714,
+      "max": 9.0
+    }
+  },
+  "images": {
+    "products_with_image": 5355,
+    "products_missing_image": [],
+    "products_undecodable_image": [
+      4442
+    ],
+    "images_per_product_max": 1
+  },
+  "price_discount": {
+    "rows": 106850,
+    "duplicate_item_shop": 0,
+    "unmatched_vs_sales": {
+      "both": 106850
+    },
+    "price_range": [
+      0.010971252679602,
+      0.5714285714285713
+    ],
+    "price_is_static_per_item_shop": true,
+    "discount_range": [
+      0.0,
+      0.92
+    ],
+    "share_discount_positive": 0.31398455779129625
+  },
+  "restocks": {
+    "rows": 949766,
+    "item_shops": 379562,
+    "item_shops_also_in_sales": 106839,
+    "year_counts": {
+      "2016": 4494,
+      "2017": 248787,
+      "2018": 284861,
+      "2019": 390901,
+      "2020": 15485,
+      "2021": 5237,
+      "2022": 1
+    },
+    "week_range": [
+      1,
+      53
+    ],
+    "negative_qty": 0
+  },
+  "gtrends": {
+    "n_weeks": 220,
+    "n_terms": 96,
+    "first": "2015-10-05T00:00:00",
+    "last": "2019-12-16T00:00:00",
+    "weekday_share_monday": 1.0,
+    "is_weekly_without_gaps": true,
+    "sentinel_cells": 660,
+    "terms_hitting_100": 80,
+    "attribute_terms_missing_in_gt": {
+      "category": [],
+      "color": [],
+      "fabric": []
+    }
+  },
+  "panel": {
+    "first_week": "2016-11-28T00:00:00",
+    "last_week": "2020-03-16T00:00:00",
+    "n_weeks": 173,
+    "weeks_with_no_active_product": 0,
+    "active_products_per_week": {
+      "count": 173.0,
+      "mean": 522.9,
+      "std": 158.1,
+      "min": 4.0,
+      "25%": 510.0,
+      "50%": 559.0,
+      "75%": 611.0,
+      "max": 755.0
+    }
+  }
+}

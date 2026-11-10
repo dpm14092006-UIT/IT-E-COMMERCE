@@ -1,0 +1,21 @@
+model,class_weighting,params,macro_f1,n_scored
+lightgbm,none,"{'n_estimators': 200, 'learning_rate': 0.05, 'num_leaves': 31, 'subsample_freq': 1, 'subsample': 0.7, 'min_child_samples': 20, 'max_depth': 6, 'colsample_bytree': 0.6}",0.6793639081655419,449
+lightgbm,none,"{'n_estimators': 800, 'learning_rate': 0.05, 'num_leaves': 31, 'subsample_freq': 1, 'subsample': 0.85, 'min_child_samples': 40, 'max_depth': -1, 'colsample_bytree': 0.8}",0.6743405264221201,449
+lightgbm,none,"{'n_estimators': 200, 'learning_rate': 0.02, 'num_leaves': 31, 'subsample_freq': 1, 'subsample': 0.85, 'min_child_samples': 40, 'max_depth': 6, 'colsample_bytree': 0.8}",0.6717720421501934,449
+lightgbm,balanced,"{'n_estimators': 800, 'learning_rate': 0.05, 'num_leaves': 31, 'subsample_freq': 1, 'subsample': 0.85, 'min_child_samples': 40, 'max_depth': -1, 'colsample_bytree': 0.8}",0.6688866199380147,449
+lightgbm,none,"{'n_estimators': 800, 'learning_rate': 0.1, 'num_leaves': 7, 'subsample_freq': 1, 'subsample': 0.85, 'min_child_samples': 10, 'max_depth': 6, 'colsample_bytree': 1.0}",0.6676507440654983,449
+lightgbm,none,"{'n_estimators': 800, 'learning_rate': 0.1, 'num_leaves': 7, 'subsample_freq': 1, 'subsample': 0.7, 'min_child_samples': 20, 'max_depth': -1, 'colsample_bytree': 1.0}",0.6662360589232276,449
+lightgbm,none,"{'n_estimators': 200, 'learning_rate': 0.02, 'num_leaves': 7, 'subsample_freq': 1, 'subsample': 0.85, 'min_child_samples': 20, 'max_depth': -1, 'colsample_bytree': 0.6}",0.6647372399252099,449
+lightgbm,none,"{'n_estimators': 200, 'learning_rate': 0.02, 'num_leaves': 7, 'subsample_freq': 1, 'subsample': 0.85, 'min_child_samples': 10, 'max_depth': -1, 'colsample_bytree': 1.0}",0.6637121096596011,449
+lightgbm,balanced,"{'n_estimators': 200, 'learning_rate': 0.05, 'num_leaves': 31, 'subsample_freq': 1, 'subsample': 0.7, 'min_child_samples': 20, 'max_depth': 6, 'colsample_bytree': 0.6}",0.6633331861831562,449
+lightgbm,none,"{'n_estimators': 400, 'learning_rate': 0.02, 'num_leaves': 7, 'subsample_freq': 1, 'subsample': 1.0, 'min_child_samples': 40, 'max_depth': -1, 'colsample_bytree': 0.8}",0.6624341126543883,449
+lightgbm,balanced,"{'n_estimators': 400, 'learning_rate': 0.02, 'num_leaves': 7, 'subsample_freq': 1, 'subsample': 1.0, 'min_child_samples': 40, 'max_depth': -1, 'colsample_bytree': 0.8}",0.6607561097629352,449
+lightgbm,none,"{'n_estimators': 200, 'learning_rate': 0.02, 'num_leaves': 15, 'subsample_freq': 1, 'subsample': 1.0, 'min_child_samples': 20, 'max_depth': -1, 'colsample_bytree': 0.8}",0.6604917979150859,449
+lightgbm,none,"{'n_estimators': 800, 'learning_rate': 0.02, 'num_leaves': 31, 'subsample_freq': 1, 'subsample': 1.0, 'min_child_samples': 10, 'max_depth': 4, 'colsample_bytree': 1.0}",0.6596943586858609,449
+lightgbm,balanced,"{'n_estimators': 200, 'learning_rate': 0.02, 'num_leaves': 15, 'subsample_freq': 1, 'subsample': 1.0, 'min_child_samples': 20, 'max_depth': -1, 'colsample_bytree': 0.8}",0.6589739728434103,449
+lightgbm,balanced,"{'n_estimators': 800, 'learning_rate': 0.1, 'num_leaves': 7, 'subsample_freq': 1, 'subsample': 0.7, 'min_child_samples': 20, 'max_depth': -1, 'colsample_bytree': 1.0}",0.6588939114550819,449
+lightgbm,balanced,"{'n_estimators': 200, 'learning_rate': 0.02, 'num_leaves': 31, 'subsample_freq': 1, 'subsample': 0.85, 'min_child_samples': 40, 'max_depth': 6, 'colsample_bytree': 0.8}",0.6571708293826024,449
+lightgbm,balanced,"{'n_estimators': 800, 'learning_rate': 0.1, 'num_leaves': 7, 'subsample_freq': 1, 'subsample': 0.85, 'min_child_samples': 10, 'max_depth': 6, 'colsample_bytree': 1.0}",0.649308369798137,449
+lightgbm,balanced,"{'n_estimators': 800, 'learning_rate': 0.02, 'num_leaves': 31, 'subsample_freq': 1, 'subsample': 1.0, 'min_child_samples': 10, 'max_depth': 4, 'colsample_bytree': 1.0}",0.6412307281308948,449
+lightgbm,balanced,"{'n_estimators': 200, 'learning_rate': 0.02, 'num_leaves': 7, 'subsample_freq': 1, 'subsample': 0.85, 'min_child_samples': 20, 'max_depth': -1, 'colsample_bytree': 0.6}",0.6348385866642627,449
+lightgbm,balanced,"{'n_estimators': 200, 'learning_rate': 0.02, 'num_leaves': 7, 'subsample_freq': 1, 'subsample': 0.85, 'min_child_samples': 10, 'max_depth': -1, 'colsample_bytree': 1.0}",0.6309924218035392,449

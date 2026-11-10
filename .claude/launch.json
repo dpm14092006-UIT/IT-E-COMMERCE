@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "style-scanner",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "uvicorn", "web.app:app", "--port", "8000"],
+      "port": 8000
+    },
+    {
+      "name": "style-scanner-8010",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "uvicorn", "web.app:app", "--host", "127.0.0.1", "--port", "8010"],
+      "port": 8010
+    }
+  ]
+}

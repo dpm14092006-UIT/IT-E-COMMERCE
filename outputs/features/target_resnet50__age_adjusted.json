@@ -1,0 +1,88 @@
+{
+  "dataset": "resnet50__age_adjusted",
+  "response": "age_adjusted",
+  "theta": {
+    "theta": 0.07455072147074521,
+    "rule": "median_abs",
+    "n_calibration": 1484,
+    "last_origin_used": 79,
+    "calibration_end_t": 83
+  },
+  "origin_sets": {
+    "calibration_end": 83,
+    "development_end": 109,
+    "validation": [
+      83,
+      105
+    ],
+    "test": [
+      110,
+      168
+    ]
+  },
+  "calibration": {
+    "class_distribution": {
+      "Declining": {
+        "n": 309,
+        "share": 0.24839228295819935
+      },
+      "Stable": {
+        "n": 640,
+        "share": 0.5144694533762058
+      },
+      "Emerging": {
+        "n": 295,
+        "share": 0.23713826366559485
+      }
+    }
+  },
+  "validation": {
+    "origins": [
+      83,
+      105
+    ],
+    "n_forecasted": 449,
+    "n_scorable": 449,
+    "coverage": 1.0,
+    "class_distribution": {
+      "Declining": {
+        "n": 125,
+        "share": 0.27839643652561247
+      },
+      "Stable": {
+        "n": 244,
+        "share": 0.5434298440979956
+      },
+      "Emerging": {
+        "n": 80,
+        "share": 0.17817371937639198
+      }
+    },
+    "styles_with_eligible_rows": 20
+  },
+  "test": {
+    "origins": [
+      110,
+      168
+    ],
+    "n_forecasted": 1170,
+    "n_scorable": 1159,
+    "coverage": 0.9905982905982906,
+    "class_distribution": {
+      "Declining": {
+        "n": 313,
+        "share": 0.270060396893874
+      },
+      "Stable": {
+        "n": 584,
+        "share": 0.5038826574633305
+      },
+      "Emerging": {
+        "n": 262,
+        "share": 0.22605694564279552
+      }
+    },
+    "styles_with_eligible_rows": 20
+  },
+  "n_features": 72
+}

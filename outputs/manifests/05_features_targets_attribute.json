@@ -1,0 +1,321 @@
+{
+  "stage": "05_features_targets_attribute",
+  "time": "2026-10-12T13:31:25",
+  "python": "3.11.9",
+  "platform": "Windows-10-10.0.26300-SP0",
+  "packages": {
+    "numpy": "2.4.6",
+    "pandas": "2.3.3",
+    "sklearn": "1.4.2",
+    "xgboost": "3.2.0",
+    "lightgbm": "4.6.0",
+    "catboost": "1.2.10",
+    "torch": "2.14.0+cpu",
+    "torchvision": "0.29.0+cpu",
+    "transformers": "5.13.0"
+  },
+  "config_sha256": "9dd718e95575c2bc041b65ab1bc03d17f8749751321c96e6d5ba016239ad7139",
+  "config": {
+    "project": {
+      "name": "visual-style-trend-forecasting",
+      "seed": 2026
+    },
+    "paths": {
+      "raw": "Data/extracted/visuelle2",
+      "images": "Data/extracted/visuelle2/images",
+      "interim": "outputs/interim",
+      "embeddings": "outputs/embeddings",
+      "clusters": "outputs/clusters",
+      "panels": "outputs/panels",
+      "features": "outputs/features",
+      "tuning": "outputs/tuning",
+      "predictions": "outputs/predictions",
+      "metrics": "outputs/metrics",
+      "reports": "outputs/reports",
+      "figures": "outputs/figures",
+      "manifests": "outputs/manifests"
+    },
+    "data": {
+      "n_relative_weeks": 12,
+      "week_anchor": "monday",
+      "panel_end": null,
+      "use_weather": false,
+      "use_customer_data": false
+    },
+    "partition": {
+      "calibration_end": "2018-07-02",
+      "validation_start": "2018-07-02",
+      "development_end": "2018-12-31",
+      "test_start": "2019-01-07",
+      "test_end": null,
+      "catalogue_cutoff": "2018-12-31"
+    },
+    "visual": {
+      "encoders": {
+        "fashionclip": {
+          "checkpoint": "patrickjohncyh/fashion-clip",
+          "batch_size": 64
+        },
+        "resnet50": {
+          "weights": "IMAGENET1K_V2",
+          "batch_size": 64
+        }
+      },
+      "device": "auto",
+      "alpha_background": "white",
+      "kmeans": {
+        "k_grid": [
+          10,
+          15,
+          20,
+          25,
+          30
+        ],
+        "n_init": 20,
+        "max_iter": 500,
+        "stability_seeds": 10
+      },
+      "selection": {
+        "min_cluster_size": 30,
+        "min_stability_ari": 0.7,
+        "min_eligible_dev_origins_per_style": 20
+      },
+      "selected": {
+        "encoder": "resnet50",
+        "k": 20
+      },
+      "inspection": {
+        "n_near_centroid": 12,
+        "n_random": 12
+      }
+    },
+    "grouping": {
+      "attribute_keys": [
+        "category"
+      ]
+    },
+    "panel": {
+      "active_definition": "observation_window",
+      "weighting": "none",
+      "new_product_age_weeks": 1,
+      "inventory": {
+        "enabled": false
+      },
+      "gtrends": {
+        "enabled": true,
+        "missing_sentinel": -1,
+        "renormalize": "expanding_max",
+        "terms": [
+          "category",
+          "color",
+          "fabric"
+        ]
+      }
+    },
+    "features": {
+      "lags": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "windows": [
+        4,
+        8
+      ],
+      "growth_horizons": [
+        1,
+        4
+      ],
+      "calendar_period": 52,
+      "variables": {
+        "sales": [
+          "lag",
+          "ma",
+          "growth",
+          "trend",
+          "vol"
+        ],
+        "spap": [
+          "lag",
+          "ma",
+          "growth",
+          "trend",
+          "vol"
+        ],
+        "active_products": [
+          "lag",
+          "growth"
+        ],
+        "shop_exposure": [
+          "lag",
+          "growth"
+        ],
+        "price": [
+          "lag"
+        ],
+        "discount": [
+          "lag",
+          "ma"
+        ],
+        "mean_age": [],
+        "share_new": [],
+        "gt_category": [
+          "lag",
+          "growth",
+          "trend"
+        ],
+        "gt_color": [
+          "lag",
+          "growth",
+          "trend"
+        ],
+        "gt_fabric": [
+          "lag",
+          "growth",
+          "trend"
+        ]
+      },
+      "primary_blocks": [
+        "B1",
+        "B2",
+        "B3",
+        "B4a",
+        "B4b"
+      ]
+    },
+    "target": {
+      "horizon": 4,
+      "past_window": 4,
+      "min_active_weeks_per_window": 4,
+      "threshold": {
+        "rule": "median_abs",
+        "fallback_quantile": 0.5,
+        "sensitivity_quantiles": [
+          0.33,
+          0.4,
+          0.6,
+          0.67
+        ]
+      }
+    },
+    "eligibility": {
+      "min_history_weeks": 16,
+      "require_active_at_origin": true
+    },
+    "validation": {
+      "refit_every": 1,
+      "tuning_refit_every": 4,
+      "class_weighting": [
+        "none",
+        "balanced"
+      ],
+      "n_iter": 20
+    },
+    "evaluation": {
+      "zero_division": 0,
+      "bootstrap": {
+        "n_boot": 2000,
+        "block_length": 4,
+        "alpha": 0.05
+      }
+    }
+  },
+  "inputs": [],
+  "outputs": [
+    {
+      "path": "E:\\IT in E-commerce\\outputs\\features\\features_attribute.parquet",
+      "sha256": "6c689b47cba277b4ad162283691855a4e9865f5e7d1390d0aa6aef6e477ef61c"
+    },
+    {
+      "path": "E:\\IT in E-commerce\\outputs\\features\\target_attribute.json",
+      "sha256": "4885394f5551161a4c4c3ca34843bbe9c02c8d6bf7cb8d8e11986714d4a4cf49"
+    }
+  ],
+  "extra": {
+    "theta": {
+      "theta": 0.3547123965558282,
+      "rule": "median_abs",
+      "n_calibration": 1582,
+      "last_origin_used": 79,
+      "calibration_end_t": 83
+    },
+    "origin_sets": {
+      "calibration_end": 83,
+      "development_end": 109,
+      "validation": [
+        83,
+        105
+      ],
+      "test": [
+        110,
+        168
+      ]
+    },
+    "calibration": {
+      "class_distribution": {
+        "Declining": {
+          "n": 314,
+          "share": 0.2482213438735178
+        },
+        "Stable": {
+          "n": 640,
+          "share": 0.5059288537549407
+        },
+        "Emerging": {
+          "n": 311,
+          "share": 0.2458498023715415
+        }
+      }
+    },
+    "validation": {
+      "origins": [
+        83,
+        105
+      ],
+      "n_forecasted": 537,
+      "n_scorable": 516,
+      "coverage": 0.9608938547486033,
+      "class_distribution": {
+        "Declining": {
+          "n": 149,
+          "share": 0.28875968992248063
+        },
+        "Stable": {
+          "n": 229,
+          "share": 0.4437984496124031
+        },
+        "Emerging": {
+          "n": 138,
+          "share": 0.26744186046511625
+        }
+      },
+      "styles_with_eligible_rows": 27
+    },
+    "test": {
+      "origins": [
+        110,
+        168
+      ],
+      "n_forecasted": 1341,
+      "n_scorable": 1279,
+      "coverage": 0.9537658463832961,
+      "class_distribution": {
+        "Declining": {
+          "n": 504,
+          "share": 0.3940578577013292
+        },
+        "Stable": {
+          "n": 520,
+          "share": 0.4065676309616888
+        },
+        "Emerging": {
+          "n": 255,
+          "share": 0.19937451133698203
+        }
+      },
+      "styles_with_eligible_rows": 27
+    },
+    "n_features": 72
+  }
+}

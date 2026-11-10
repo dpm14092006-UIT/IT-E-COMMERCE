@@ -1,0 +1,86 @@
+{
+  "theta": {
+    "theta": 0.3547123965558282,
+    "rule": "median_abs",
+    "n_calibration": 1582,
+    "last_origin_used": 79,
+    "calibration_end_t": 83
+  },
+  "origin_sets": {
+    "calibration_end": 83,
+    "development_end": 109,
+    "validation": [
+      83,
+      105
+    ],
+    "test": [
+      110,
+      168
+    ]
+  },
+  "calibration": {
+    "class_distribution": {
+      "Declining": {
+        "n": 314,
+        "share": 0.2482213438735178
+      },
+      "Stable": {
+        "n": 640,
+        "share": 0.5059288537549407
+      },
+      "Emerging": {
+        "n": 311,
+        "share": 0.2458498023715415
+      }
+    }
+  },
+  "validation": {
+    "origins": [
+      83,
+      105
+    ],
+    "n_forecasted": 537,
+    "n_scorable": 516,
+    "coverage": 0.9608938547486033,
+    "class_distribution": {
+      "Declining": {
+        "n": 149,
+        "share": 0.28875968992248063
+      },
+      "Stable": {
+        "n": 229,
+        "share": 0.4437984496124031
+      },
+      "Emerging": {
+        "n": 138,
+        "share": 0.26744186046511625
+      }
+    },
+    "styles_with_eligible_rows": 27
+  },
+  "test": {
+    "origins": [
+      110,
+      168
+    ],
+    "n_forecasted": 1341,
+    "n_scorable": 1279,
+    "coverage": 0.9537658463832961,
+    "class_distribution": {
+      "Declining": {
+        "n": 504,
+        "share": 0.3940578577013292
+      },
+      "Stable": {
+        "n": 520,
+        "share": 0.4065676309616888
+      },
+      "Emerging": {
+        "n": 255,
+        "share": 0.19937451133698203
+      }
+    },
+    "styles_with_eligible_rows": 27
+  },
+  "n_features": 72
+}

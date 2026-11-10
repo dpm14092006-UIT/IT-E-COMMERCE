@@ -1,0 +1,323 @@
+{
+  "stage": "05_features_targets_resnet50__k30",
+  "time": "2026-10-12T14:47:01",
+  "python": "3.11.9",
+  "platform": "Windows-10-10.0.26300-SP0",
+  "packages": {
+    "numpy": "2.4.6",
+    "pandas": "2.3.3",
+    "sklearn": "1.4.2",
+    "xgboost": "3.2.0",
+    "lightgbm": "4.6.0",
+    "catboost": "1.2.10",
+    "torch": "2.14.0+cpu",
+    "torchvision": "0.29.0+cpu",
+    "transformers": "5.13.0"
+  },
+  "config_sha256": "5afab051569a406c68469b60cac2398610c6f39eb3aa08779417e32258c85488",
+  "config": {
+    "project": {
+      "name": "visual-style-trend-forecasting",
+      "seed": 2026
+    },
+    "paths": {
+      "raw": "Data/extracted/visuelle2",
+      "images": "Data/extracted/visuelle2/images",
+      "interim": "outputs/interim",
+      "embeddings": "outputs/embeddings",
+      "clusters": "outputs/clusters",
+      "panels": "outputs/panels",
+      "features": "outputs/features",
+      "tuning": "outputs/tuning",
+      "predictions": "outputs/predictions",
+      "metrics": "outputs/metrics",
+      "reports": "outputs/reports",
+      "figures": "outputs/figures",
+      "manifests": "outputs/manifests"
+    },
+    "data": {
+      "n_relative_weeks": 12,
+      "week_anchor": "monday",
+      "panel_end": null,
+      "use_weather": false,
+      "use_customer_data": false
+    },
+    "partition": {
+      "calibration_end": "2018-07-02",
+      "validation_start": "2018-07-02",
+      "development_end": "2018-12-31",
+      "test_start": "2019-01-07",
+      "test_end": null,
+      "catalogue_cutoff": "2018-12-31"
+    },
+    "visual": {
+      "encoders": {
+        "fashionclip": {
+          "checkpoint": "patrickjohncyh/fashion-clip",
+          "batch_size": 64
+        },
+        "resnet50": {
+          "weights": "IMAGENET1K_V2",
+          "batch_size": 64
+        }
+      },
+      "device": "auto",
+      "alpha_background": "white",
+      "kmeans": {
+        "k_grid": [
+          10,
+          15,
+          20,
+          25,
+          30
+        ],
+        "n_init": 20,
+        "max_iter": 500,
+        "stability_seeds": 10
+      },
+      "selection": {
+        "min_cluster_size": 30,
+        "min_stability_ari": 0.7,
+        "min_eligible_dev_origins_per_style": 20
+      },
+      "selected": {
+        "encoder": "resnet50",
+        "k": 20
+      },
+      "inspection": {
+        "n_near_centroid": 12,
+        "n_random": 12
+      }
+    },
+    "grouping": {
+      "attribute_keys": [
+        "category"
+      ]
+    },
+    "panel": {
+      "active_definition": "observation_window",
+      "weighting": "none",
+      "new_product_age_weeks": 1,
+      "inventory": {
+        "enabled": false
+      },
+      "gtrends": {
+        "enabled": true,
+        "missing_sentinel": -1,
+        "renormalize": "expanding_max",
+        "terms": [
+          "category",
+          "color",
+          "fabric"
+        ]
+      }
+    },
+    "features": {
+      "lags": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "windows": [
+        4,
+        8
+      ],
+      "growth_horizons": [
+        1,
+        4
+      ],
+      "calendar_period": 52,
+      "variables": {
+        "sales": [
+          "lag",
+          "ma",
+          "growth",
+          "trend",
+          "vol"
+        ],
+        "spap": [
+          "lag",
+          "ma",
+          "growth",
+          "trend",
+          "vol"
+        ],
+        "active_products": [
+          "lag",
+          "growth"
+        ],
+        "shop_exposure": [
+          "lag",
+          "growth"
+        ],
+        "price": [
+          "lag"
+        ],
+        "discount": [
+          "lag",
+          "ma"
+        ],
+        "mean_age": [],
+        "share_new": [],
+        "gt_category": [
+          "lag",
+          "growth",
+          "trend"
+        ],
+        "gt_color": [
+          "lag",
+          "growth",
+          "trend"
+        ],
+        "gt_fabric": [
+          "lag",
+          "growth",
+          "trend"
+        ]
+      },
+      "primary_blocks": [
+        "B1",
+        "B2",
+        "B3",
+        "B4a",
+        "B4b"
+      ]
+    },
+    "target": {
+      "horizon": 4,
+      "past_window": 4,
+      "min_active_weeks_per_window": 4,
+      "threshold": {
+        "rule": "median_abs",
+        "fallback_quantile": 0.5,
+        "sensitivity_quantiles": [
+          0.33,
+          0.4,
+          0.6,
+          0.67
+        ]
+      }
+    },
+    "eligibility": {
+      "min_history_weeks": 16,
+      "require_active_at_origin": true
+    },
+    "validation": {
+      "refit_every": 1,
+      "tuning_refit_every": 4,
+      "class_weighting": [
+        "none",
+        "balanced"
+      ],
+      "n_iter": 10
+    },
+    "evaluation": {
+      "zero_division": 0,
+      "bootstrap": {
+        "n_boot": 2000,
+        "block_length": 4,
+        "alpha": 0.05
+      }
+    }
+  },
+  "inputs": [],
+  "outputs": [
+    {
+      "path": "E:\\IT in E-commerce\\outputs\\features\\features_resnet50__k30.parquet",
+      "sha256": "d51e69a454d343a88ef85e88d85df05ffd219b8ad610e8c7554daf06413baeef"
+    },
+    {
+      "path": "E:\\IT in E-commerce\\outputs\\features\\target_resnet50__k30.json",
+      "sha256": "bc442fe263dd400539718b74ad24340951e1a861ad97fcea7ab71a95cbdeb3c4"
+    }
+  ],
+  "extra": {
+    "dataset": "resnet50__k30",
+    "response": "spap",
+    "theta": {
+      "theta": 0.3370323038439178,
+      "rule": "median_abs",
+      "n_calibration": 2187,
+      "last_origin_used": 79,
+      "calibration_end_t": 83
+    },
+    "origin_sets": {
+      "calibration_end": 83,
+      "development_end": 109,
+      "validation": [
+        83,
+        105
+      ],
+      "test": [
+        110,
+        168
+      ]
+    },
+    "calibration": {
+      "class_distribution": {
+        "Declining": {
+          "n": 421,
+          "share": 0.23043240284619596
+        },
+        "Stable": {
+          "n": 915,
+          "share": 0.5008210180623974
+        },
+        "Emerging": {
+          "n": 491,
+          "share": 0.2687465790914067
+        }
+      }
+    },
+    "validation": {
+      "origins": [
+        83,
+        105
+      ],
+      "n_forecasted": 673,
+      "n_scorable": 669,
+      "coverage": 0.9940564635958395,
+      "class_distribution": {
+        "Declining": {
+          "n": 180,
+          "share": 0.26905829596412556
+        },
+        "Stable": {
+          "n": 312,
+          "share": 0.4663677130044843
+        },
+        "Emerging": {
+          "n": 177,
+          "share": 0.2645739910313901
+        }
+      },
+      "styles_with_eligible_rows": 30
+    },
+    "test": {
+      "origins": [
+        110,
+        168
+      ],
+      "n_forecasted": 1758,
+      "n_scorable": 1735,
+      "coverage": 0.9869169510807736,
+      "class_distribution": {
+        "Declining": {
+          "n": 562,
+          "share": 0.3239193083573487
+        },
+        "Stable": {
+          "n": 802,
+          "share": 0.4622478386167147
+        },
+        "Emerging": {
+          "n": 371,
+          "share": 0.2138328530259366
+        }
+      },
+      "styles_with_eligible_rows": 30
+    },
+    "n_features": 72
+  }
+}

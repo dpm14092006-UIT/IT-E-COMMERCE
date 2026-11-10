@@ -1,0 +1,17 @@
+numpy>=1.26
+pandas>=2.2
+pyarrow>=15
+scikit-learn>=1.4
+lightgbm>=4.0
+catboost>=1.2
+pyyaml>=6.0
+pillow>=10
+torch>=2.1          # ResNet-50, TCN; on Windows import before sklearn (handled in scripts/_common.py)
+torchvision>=0.16
+transformers>=4.40  # FashionCLIP (patrickjohncyh/fashion-clip)
+pytest>=8
+fastapi>=0.110      # web/app.py (Style Scanner)
+uvicorn>=0.29
+python-multipart>=0.0.9
+scipy>=1.11          # web/segment.py mask clean-up
+# optional: shap, umap-learn

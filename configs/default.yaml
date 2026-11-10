@@ -1,0 +1,133 @@
+# Cấu hình chính của pipeline. Mỗi khoá ghi rõ mục phương pháp tương ứng.
+# Quy tắc: mọi giá trị đánh dấu [CHỐT] phải được ghi vào docs/decision_log.md
+# TRƯỚC khi chạy final test (scripts/07_walk_forward.py --stage test).
+
+project:
+  name: visual-style-trend-forecasting
+  seed: 2026
+
+paths:
+  raw: Data/extracted/visuelle2
+  images: Data/extracted/visuelle2/images
+  interim: outputs/interim
+  embeddings: outputs/embeddings
+  clusters: outputs/clusters
+  panels: outputs/panels
+  features: outputs/features
+  tuning: outputs/tuning
+  predictions: outputs/predictions
+  metrics: outputs/metrics
+  reports: outputs/reports
+  figures: outputs/figures
+  manifests: outputs/manifests
+
+data:                               # 3.4, 4.2.1, 4.2.5
+  n_relative_weeks: 12              # sales.csv / price_discount_series.csv: cột 0..11
+  week_anchor: monday               # audit G0: 100% release_date là thứ Hai
+  panel_end: null                   # [CHỐT] null = tuần quan sát cuối (2020-03-16); có thể cắt về 2019-12-30
+  use_weather: false                # 3.1: loại khỏi core analysis
+  use_customer_data: false
+
+partition:                          # 4.6.1 — đề xuất ban đầu, [CHỐT] sau G0
+  calibration_end: 2018-07-02       # θ chỉ calibrate trên nhãn đã trưởng thành trước mốc này (4.4.3)
+  validation_start: 2018-07-02      # origin đầu tiên của các validation folds (trong development)
+  development_end: 2018-12-31       # tuần cuối development; nhãn validation phải trưởng thành <= mốc này
+  test_start: 2019-01-07            # origin đầu tiên của final test (SS19 + AW19)
+  test_end: null                    # null = origin cuối có nhãn quan sát được (T_max - H)
+  catalogue_cutoff: 2018-12-31      # 4.1.4: chỉ sản phẩm có first release <= mốc này được fit centroid
+
+visual:                             # 4.1
+  encoders:
+    fashionclip:
+      checkpoint: patrickjohncyh/fashion-clip
+      batch_size: 64
+    resnet50:
+      weights: IMAGENET1K_V2
+      batch_size: 64
+    resnet50ft:                     # Nguoi 4: ResNet-50 tinh chỉnh trên Myntra (dataset ngoài, không có sales)
+      source_zip: Data/images(SMALL).zip
+      image_dir: Data/extracted/myntra_women_apparel
+      genders: [Women, Girls]
+      master_category: Apparel
+      min_class_count: 30
+      train_layers: [layer4]
+      epochs: 3
+      learning_rate: 0.001
+      batch_size: 64
+  device: auto
+  alpha_background: white           # ảnh gốc là RGBA -> ghép lên nền trắng trước khi encode
+  kmeans:
+    k_grid: [10, 15, 20, 25, 30]    # (7) — candidate, không phải kết quả
+    n_init: 20
+    max_iter: 500
+    stability_seeds: 10             # 4.1.4: ARI giữa các seed
+  selection:                        # luật chọn K đăng ký trước (G2)
+    min_cluster_size: 30
+    min_stability_ari: 0.70
+    min_eligible_dev_origins_per_style: 20
+  selected:                         # [CHỐT] D09 - đề xuất 2026-10-12 sau G2, chờ P2+P4 duyệt
+    encoder: resnet50               # primary; fashionclip chạy cùng K để so sánh (RQ1, RQ3)
+    k: 20
+  inspection:
+    n_near_centroid: 12
+    n_random: 12
+
+grouping:                           # 4.8.2 / 4.8.4 — benchmark predefined attributes
+  attribute_keys: [category]        # có thể đổi thành [category, color]
+
+panel:                              # 4.2.2–4.2.4
+  active_definition: observation_window   # a_{i,t}=1 nếu >=1 shop có cửa sổ 12 tuần phủ tuần t
+  weighting: none                   # none | n_shops  — trọng số w_{i,t} cho (19), (21)
+  new_product_age_weeks: 1          # share_new = tỉ lệ sản phẩm active có tuổi <= giá trị này
+  inventory:
+    enabled: false                  # [CHỐT] chỉ bật sau khi G0 xác nhận ngữ nghĩa restock
+  gtrends:
+    enabled: true
+    missing_sentinel: -1            # audit: file chứa giá trị -1
+    renormalize: expanding_max      # loại bỏ leak thang đo do chuẩn hoá trên toàn cửa sổ 2015–2019
+    terms: [category, color, fabric]
+
+features:                           # 4.3
+  lags: [1, 2, 4, 8]                # (24)
+  windows: [4, 8]                   # (26)
+  growth_horizons: [1, 4]
+  calendar_period: 52               # (30)-(31)
+  variables:                        # biến -> các phép biến đổi lịch sử
+    sales: [lag, ma, growth, trend, vol]
+    spap: [lag, ma, growth, trend, vol]
+    active_products: [lag, growth]
+    shop_exposure: [lag, growth]
+    price: [lag]
+    discount: [lag, ma]
+    mean_age: []
+    share_new: []
+    gt_category: [lag, growth, trend]
+    gt_color: [lag, growth, trend]
+    gt_fabric: [lag, growth, trend]
+  primary_blocks: [B1, B2, B3, B4a, B4b]
+
+target:                             # 4.4
+  horizon: 4                        # (35)
+  past_window: 4                    # (36)
+  min_active_weeks_per_window: 4    # số tuần có A>0 tối thiểu trong mỗi cửa sổ 4 tuần
+  threshold:
+    rule: median_abs                # (41)
+    fallback_quantile: 0.5          # nếu median = 0: phân vị trên các |Δ| > 0
+    sensitivity_quantiles: [0.33, 0.40, 0.60, 0.67]   # 4.9.2 — chỉ dùng cho robustness
+
+eligibility:                        # 4.4.4
+  min_history_weeks: 16             # = yêu cầu dài nhất của features (Trend_8 cần 16 tuần)
+  require_active_at_origin: true
+
+validation:                         # 4.6
+  refit_every: 1                    # refit mỗi origin; TCN dùng chu kỳ riêng trong models.yaml
+  tuning_refit_every: 4
+  class_weighting: [none, balanced] # chọn bằng validation (4.5.7)
+  n_iter: 10                        # ngân sách search như nhau cho mọi model (4.6.4); 10 do giới hạn CPU, chốt trước test
+
+evaluation:                         # 4.7, 4.9.6
+  zero_division: 0
+  bootstrap:
+    n_boot: 2000
+    block_length: 4                 # >= H để giữ phụ thuộc do horizon chồng lấn
+    alpha: 0.05

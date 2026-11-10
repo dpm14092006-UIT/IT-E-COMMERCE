@@ -1,0 +1,103 @@
+{
+  "attribute_performance": {
+    "category": {
+      "top": {
+        "maxi": 678.5,
+        "long dress": 633.1,
+        "kimono dress": 495.4,
+        "doll dress": 472.1,
+        "trapeze dress": 430.0
+      },
+      "bottom": {
+        "long sleeve": 210.6,
+        "solid color top": 197.9,
+        "short coat": 195.0,
+        "shorts": 160.0,
+        "medium cardigan": 148.5
+      }
+    },
+    "color": {
+      "top": {
+        "orange": 347.7,
+        "grey": 343.7,
+        "black": 334.7,
+        "white": 290.8,
+        "green": 289.0
+      },
+      "bottom": {
+        "violet": 279.7,
+        "brown": 256.8,
+        "red": 247.4,
+        "blue": 237.9,
+        "yellow": 234.6
+      }
+    },
+    "fabric": {
+      "top": {
+        "viscose twill": 838.6,
+        "bengaline": 609.2,
+        "milano stitch": 518.4,
+        "embossed": 426.8,
+        "cloth": 425.5
+      },
+      "bottom": {
+        "heavy jeans": 170.8,
+        "dark jeans": 167.3,
+        "paillettes": 161.2,
+        "fur": 134.1,
+        "plisse": 66.3
+      }
+    },
+    "season": {
+      "top": {
+        "SS19": 359.7,
+        "SS18": 337.9,
+        "AW19": 320.1,
+        "AW17": 286.3,
+        "AW18": 278.2
+      },
+      "bottom": {
+        "SS18": 337.9,
+        "AW19": 320.1,
+        "AW17": 286.3,
+        "AW18": 278.2,
+        "SS17": 216.1
+      }
+    }
+  },
+  "lifecycle_share_by_week": {
+    "0": 0.122,
+    "1": 0.1003,
+    "2": 0.0968,
+    "3": 0.0973,
+    "4": 0.0951,
+    "5": 0.0942,
+    "6": 0.0898,
+    "7": 0.0802,
+    "8": 0.0702,
+    "9": 0.0598,
+    "10": 0.051,
+    "11": 0.0434
+  },
+  "gt_leadlag_mean_corr": {
+    "-8": -0.021,
+    "-7": -0.036,
+    "-6": -0.024,
+    "-5": 0.003,
+    "-4": 0.034,
+    "-3": 0.064,
+    "-2": 0.066,
+    "-1": 0.074,
+    "0": 0.078,
+    "1": 0.1,
+    "2": 0.109,
+    "3": 0.107,
+    "4": 0.093,
+    "5": 0.075,
+    "6": 0.072,
+    "7": 0.053,
+    "8": 0.043
+  },
+  "gt_best_lag": 2,
+  "gt_categories_used": 27
+}

@@ -1,0 +1,12 @@
+{
+  "model": "catboost",
+  "class_weighting": "none",
+  "params": {
+    "iterations": 500,
+    "learning_rate": 0.05,
+    "depth": 3,
+    "l2_leaf_reg": 1
+  },
+  "macro_f1": 0.6861350645240153,
+  "n_scored": 449
+}

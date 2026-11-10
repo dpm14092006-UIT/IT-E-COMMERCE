@@ -1,0 +1,10 @@
+{
+  "n": 5354,
+  "dim": 512,
+  "dim_ok": true,
+  "nan": 0,
+  "zero_norm": 0,
+  "norm_min": 9.469409942626953,
+  "norm_max": 12.790727615356445,
+  "determinism_min_cosine": 0.9999998807907104
+}

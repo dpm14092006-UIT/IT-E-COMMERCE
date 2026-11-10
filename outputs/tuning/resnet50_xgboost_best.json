@@ -1,0 +1,15 @@
+{
+  "model": "xgboost",
+  "class_weighting": "none",
+  "params": {
+    "n_estimators": 200,
+    "learning_rate": 0.05,
+    "max_depth": 6,
+    "subsample": 0.7,
+    "reg_lambda": 10.0,
+    "min_child_weight": 5,
+    "colsample_bytree": 0.6
+  },
+  "macro_f1": 0.6758036225658648,
+  "n_scored": 449
+}
