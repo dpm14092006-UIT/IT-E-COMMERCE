@@ -34,7 +34,8 @@ src/vstyle/
   utils/            leakage guards, manifests, seeds
 scripts/            00 → 13: mỗi script là một giai đoạn, ghi rõ cổng và người phụ trách
 tests/              kiểm tra calendar, panel, chống leakage, target, walk-forward, metrics, GT, TCN causal
-outputs/            interim, embeddings, clusters, panels, features, tuning, predictions, metrics, reports, manifests
+outputs/            báo cáo, metrics, manifests, dữ liệu tối thiểu cho manager và assets triển khai web
+                    embeddings, clusters, features, panels, predictions lớn được sinh lại bằng scripts và Git bỏ qua
 Data/extracted/     dữ liệu gốc (chỉ đọc)
 EDA_Visuelle2.ipynb, Journal_Figures.ipynb, figures/   EDA và hình đã có (giữ nguyên)
 ```

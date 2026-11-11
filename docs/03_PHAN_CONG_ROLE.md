@@ -39,7 +39,7 @@ python scripts/01b_market_insights.py
 
 ## Người 2 · Visual Trend Intelligence Engineer (FashionCLIP)
 1. G1: `python scripts/02_extract_embeddings.py --encoder fashionclip`. Cần tải checkpoint `patrickjohncyh/fashion-clip` từ Hugging Face.
-2. G2: `python scripts/03_cluster_styles.py --encoder fashionclip`, xem `outputs/clusters/fashionclip/sheets/`, đặt tên từng style.
+2. G2: `python scripts/03_cluster_styles.py --encoder fashionclip`, xem contact sheets được sinh tại `outputs/clusters/fashionclip/sheets/`, đặt tên từng style.
 3. Cùng P4 lập bảng RQ1 (cùng K, cùng dev catalogue) và đề xuất D09.
 4. G3b: `python scripts/04_build_style_panel.py --grouping fashionclip`.
 5. Visual Trend Radar: lấy `outputs/reports/{grouping}_{stage}_signals.csv` do P4 sinh (xác suất E/S/D + `spap__growth4`) và trình bày theo style.
