@@ -15,7 +15,7 @@ Cột "Đề xuất" là mặc định hiện có trong `configs/default.yaml`. 
 | D06 | Google Trends: trọng số gộp (21) | Không trọng số (`panel.weighting: none`); `n_shops` là robustness | — | P1 | Chốt theo đề xuất | 2026-10-12 |
 | D07 | Inventory / restock | Tắt cho tới khi rõ nghĩa `restock` và `restocks.csv` (tuần ISO?) | G0 | P1, P4 | Chốt theo đề xuất | 2026-10-12 |
 | D08 | Phân vùng thời gian | calibration_end = validation_start = 2018-07-02; development_end = 2018-12-31; test từ 2019-01-07 | `target_*.json` | P1, P3 | Chốt theo đề xuất | 2026-10-12 |
-| D09 | Encoder và K chính | **ResNet-50, K = 20** (primary); FashionCLIP K = 20 làm cấu hình so sánh. Lý do: chỉ ResNet K=10/20 qua gate; K=10 quá thô khi xem ảnh; FashionCLIP ARI 0,58–0,67 < 0,70 ở mọi K. Chọn trước khi chạy forecast cho grouping visual | `reports/G2_encoder_comparison.md`, `clusters/*/overview_k*.png`, `profile_k20.csv` | P2, P4 | Chốt theo đề xuất | 2026-10-12 |
+| D09 | Encoder và K chính | **ResNet-50, K = 20** (primary); FashionCLIP K = 20 làm cấu hình so sánh. Lý do: chỉ ResNet K=10/20 qua gate; K=10 quá thô khi xem ảnh; FashionCLIP ARI 0,58–0,67 < 0,70 ở mọi K. Chọn trước khi chạy forecast cho grouping visual | `outputs/reports/G2_encoder_comparison.md/.png`, `outputs/clusters/resnet50/overview_k20.png`, `style_names_k20_draft.csv` | P2, P4 | Chốt theo đề xuất | 2026-10-12 |
 | D10 | θ và quy tắc fallback | median abs Δ trên nhãn trưởng thành trước calibration_end | `target_*.json` | P3 | Chốt theo đề xuất | 2026-10-12 |
 | D11 | Feature set chính và eligibility | Block B1–B4b; min_history_weeks = 16 | `09` trên validation | P3 | Chốt theo đề xuất | 2026-10-12 |
 | D12 | Hyperparameter và class weighting | `tuning/*_best.json` | `06` | P3, P4 | Chốt theo đề xuất | 2026-10-12 |

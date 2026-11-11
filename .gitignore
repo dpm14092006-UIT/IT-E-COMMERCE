@@ -230,3 +230,25 @@ outputs/web/ui-review/backups/
 outputs/archive/
 Data/downloads/
 Data/
+
+# Generated analysis intermediates are rebuilt from local dataset with scripts.
+outputs/embeddings/**
+!outputs/embeddings/.gitkeep
+outputs/features/**
+!outputs/features/.gitkeep
+outputs/panels/**
+!outputs/panels/.gitkeep
+outputs/predictions/**
+!outputs/predictions/.gitkeep
+outputs/interim/visual_*.parquet
+
+# Keep only the primary clustering snapshot and draft labels.
+outputs/clusters/**
+!outputs/clusters/.gitkeep
+!outputs/clusters/resnet50/
+outputs/clusters/resnet50/**
+!outputs/clusters/resnet50/overview_k20.png
+!outputs/clusters/resnet50/style_names_k20_draft.csv
+
+# User-uploaded scan history stays local and is not committed.
+outputs/web/scans/**

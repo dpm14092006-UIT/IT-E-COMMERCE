@@ -27,7 +27,7 @@ Sinh tự động bởi `scripts/14_final_report.py`. Diễn giải: `docs/04_KE
 | resnet50ft  |  25 |        0.086 |            2.427 |      0.669 |    0.043 |         39 |                         72 |          0.261 |       0.217 |        0.269 | False      |
 | resnet50ft  |  30 |        0.08  |            2.463 |      0.629 |    0.036 |         38 |                         81 |          0.26  |       0.237 |        0.274 | False      |
 
-Cấu hình chính (D09): **resnet50, K = 20**. Ảnh: `outputs/clusters/*/overview_k*.png`.
+Cấu hình chính (D09): **resnet50, K = 20**. Ảnh cấu hình chính: `outputs/clusters/resnet50/overview_k20.png` (các overview khác sinh lại bởi `scripts/03_cluster_styles.py`).
 
 | style                                             | draft_name                                   | evidence                                             |
 |:--------------------------------------------------|:---------------------------------------------|:-----------------------------------------------------|
