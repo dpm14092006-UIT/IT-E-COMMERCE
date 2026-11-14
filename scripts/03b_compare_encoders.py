@@ -20,14 +20,13 @@ import matplotlib.pyplot as plt  # noqa: E402
 sys.path.insert(0, str(ROOT))
 from figure_style import apply_theme  # noqa: E402
 
-ENCODERS = tuple(e for e in ("fashionclip", "resnet50", "resnet50ft")
-                 if (ROOT / "outputs" / "clusters" / e / "grid.csv").exists())
-
 if __name__ == "__main__":
     args, cfg = parse(__doc__)
+    clusters = path(cfg, "clusters")
+    encoders = [name for name in cfg["visual"]["encoders"] if (clusters / name / "grid.csv").is_file()]
     frames = []
-    for enc in ENCODERS:
-        d = path(cfg, "clusters") / enc
+    for enc in encoders:
+        d = clusters / enc
         g = pd.read_csv(d / "grid.csv").assign(encoder=enc)
         agree = load_json(d / "attribute_agreement.json")
         for a in ("category", "color", "fabric"):
@@ -43,7 +42,8 @@ if __name__ == "__main__":
 
     apply_theme(journal=False)
     fig, axes = plt.subplots(1, 3, figsize=(12, 3.6), constrained_layout=True)
-    colors = {"fashionclip": "#219EBC", "resnet50": "#F28E2B", "resnet50ft": "#8A60B0"}
+    colors = {"fashionclip": "#219EBC", "resnet50": "#F28E2B",
+              "resnet50ft": "#8A60B0", "fashionclipft": "#498457"}
     panels = [("ari_mean", "Stability: mean ARI across seeds", cfg["visual"]["selection"]["min_stability_ari"]),
               ("nmi_category", "NMI with category (higher = re-discovers category)", None),
               ("min_eligible_dev_origins", "Min eligible dev origins per style",
@@ -70,7 +70,7 @@ if __name__ == "__main__":
     import numpy as np
     products = load_table(path(cfg, "interim") / "products.parquet").set_index("external_code")
     images = path(cfg, "images")
-    for enc in ENCODERS:
+    for enc in encoders:
         X = np.load(path(cfg, "embeddings") / f"{enc}.npy")
         d = path(cfg, "clusters") / enc
         for k in cfg["visual"]["kmeans"]["k_grid"]:

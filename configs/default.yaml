@@ -54,6 +54,10 @@ visual:                             # 4.1
       epochs: 3
       learning_rate: 0.001
       batch_size: 64
+    fashionclipft:
+      epochs: 3
+      learning_rate: 0.00001
+      batch_size: 32
   device: auto
   alpha_background: white           # ảnh gốc là RGBA -> ghép lên nền trắng trước khi encode
   kmeans:
@@ -65,8 +69,8 @@ visual:                             # 4.1
     min_cluster_size: 30
     min_stability_ari: 0.70
     min_eligible_dev_origins_per_style: 20
-  selected:                         # [CHỐT] D09 - đề xuất 2026-10-12 sau G2, chờ P2+P4 duyệt
-    encoder: resnet50               # primary; fashionclip chạy cùng K để so sánh (RQ1, RQ3)
+  selected:                         # D20 — cấu hình chạy chính sau validation Myntra
+    encoder: fashionclipft
     k: 20
   inspection:
     n_near_centroid: 12

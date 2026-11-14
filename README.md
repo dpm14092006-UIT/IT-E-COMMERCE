@@ -69,6 +69,15 @@ Nhánh visual cần tải trọng số pretrained (FashionCLIP từ Hugging Face
 ```bash
 python scripts/02_extract_embeddings.py --encoder all
 ```
+
+`--encoder all` huấn luyện cả hai nhánh Myntra (`resnet50ft` và `fashionclipft`) rồi trích
+embedding VISUELLE cho hai encoder pretrained để đối chiếu. Có thể chạy riêng từng
+nhánh bằng `--encoder resnet50ft` hoặc `--encoder fashionclipft`. Dùng tên nhánh tương ứng
+cho bước 03 (`--encoder`) và các bước 04–08 (`--grouping`). Checkpoint, lịch sử validation
+Myntra và embedding VISUELLE được lưu trong `outputs/embeddings/`.
+
+Cấu hình chạy chính sau lượt validation Myntra là `fashionclipft`, K=20 (D20).
+Bước 04 dùng encoder này nếu bỏ `--grouping`. Báo cáo final test lịch sử dùng cấu hình D09.
 ```bash
 python scripts/03_cluster_styles.py --encoder fashionclip
 ```

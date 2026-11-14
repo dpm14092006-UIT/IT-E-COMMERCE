@@ -56,9 +56,9 @@ if __name__ == "__main__":
     out += ["## 2. RQ1 - Visual style identification", "",
             md(g2[["encoder", "k", "silhouette", "davies_bouldin", "ari_mean", "ari_sd", "size_min",
                    "min_eligible_dev_origins", "nmi_category", "nmi_color", "nmi_fabric", "pass_all"]]), "",
-            f"Cấu hình chính (D09): **{cfg['visual']['selected']['encoder']}, K = {cfg['visual']['selected']['k']}**. "
+            f"Cấu hình của final test đã báo cáo (D09): **{PRIMARY}, K = 20**. "
             "Ảnh cấu hình chính: `outputs/clusters/resnet50/overview_k20.png` (các overview khác sinh lại bởi `scripts/03_cluster_styles.py`).", ""]
-    names = path(cfg, "clusters") / PRIMARY / f"style_names_k{cfg['visual']['selected']['k']}_draft.csv"
+    names = path(cfg, "clusters") / PRIMARY / "style_names_k20_draft.csv"
     if names.exists():
         out += [md(pd.read_csv(names)), ""]
 

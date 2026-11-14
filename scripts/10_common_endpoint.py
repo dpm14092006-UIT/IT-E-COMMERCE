@@ -20,6 +20,7 @@ PAIRS = [("knn_resnet50", "own_history"), ("knn_fashionclip", "own_history"),
          ("knn_novelty_resnet50", "own_history"), ("knn_novelty_fashionclip", "own_history"),
          ("knn_resnet50", "resnet50_context"),
          ("resnet50ft_context", "own_history"), ("resnet50ft_context", "resnet50_context"),
+         ("fashionclipft_context", "own_history"), ("fashionclipft_context", "fashionclip_context"),
          ("resnet50_context", "own_history"), ("fashionclip_context", "own_history"),
          ("attribute_context", "own_history"), ("resnet50_context", "attribute_context"),
          ("fashionclip_context", "attribute_context")]
@@ -42,9 +43,10 @@ if __name__ == "__main__":
     pp = ce.add_own_features(ce.add_targets(ce.product_panel(pw[pw["external_code"].isin(usable)])))
     k = cfg["visual"]["selected"]["k"]
     groupings = {"attribute": products.set_index("external_code")["category"]}
-    for enc in [e for e in ("fashionclip", "resnet50", "resnet50ft") if (path(cfg, "clusters") / e).exists()]:
-        a = load_table(path(cfg, "clusters") / enc / f"assignments_k{k}.parquet")
-        groupings[enc] = a.set_index("external_code")["style"]
+    for enc in ("fashionclip", "resnet50", "resnet50ft", "fashionclipft"):
+        assignments = path(cfg, "clusters") / enc / f"assignments_k{k}.parquet"
+        if assignments.is_file():
+            groupings[enc] = load_table(assignments).set_index("external_code")["style"]
     for name, g in groupings.items():
         pp = ce.add_context(pp, g[g.index.isin(usable)], name)
 
