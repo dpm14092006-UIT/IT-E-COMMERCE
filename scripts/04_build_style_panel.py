@@ -26,10 +26,12 @@ def style_mapping(grouping, products, cfg, k=None):
 
 if __name__ == "__main__":
     def extra(ap):
-        ap.add_argument("--grouping", required=True, choices=["fashionclip", "resnet50", "resnet50ft", "attribute"])
+        ap.add_argument("--grouping", choices=["fashionclip", "resnet50", "resnet50ft", "fashionclipft", "attribute"],
+                        help="defaults to visual.selected.encoder")
         ap.add_argument("--k", type=int, default=None, help="robustness: K other than visual.selected.k")
         ap.add_argument("--panel-id", default=None, help="output id, default = grouping (or grouping__kK)")
     args, cfg = parse(__doc__, extra)
+    args.grouping = args.grouping or cfg["visual"]["selected"]["encoder"]
     pid = args.panel_id or (f"{args.grouping}__k{args.k}" if args.k else args.grouping)
     interim = path(cfg, "interim")
     products, pw = load_table(interim / "products.parquet"), load_table(interim / "product_week.parquet")

@@ -1,0 +1,361 @@
+{
+  "stage": "02b_finetune_fashionclipft",
+  "time": "2026-11-14T02:08:31",
+  "python": "3.12.16",
+  "platform": "Linux-6.6.114.1-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "packages": {
+    "numpy": "2.5.4",
+    "pandas": "3.1.1",
+    "sklearn": "1.9.1",
+    "lightgbm": "4.7.0",
+    "catboost": "1.2.10",
+    "torch": "2.15.0+cpu",
+    "torchvision": "0.29.2+cpu",
+    "transformers": "4.57.6"
+  },
+  "config_sha256": "b30bce42858dd4634b1dbf36999ca62b3bd2e5f05521330fa29d5756f24aca9c",
+  "config": {
+    "project": {
+      "name": "visual-style-trend-forecasting",
+      "seed": 2026
+    },
+    "paths": {
+      "raw": "Data/extracted/visuelle2",
+      "images": "Data/extracted/visuelle2/images",
+      "interim": "outputs/interim",
+      "embeddings": "outputs/embeddings",
+      "clusters": "outputs/clusters",
+      "panels": "outputs/panels",
+      "features": "outputs/features",
+      "tuning": "outputs/tuning",
+      "predictions": "outputs/predictions",
+      "metrics": "outputs/metrics",
+      "reports": "outputs/reports",
+      "figures": "outputs/figures",
+      "manifests": "outputs/manifests"
+    },
+    "data": {
+      "n_relative_weeks": 12,
+      "week_anchor": "monday",
+      "panel_end": null,
+      "use_weather": false,
+      "use_customer_data": false
+    },
+    "partition": {
+      "calibration_end": "2018-07-02",
+      "validation_start": "2018-07-02",
+      "development_end": "2018-12-31",
+      "test_start": "2019-01-07",
+      "test_end": null,
+      "catalogue_cutoff": "2018-12-31"
+    },
+    "visual": {
+      "encoders": {
+        "fashionclip": {
+          "checkpoint": "patrickjohncyh/fashion-clip",
+          "batch_size": 64
+        },
+        "resnet50": {
+          "weights": "IMAGENET1K_V2",
+          "batch_size": 64
+        },
+        "resnet50ft": {
+          "source_zip": "Data/images(SMALL).zip",
+          "image_dir": "Data/extracted/myntra_women_apparel",
+          "genders": [
+            "Women",
+            "Girls"
+          ],
+          "master_category": "Apparel",
+          "min_class_count": 30,
+          "train_layers": [
+            "layer4"
+          ],
+          "epochs": 3,
+          "learning_rate": 0.001,
+          "batch_size": 64
+        },
+        "fashionclipft": {
+          "epochs": 3,
+          "learning_rate": 1e-05,
+          "batch_size": 32
+        }
+      },
+      "device": "auto",
+      "alpha_background": "white",
+      "kmeans": {
+        "k_grid": [
+          10,
+          15,
+          20,
+          25,
+          30
+        ],
+        "n_init": 20,
+        "max_iter": 500,
+        "stability_seeds": 10
+      },
+      "selection": {
+        "min_cluster_size": 30,
+        "min_stability_ari": 0.7,
+        "min_eligible_dev_origins_per_style": 20
+      },
+      "selected": {
+        "encoder": "resnet50",
+        "k": 20
+      },
+      "inspection": {
+        "n_near_centroid": 12,
+        "n_random": 12
+      }
+    },
+    "grouping": {
+      "attribute_keys": [
+        "category"
+      ]
+    },
+    "panel": {
+      "active_definition": "observation_window",
+      "weighting": "none",
+      "new_product_age_weeks": 1,
+      "inventory": {
+        "enabled": false
+      },
+      "gtrends": {
+        "enabled": true,
+        "missing_sentinel": -1,
+        "renormalize": "expanding_max",
+        "terms": [
+          "category",
+          "color",
+          "fabric"
+        ]
+      }
+    },
+    "features": {
+      "lags": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "windows": [
+        4,
+        8
+      ],
+      "growth_horizons": [
+        1,
+        4
+      ],
+      "calendar_period": 52,
+      "variables": {
+        "sales": [
+          "lag",
+          "ma",
+          "growth",
+          "trend",
+          "vol"
+        ],
+        "spap": [
+          "lag",
+          "ma",
+          "growth",
+          "trend",
+          "vol"
+        ],
+        "active_products": [
+          "lag",
+          "growth"
+        ],
+        "shop_exposure": [
+          "lag",
+          "growth"
+        ],
+        "price": [
+          "lag"
+        ],
+        "discount": [
+          "lag",
+          "ma"
+        ],
+        "mean_age": [],
+        "share_new": [],
+        "gt_category": [
+          "lag",
+          "growth",
+          "trend"
+        ],
+        "gt_color": [
+          "lag",
+          "growth",
+          "trend"
+        ],
+        "gt_fabric": [
+          "lag",
+          "growth",
+          "trend"
+        ]
+      },
+      "primary_blocks": [
+        "B1",
+        "B2",
+        "B3",
+        "B4a",
+        "B4b"
+      ]
+    },
+    "target": {
+      "horizon": 4,
+      "past_window": 4,
+      "min_active_weeks_per_window": 4,
+      "threshold": {
+        "rule": "median_abs",
+        "fallback_quantile": 0.5,
+        "sensitivity_quantiles": [
+          0.33,
+          0.4,
+          0.6,
+          0.67
+        ]
+      }
+    },
+    "eligibility": {
+      "min_history_weeks": 16,
+      "require_active_at_origin": true
+    },
+    "validation": {
+      "refit_every": 1,
+      "tuning_refit_every": 4,
+      "class_weighting": [
+        "none",
+        "balanced"
+      ],
+      "n_iter": 10
+    },
+    "evaluation": {
+      "zero_division": 0,
+      "bootstrap": {
+        "n_boot": 2000,
+        "block_length": 4,
+        "alpha": 0.05
+      }
+    }
+  },
+  "inputs": [
+    {
+      "path": "/mnt/e/IT in E-commerce/Data/images(SMALL).zip",
+      "sha256": null
+    }
+  ],
+  "outputs": [
+    {
+      "path": "/mnt/e/IT in E-commerce/outputs/embeddings/fashionclipft.npy",
+      "sha256": "62c3c6b4f44038d0d44d313dc5eee72d076f34f1a2c34a14beec806f05488a65"
+    },
+    {
+      "path": "/mnt/e/IT in E-commerce/outputs/embeddings/fashionclipft_backbone.pt",
+      "sha256": "262c06a449718e062a93d5f7c52d1e5932745780fcbe61869c38bb2fc218282b"
+    },
+    {
+      "path": "/mnt/e/IT in E-commerce/outputs/embeddings/fashionclipft_ids.parquet",
+      "sha256": "855f82c8f031fdd01bafe9c559d11d46428580a29bdf80c11705ac95cbd66cc9"
+    },
+    {
+      "path": "/mnt/e/IT in E-commerce/outputs/embeddings/fashionclipft_G1.json",
+      "sha256": "14e32e3757d98f115debe2edd6324d1060cbd60a0764ff8bdd0b2be6c5e9a7e7"
+    },
+    {
+      "path": "/mnt/e/IT in E-commerce/outputs/embeddings/fashionclipft_training.json",
+      "sha256": "4f56b1d38081ea5d7b57a4ddb05a54c72a15cf7dc27df6614373b6d6ab557d3e"
+    }
+  ],
+  "extra": {
+    "n": 5354,
+    "dim": 512,
+    "dim_ok": true,
+    "nan": 0,
+    "zero_norm": 0,
+    "norm_min": 10.171709060668945,
+    "norm_max": 14.183440208435059,
+    "finetune_history": [
+      {
+        "epoch": 1,
+        "train_loss": 4.662738786643767,
+        "val_acc_type": 0.6519774011299435,
+        "val_acc_colour": 0.5864406779661017
+      },
+      {
+        "epoch": 2,
+        "train_loss": 2.8689171051883315,
+        "val_acc_type": 0.751412429378531,
+        "val_acc_colour": 0.6542372881355932
+      },
+      {
+        "epoch": 3,
+        "train_loss": 2.3700292297156462,
+        "val_acc_type": 0.7864406779661017,
+        "val_acc_colour": 0.6745762711864407
+      }
+    ],
+    "n_myntra": 8850,
+    "article_types": [
+      "Bra",
+      "Briefs",
+      "Camisoles",
+      "Capris",
+      "Dresses",
+      "Dupatta",
+      "Jackets",
+      "Jeans",
+      "Jeggings",
+      "Kurta Sets",
+      "Kurtas",
+      "Kurtis",
+      "Leggings",
+      "Night suits",
+      "Nightdress",
+      "Patiala",
+      "Salwar",
+      "Sarees",
+      "Shirts",
+      "Shorts",
+      "Skirts",
+      "Stockings",
+      "Sweaters",
+      "Sweatshirts",
+      "Tops",
+      "Track Pants",
+      "Trousers",
+      "Tshirts",
+      "Tunics"
+    ],
+    "colours": [
+      "Beige",
+      "Black",
+      "Blue",
+      "Brown",
+      "Cream",
+      "Green",
+      "Grey",
+      "Grey Melange",
+      "Lavender",
+      "Magenta",
+      "Maroon",
+      "Multi",
+      "Mustard",
+      "Navy Blue",
+      "Off White",
+      "Olive",
+      "Orange",
+      "Peach",
+      "Pink",
+      "Purple",
+      "Red",
+      "Rust",
+      "Skin",
+      "Teal",
+      "White",
+      "Yellow"
+    ]
+  }
+}

@@ -5,7 +5,7 @@ Both encoders run in eval mode under no_grad; weights are never updated (primary
 import numpy as np
 from PIL import Image
 
-EXPECTED_DIM = {"fashionclip": 512, "resnet50": 2048, "resnet50ft": 2048}
+EXPECTED_DIM = {"fashionclip": 512, "fashionclipft": 512, "resnet50": 2048, "resnet50ft": 2048}
 
 
 def _open(path, retries=3):
@@ -47,20 +47,28 @@ def _batches(items, size):
         yield items[i:i + size]
 
 
-def encode_fashionclip(image_paths, checkpoint, batch_size=64, device="auto", background="white"):
+def fashionclip_features(model, **inputs):
+    feats = model.get_image_features(**inputs)
+    if hasattr(feats, "image_embeds") and feats.image_embeds is not None:
+        return feats.image_embeds
+    return feats if hasattr(feats, "shape") else feats.pooler_output
+
+
+def encode_fashionclip(image_paths, checkpoint, batch_size=64, device="auto", background="white",
+                       state_dict=None):
     """(1) z^F_i = f_FashionCLIP(I_i). Resize/crop/normalise come from the checkpoint processor."""
     import torch
     from transformers import CLIPModel, CLIPProcessor
     dev = _device(device)
     model = CLIPModel.from_pretrained(checkpoint).to(dev).eval()
+    if state_dict is not None:
+        model.vision_model.load_state_dict(torch.load(state_dict, map_location="cpu", weights_only=True))
     processor = CLIPProcessor.from_pretrained(checkpoint)
     out = []
     with torch.no_grad():
         for batch in _batches(list(image_paths), batch_size):
             inputs = processor(images=[load_rgb(p, background) for p in batch], return_tensors="pt").to(dev)
-            feats = model.get_image_features(**inputs)
-            if not torch.is_tensor(feats):      # newer transformers versions return a ModelOutput
-                feats = feats.image_embeds if getattr(feats, "image_embeds", None) is not None else feats.pooler_output
+            feats = fashionclip_features(model, **inputs)
             out.append(feats.cpu().numpy())
     return np.concatenate(out).astype(np.float32)
 

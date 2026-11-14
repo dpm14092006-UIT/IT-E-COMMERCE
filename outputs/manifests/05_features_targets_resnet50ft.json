@@ -1,20 +1,19 @@
 {
   "stage": "05_features_targets_resnet50ft",
-  "time": "2026-10-12T19:19:12",
-  "python": "3.11.9",
-  "platform": "Windows-10-10.0.26300-SP0",
+  "time": "2026-11-14T02:21:58",
+  "python": "3.12.16",
+  "platform": "Linux-6.6.114.1-microsoft-standard-WSL2-x86_64-with-glibc2.43",
   "packages": {
-    "numpy": "2.4.6",
-    "pandas": "2.3.3",
-    "sklearn": "1.4.2",
-    "xgboost": "3.2.0",
-    "lightgbm": "4.6.0",
+    "numpy": "2.5.4",
+    "pandas": "3.1.1",
+    "sklearn": "1.9.1",
+    "lightgbm": "4.7.0",
     "catboost": "1.2.10",
-    "torch": "2.14.0+cpu",
-    "torchvision": "0.29.0+cpu",
-    "transformers": "5.13.0"
+    "torch": "2.15.0+cpu",
+    "torchvision": "0.29.2+cpu",
+    "transformers": "4.57.6"
   },
-  "config_sha256": "0abf01332b23feb9a4eaa05482478b66cdbd08e102081cd8ad82ebb8f1b50ed1",
+  "config_sha256": "b30bce42858dd4634b1dbf36999ca62b3bd2e5f05521330fa29d5756f24aca9c",
   "config": {
     "project": {
       "name": "visual-style-trend-forecasting",
@@ -75,6 +74,11 @@
           "epochs": 3,
           "learning_rate": 0.001,
           "batch_size": 64
+        },
+        "fashionclipft": {
+          "epochs": 3,
+          "learning_rate": 1e-05,
+          "batch_size": 32
         }
       },
       "device": "auto",
@@ -240,21 +244,21 @@
   "inputs": [],
   "outputs": [
     {
-      "path": "E:\\IT in E-commerce\\outputs\\features\\features_resnet50ft.parquet",
-      "sha256": "5a9901cce6074bbcfee19580c2fe71448502f4b294dc25541fbc006c64190916"
+      "path": "/mnt/e/IT in E-commerce/outputs/features/features_resnet50ft.parquet",
+      "sha256": "4574204b970e9e77d8066b9166b88ddaa23e8b8ac351436264b326d2dd027d04"
     },
     {
-      "path": "E:\\IT in E-commerce\\outputs\\features\\target_resnet50ft.json",
-      "sha256": "d4e100546f2b657bee64ec786beaec3f7b8ee173907a36aafc3f0490c1e96e03"
+      "path": "/mnt/e/IT in E-commerce/outputs/features/target_resnet50ft.json",
+      "sha256": "f53c557c58d609e1a7f950f51eb4a9a4940c5640c7056855498e0cb7f1143bdd"
     }
   ],
   "extra": {
     "dataset": "resnet50ft",
     "response": "spap",
     "theta": {
-      "theta": 0.3020240600699158,
+      "theta": 0.32228813230351827,
       "rule": "median_abs",
-      "n_calibration": 1476,
+      "n_calibration": 1460,
       "last_origin_used": 79,
       "calibration_end_t": 83
     },
@@ -273,16 +277,16 @@
     "calibration": {
       "class_distribution": {
         "Declining": {
-          "n": 278,
-          "share": 0.22401289282836423
+          "n": 282,
+          "share": 0.23114754098360657
         },
         "Stable": {
-          "n": 643,
-          "share": 0.5181305398871877
+          "n": 624,
+          "share": 0.5114754098360655
         },
         "Emerging": {
-          "n": 320,
-          "share": 0.257856567284448
+          "n": 314,
+          "share": 0.2573770491803279
         }
       }
     },
@@ -291,21 +295,21 @@
         83,
         105
       ],
-      "n_forecasted": 459,
-      "n_scorable": 455,
-      "coverage": 0.9912854030501089,
+      "n_forecasted": 452,
+      "n_scorable": 448,
+      "coverage": 0.9911504424778761,
       "class_distribution": {
         "Declining": {
-          "n": 133,
-          "share": 0.2923076923076923
+          "n": 129,
+          "share": 0.28794642857142855
         },
         "Stable": {
-          "n": 190,
-          "share": 0.4175824175824176
+          "n": 191,
+          "share": 0.4263392857142857
         },
         "Emerging": {
-          "n": 132,
-          "share": 0.29010989010989013
+          "n": 128,
+          "share": 0.2857142857142857
         }
       },
       "styles_with_eligible_rows": 20
@@ -315,21 +319,21 @@
         110,
         168
       ],
-      "n_forecasted": 1161,
-      "n_scorable": 1148,
-      "coverage": 0.9888027562446167,
+      "n_forecasted": 1176,
+      "n_scorable": 1173,
+      "coverage": 0.9974489795918368,
       "class_distribution": {
         "Declining": {
-          "n": 364,
-          "share": 0.3170731707317073
+          "n": 368,
+          "share": 0.3137254901960784
         },
         "Stable": {
-          "n": 538,
-          "share": 0.4686411149825784
+          "n": 557,
+          "share": 0.47485080988917305
         },
         "Emerging": {
-          "n": 246,
-          "share": 0.21428571428571427
+          "n": 248,
+          "share": 0.21142369991474852
         }
       },
       "styles_with_eligible_rows": 20

@@ -1,20 +1,19 @@
 {
   "stage": "04_style_panel_resnet50ft",
-  "time": "2026-10-12T19:18:56",
-  "python": "3.11.9",
-  "platform": "Windows-10-10.0.26300-SP0",
+  "time": "2026-11-14T02:21:52",
+  "python": "3.12.16",
+  "platform": "Linux-6.6.114.1-microsoft-standard-WSL2-x86_64-with-glibc2.43",
   "packages": {
-    "numpy": "2.4.6",
-    "pandas": "2.3.3",
-    "sklearn": "1.4.2",
-    "xgboost": "3.2.0",
-    "lightgbm": "4.6.0",
+    "numpy": "2.5.4",
+    "pandas": "3.1.1",
+    "sklearn": "1.9.1",
+    "lightgbm": "4.7.0",
     "catboost": "1.2.10",
-    "torch": "2.14.0+cpu",
-    "torchvision": "0.29.0+cpu",
-    "transformers": "5.13.0"
+    "torch": "2.15.0+cpu",
+    "torchvision": "0.29.2+cpu",
+    "transformers": "4.57.6"
   },
-  "config_sha256": "0abf01332b23feb9a4eaa05482478b66cdbd08e102081cd8ad82ebb8f1b50ed1",
+  "config_sha256": "b30bce42858dd4634b1dbf36999ca62b3bd2e5f05521330fa29d5756f24aca9c",
   "config": {
     "project": {
       "name": "visual-style-trend-forecasting",
@@ -75,6 +74,11 @@
           "epochs": 3,
           "learning_rate": 0.001,
           "batch_size": 64
+        },
+        "fashionclipft": {
+          "epochs": 3,
+          "learning_rate": 1e-05,
+          "batch_size": 32
         }
       },
       "device": "auto",
@@ -240,12 +244,12 @@
   "inputs": [],
   "outputs": [
     {
-      "path": "E:\\IT in E-commerce\\outputs\\panels\\style_week_resnet50ft.parquet",
-      "sha256": "0d527d9eed7306c3e680f18d15c290f6455dd7127e012e178abbe20688628d63"
+      "path": "/mnt/e/IT in E-commerce/outputs/panels/style_week_resnet50ft.parquet",
+      "sha256": "abe0332c0bc96046ed33cad2c23eecd01c955b4cf4a3ec8dfc7c444a7be851c2"
     },
     {
-      "path": "E:\\IT in E-commerce\\outputs\\panels\\style_week_resnet50ft_G3.json",
-      "sha256": "9f3b44bd448ad295f7167728754cdf2407e113b2b28e4e8e0bcdd2280229cb1d"
+      "path": "/mnt/e/IT in E-commerce/outputs/panels/style_week_resnet50ft_G3.json",
+      "sha256": "fa754ff324c485f3fb1f72bd174522e1ba7cacdfd29397b26632eb9b8481cc10"
     }
   ],
   "extra": {
@@ -254,7 +258,7 @@
     "equal": true,
     "n_styles": 20,
     "n_rows": 3460,
-    "share_inactive_style_weeks": 0.022254335260115606,
+    "share_inactive_style_weeks": 0.024277456647398842,
     "negative_style_week_sales": 1
   }
 }

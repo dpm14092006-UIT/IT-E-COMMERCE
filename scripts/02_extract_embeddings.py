@@ -1,10 +1,13 @@
-"""G1 | Nguoi 2 (FashionCLIP, 4.1.1) + Nguoi 4 (ResNet-50 CNN, 4.1.2) - frozen image embeddings.
+"""G1 | Extract baseline embeddings and train both visual encoders on Myntra.
 
 Outputs: outputs/embeddings/{encoder}.npy (L2-normalised), {encoder}_ids.parquet, {encoder}_G1.json
 """
+import subprocess
+import sys
+
 import numpy as np
 import pandas as pd
-from _common import log, parse
+from _common import ROOT, log, parse
 
 from vstyle.config import path
 from vstyle.io import load_table, save_json, save_table
@@ -23,7 +26,15 @@ def encode(name, paths, cfg):
 
 if __name__ == "__main__":
     args, cfg = parse(__doc__, lambda ap: ap.add_argument("--encoder", default="all",
-                                                          choices=["all", "fashionclip", "resnet50"]))
+                                                          choices=["all", "fashionclip", "resnet50",
+                                                                   "fashionclipft", "resnet50ft"]))
+    adapted = ("resnet50ft", "fashionclipft")
+    for name in adapted if args.encoder == "all" else [args.encoder]:
+        if name in adapted:
+            subprocess.run([sys.executable, str(ROOT / "scripts/02b_finetune_resnet.py"),
+                            "--encoder", name, "--config", *args.config], check=True)
+    if args.encoder in adapted:
+        raise SystemExit(0)
     products = load_table(path(cfg, "interim") / "products.parquet")
     products = products[products["image_ok"]].reset_index(drop=True)          # D14
     images = path(cfg, "images")

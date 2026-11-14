@@ -1,20 +1,19 @@
 {
   "stage": "03_cluster_resnet50ft",
-  "time": "2026-10-12T19:17:05",
-  "python": "3.11.9",
-  "platform": "Windows-10-10.0.26300-SP0",
+  "time": "2026-11-14T02:21:46",
+  "python": "3.12.16",
+  "platform": "Linux-6.6.114.1-microsoft-standard-WSL2-x86_64-with-glibc2.43",
   "packages": {
-    "numpy": "2.4.6",
-    "pandas": "2.3.3",
-    "sklearn": "1.4.2",
-    "xgboost": "3.2.0",
-    "lightgbm": "4.6.0",
+    "numpy": "2.5.4",
+    "pandas": "3.1.1",
+    "sklearn": "1.9.1",
+    "lightgbm": "4.7.0",
     "catboost": "1.2.10",
-    "torch": "2.14.0+cpu",
-    "torchvision": "0.29.0+cpu",
-    "transformers": "5.13.0"
+    "torch": "2.15.0+cpu",
+    "torchvision": "0.29.2+cpu",
+    "transformers": "4.57.6"
   },
-  "config_sha256": "0abf01332b23feb9a4eaa05482478b66cdbd08e102081cd8ad82ebb8f1b50ed1",
+  "config_sha256": "b30bce42858dd4634b1dbf36999ca62b3bd2e5f05521330fa29d5756f24aca9c",
   "config": {
     "project": {
       "name": "visual-style-trend-forecasting",
@@ -75,6 +74,11 @@
           "epochs": 3,
           "learning_rate": 0.001,
           "batch_size": 64
+        },
+        "fashionclipft": {
+          "epochs": 3,
+          "learning_rate": 1e-05,
+          "batch_size": 32
         }
       },
       "device": "auto",
@@ -240,8 +244,8 @@
   "inputs": [],
   "outputs": [
     {
-      "path": "E:\\IT in E-commerce\\outputs\\clusters\\resnet50ft\\grid.csv",
-      "sha256": "03aabcf59b9174512f6b1a35186aeecb07b3d00fe5e96af695479554c24ffccc"
+      "path": "/mnt/e/IT in E-commerce/outputs/clusters/resnet50ft/grid.csv",
+      "sha256": "30b92a96d8061aaace41afd5231b804ad2f9ce00bf8845cdac655c94a1817ffb"
     }
   ],
   "extra": {}

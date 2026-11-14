@@ -42,3 +42,9 @@ Kết quả lần 1 giữ nguyên, không bị thay thế. Mọi lựa chọn d�
 | ID | Quyết định | Lựa chọn | Bằng chứng | Chủ | Trạng thái | Ngày |
 | --- | --- | --- | --- | --- | --- | --- |
 | D19 | Thu gọn model trong code/config | **Giữ Random Forest, LightGBM, CatBoost và TCN; loại XGBoost và TFT khỏi luồng chạy.** Kết quả final test sáu model cũ vẫn được lưu như hồ sơ lịch sử. | Macro-F1 test: TCN 0,649; CatBoost 0,648; LightGBM 0,642; RF 0,637. Chênh lệch giữa các model không có ý nghĩa thống kê; RF được giữ thay cho XGBoost đang gần như đồng điểm để giảm trùng lặp boosting và giữ lựa chọn bagging. | User | Chốt | 2026-11-10 |
+
+## Cập nhật 2026-11-14 — tích hợp Myntra
+
+| ID | Quyết định | Lựa chọn | Bằng chứng |
+| --- | --- | --- | --- |
+| D20 | Encoder chính sau khi tích hợp Myntra | **FashionCLIP fine-tuned, K = 20**. Luồng trích embedding hỗ trợ huấn luyện cả hai encoder trên Myntra. | Tại K=20, FashionCLIP fine-tuned qua các tiêu chí về kích thước, độ ổn định và coverage (ARI 0,816). ResNet-50 fine-tuned đạt ARI 0,684. Walk-forward validation dùng siêu tham số mặc định. Final test của D09 thuộc cấu hình ResNet-50 pretrained. |

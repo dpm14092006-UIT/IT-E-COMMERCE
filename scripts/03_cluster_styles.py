@@ -30,7 +30,7 @@ def dev_coverage(pw, style_of, cal, cfg, dev_end):
 
 if __name__ == "__main__":
     args, cfg = parse(__doc__, lambda ap: ap.add_argument("--encoder", required=True,
-                                                          choices=["fashionclip", "resnet50", "resnet50ft"]))
+                                                          choices=["fashionclip", "resnet50", "resnet50ft", "fashionclipft"]))
     km = cfg["visual"]["kmeans"]
     seed = cfg["project"]["seed"]
     interim = path(cfg, "interim")
