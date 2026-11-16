@@ -45,6 +45,12 @@ Kết quả lần 1 giữ nguyên, không bị thay thế. Mọi lựa chọn d�
 
 ## Cập nhật 2026-11-14 — tích hợp Myntra
 
-| ID | Quyết định | Lựa chọn | Bằng chứng |
-| --- | --- | --- | --- |
-| D20 | Encoder chính sau khi tích hợp Myntra | **FashionCLIP fine-tuned, K = 20**. Luồng trích embedding hỗ trợ huấn luyện cả hai encoder trên Myntra. | Tại K=20, FashionCLIP fine-tuned qua các tiêu chí về kích thước, độ ổn định và coverage (ARI 0,816). ResNet-50 fine-tuned đạt ARI 0,684. Walk-forward validation dùng siêu tham số mặc định. Final test của D09 thuộc cấu hình ResNet-50 pretrained. |
+| ID | Quyết định | Lựa chọn | Bằng chứng | Chủ | Trạng thái | Ngày |
+| --- | --- | --- | --- | --- | --- | --- |
+| D20 | Encoder chính sau khi tích hợp Myntra | Đề xuất: **FashionCLIP fine-tuned, K = 20**. Luồng trích embedding hỗ trợ huấn luyện cả hai encoder trên Myntra. | Tại K=20, FashionCLIP fine-tuned qua các tiêu chí về kích thước, độ ổn định và coverage (ARI 0,816). ResNet-50 fine-tuned đạt ARI 0,684. Walk-forward validation dùng siêu tham số mặc định (chưa tune), chưa có final test. | — | **Không chốt** (xem D21) | 2026-11-14 |
+
+## Cập nhật 2026-11-16
+
+| ID | Quyết định | Lựa chọn | Bằng chứng | Chủ | Trạng thái | Ngày |
+| --- | --- | --- | --- | --- | --- | --- |
+| D21 | Cấu hình visual chính | **Giữ D09: ResNet-50 pretrained, K = 20** (cùng TCN là hai thành phần CNN); FashionCLIP K = 20 chạy song song để so sánh. `resnet50ft` và `fashionclipft` (Myntra) chỉ là thí nghiệm bổ sung. | D09 là quyết định gần nhất đã chốt và là cấu hình của final test đã báo cáo; D20 chưa được duyệt, chưa tune, chưa có final test. | User | Chốt | 2026-11-16 |

@@ -7,7 +7,7 @@ Khung sườn thực thi cho **Section 4 – Methodology**: ảnh sản phẩm �
 | [docs/01_BOC_TACH_PHUONG_PHAP.md](docs/01_BOC_TACH_PHUONG_PHAP.md) | Bóc tách từng mục, truy vết (1)–(70), phát hiện từ dữ liệu thật, 14 lỗ hổng của văn bản |
 | [docs/02_TIEU_CHI_DAT.md](docs/02_TIEU_CHI_DAT.md) | Thế nào là đạt: tầng A (khung sườn), cổng G0–G11, tầng C (kết luận) |
 | [docs/03_PHAN_CONG_ROLE.md](docs/03_PHAN_CONG_ROLE.md) | 4 role. Người 4 giữ ResNet-50 và TCN (hai thành phần CNN) |
-| [docs/decision_log.md](docs/decision_log.md) | D01–D19, gồm lựa chọn bộ model hiện hành |
+| [docs/decision_log.md](docs/decision_log.md) | D01–D21, gồm lựa chọn bộ model hiện hành và cấu hình visual chính |
 | [docs/04_KET_QUA.md](docs/04_KET_QUA.md) | Kết quả và diễn giải RQ1–RQ3 |
 | [outputs/reports/visual_trend_radar.html](outputs/reports/visual_trend_radar.html) | Dashboard Visual Trend Radar (mở bằng trình duyệt; sinh bởi `scripts/15_trend_radar.py`) |
 | [web/](web/) | **Style Scanner**: upload 1 ảnh (out-of-sample) → ResNet-50 và FashionCLIP → style K-Means hoặc style lạ (zero-shot) → dự báo TCN (`scripts/17_build_web_assets.py` + `web/app.py`) |
@@ -76,8 +76,9 @@ nhánh bằng `--encoder resnet50ft` hoặc `--encoder fashionclipft`. Dùng tê
 cho bước 03 (`--encoder`) và các bước 04–08 (`--grouping`). Checkpoint, lịch sử validation
 Myntra và embedding VISUELLE được lưu trong `outputs/embeddings/`.
 
-Cấu hình chạy chính sau lượt validation Myntra là `fashionclipft`, K=20 (D20).
-Bước 04 dùng encoder này nếu bỏ `--grouping`. Báo cáo final test lịch sử dùng cấu hình D09.
+Cấu hình chính là `resnet50` (pretrained), K=20 (D09, giữ lại theo D21); FashionCLIP K=20 chạy
+song song để so sánh. Bước 04 dùng `resnet50` nếu bỏ `--grouping`. Hai nhánh Myntra
+(`resnet50ft`, `fashionclipft`) chỉ là thí nghiệm bổ sung (D20 không chốt).
 ```bash
 python scripts/03_cluster_styles.py --encoder fashionclip
 ```
@@ -94,7 +95,7 @@ python scripts/07_walk_forward.py --grouping fashionclip --stage test --frozen
 | --- | --- |
 | G0 audit, product–week, insight P1 | Đã chạy trên dữ liệu thật: 0 FAIL, 7 quyết định cần chốt |
 | Pipeline forecasting trên benchmark attribute (validation) | Đã chạy 05 → 09, 12, 13 |
-| Embedding + K-Means (G1, G2) | Đã chạy cả hai encoder. G1 đạt. G2: chỉ ResNet-50 K=10/20 qua gate; đề xuất D09 = ResNet-50 K=20 (chờ duyệt). Xem `outputs/reports/G2_encoder_comparison.md` |
+| Embedding + K-Means (G1, G2) | Đã chạy cả hai encoder. G1 đạt. G2: chỉ ResNet-50 K=10/20 qua gate; đã chốt D09 = ResNet-50 K=20. Xem `outputs/reports/G2_encoder_comparison.md` |
 | Final test (toàn bộ Section 4) | Đã chạy: tuning, final test 4 grouping (resnet50 chính, fashionclip, attribute, resnet50ft), ablation, common endpoint, robustness, explainability, decision layer. Kết quả: `outputs/reports/FINAL_RESULTS.md`; diễn giải: `docs/04_KET_QUA.md` |
 | TCN (Người 4) | Đã chạy walk-forward trên attribute/validation: Macro-F1 0,663 (1 seed, refit mỗi 4 origin, ~43 giây) |
 | Bộ model hiện hành | Random Forest, LightGBM, CatBoost, TCN. XGBoost và TFT đã được loại khỏi cấu hình/code; kết quả cũ được giữ trong báo cáo lịch sử. |

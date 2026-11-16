@@ -69,8 +69,8 @@ visual:                             # 4.1
     min_cluster_size: 30
     min_stability_ari: 0.70
     min_eligible_dev_origins_per_style: 20
-  selected:                         # D20 — cấu hình chạy chính sau validation Myntra
-    encoder: fashionclipft
+  selected:                         # D09 (giữ lại theo D21): ResNet-50 pretrained là cấu hình chính
+    encoder: resnet50               # fashionclip chạy cùng K để so sánh; resnet50ft/fashionclipft là thí nghiệm bổ sung (D20)
     k: 20
   inspection:
     n_near_centroid: 12
