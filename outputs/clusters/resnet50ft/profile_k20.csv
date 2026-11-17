@@ -1,0 +1,21 @@
+style,n_products,top_category,top_color,top_fabric,top_season,eligible_dev_origins
+0,225,long dress 17%; sleeveless 13%; long sleeve 13%,black 40%; brown 16%; grey 10%,georgette 24%; silky satin 16%; lurex 10%,AW18 31%; SS19 21%; AW19 16%,93
+1,224,patterned top 26%; sleeveless 21%; short sleeves 10%,white 29%; brown 24%; black 21%,tulle 20%; georgette 17%; cotton 9%,SS17 31%; SS18 19%; SS19 17%,86
+2,253,long sleeve 49%; solid color top 23%; doll dress 4%,black 78%; blue 5%; grey 5%,nice 41%; acrylic 11%; lurex 8%,AW18 26%; AW19 26%; AW17 24%,82
+3,373,long sleeve 37%; long coat 15%; short coat 13%,black 55%; blue 20%; grey 8%,faux leather 31%; foam rubber 21%; cotton 14%,AW17 24%; AW19 22%; AW18 19%,94
+4,364,doll dress 27%; sleeveless 18%; long dress 10%,black 56%; white 9%; brown 9%,georgette 41%; tulle 15%; embossed 13%,AW19 21%; SS18 20%; AW17 16%,94
+5,151,culottes 85%; long sleeve 4%; solid color top 3%,green 34%; black 25%; brown 17%,cotton 36%; satin cotton 12%; bengaline 9%,SS17 63%; SS18 11%; SS19 11%,93
+6,343,sleeveless 16%; solid color top 16%; short sleeves 13%,black 66%; grey 10%; blue 8%,nice 13%; matte jersey 10%; acrylic 9%,AW19 29%; AW18 20%; AW17 17%,94
+7,242,printed shirt 25%; long sleeve 17%; solid color top 16%,white 40%; brown 22%; violet 14%,matte jersey 19%; cotton 14%; frise 12%,AW19 21%; SS18 21%; SS17 16%,94
+8,209,long sleeve 62%; solid color top 12%; kimono dress 10%,grey 47%; brown 19%; violet 11%,nice 42%; acrylic 17%; hron 13%,AW17 29%; AW19 24%; AW18 20%,95
+9,208,long sleeve 35%; solid color top 18%; culottes 11%,violet 47%; red 32%; brown 15%,nice 13%; cotton 12%; faux leather 9%,SS19 22%; SS18 22%; AW18 18%,94
+10,270,sleeveless 20%; solid color top 17%; short sleeves 16%,violet 44%; red 39%; brown 6%,georgette 36%; tulle 8%; lace 6%,SS18 26%; AW19 18%; SS19 17%,94
+11,135,long sleeve 30%; sleeveless 17%; solid color top 13%,yellow 60%; brown 13%; violet 10%,georgette 28%; nice 16%; scuba crepe 6%,SS17 53%; AW17 13%; AW19 13%,84
+12,233,long sleeve 34%; solid color top 8%; short coat 7%,brown 45%; white 27%; yellow 8%,cotton 13%; faux leather 12%; georgette 11%,SS17 41%; AW19 27%; SS19 11%,94
+13,436,long sleeve 41%; long coat 9%; solid color top 8%,black 89%; green 4%; grey 3%,nice 26%; georgette 9%; cloth 7%,AW19 25%; AW18 24%; AW17 23%,88
+14,401,culottes 97%; jumpsuit 1%; capris 1%,black 72%; blue 10%; grey 5%,technical 17%; scuba crepe 13%; cotton 13%,AW18 21%; AW19 20%; SS19 18%,93
+15,161,culottes 98%; long sleeve 1%; capris 1%,blue 91%; grey 4%; violet 2%,dark jeans 36%; light jeans 34%; heavy jeans 14%,SS18 19%; AW17 19%; SS19 19%,87
+16,458,doll dress 18%; sleeveless 14%; long dress 10%,black 50%; blue 25%; green 10%,georgette 23%; tulle 10%; scuba crepe 7%,SS19 20%; AW19 17%; AW17 17%,94
+17,184,solid color top 20%; long sleeve 15%; sleeveless 12%,black 43%; green 37%; blue 5%,matte jersey 13%; cotton 9%; georgette 8%,SS17 73%; SS18 7%; AW19 7%,77
+18,206,long sleeve 22%; culottes 21%; patterned top 18%,black 29%; grey 18%; brown 16%,polyviscous 14%; silky satin 9%; matte jersey 9%,AW18 29%; AW19 21%; SS19 18%,95
+19,278,long sleeve 41%; sleeveless 15%; short sleeves 11%,white 63%; brown 21%; blue 4%,georgette 24%; cotton 19%; nice 10%,SS19 25%; SS18 24%; AW18 16%,89

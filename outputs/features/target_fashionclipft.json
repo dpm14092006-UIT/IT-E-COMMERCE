@@ -1,0 +1,88 @@
+{
+  "dataset": "fashionclipft",
+  "response": "spap",
+  "theta": {
+    "theta": 0.33548668801781156,
+    "rule": "median_abs",
+    "n_calibration": 1444,
+    "last_origin_used": 79,
+    "calibration_end_t": 83
+  },
+  "origin_sets": {
+    "calibration_end": 83,
+    "development_end": 109,
+    "validation": [
+      83,
+      105
+    ],
+    "test": [
+      110,
+      168
+    ]
+  },
+  "calibration": {
+    "class_distribution": {
+      "Declining": {
+        "n": 268,
+        "share": 0.22112211221122113
+      },
+      "Stable": {
+        "n": 616,
+        "share": 0.5082508250825083
+      },
+      "Emerging": {
+        "n": 328,
+        "share": 0.2706270627062706
+      }
+    }
+  },
+  "validation": {
+    "origins": [
+      83,
+      105
+    ],
+    "n_forecasted": 460,
+    "n_scorable": 460,
+    "coverage": 1.0,
+    "class_distribution": {
+      "Declining": {
+        "n": 123,
+        "share": 0.2673913043478261
+      },
+      "Stable": {
+        "n": 222,
+        "share": 0.4826086956521739
+      },
+      "Emerging": {
+        "n": 115,
+        "share": 0.25
+      }
+    },
+    "styles_with_eligible_rows": 20
+  },
+  "test": {
+    "origins": [
+      110,
+      168
+    ],
+    "n_forecasted": 1165,
+    "n_scorable": 1145,
+    "coverage": 0.9828326180257511,
+    "class_distribution": {
+      "Declining": {
+        "n": 364,
+        "share": 0.3179039301310044
+      },
+      "Stable": {
+        "n": 542,
+        "share": 0.4733624454148472
+      },
+      "Emerging": {
+        "n": 239,
+        "share": 0.20873362445414848
+      }
+    },
+    "styles_with_eligible_rows": 20
+  },
+  "n_features": 72
+}
