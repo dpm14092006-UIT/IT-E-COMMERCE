@@ -189,6 +189,14 @@ function lateBanner() {
     Đây là giới hạn của dataset, không phải tín hiệu kinh doanh. <button class="btn" id="toDefault" style="min-height:28px;padding:3px 10px;margin-left:6px">Về tuần giữa mùa ${fmt(weekDate(o.default))}</button></div>`;
 }
 document.addEventListener("click", (e) => {
+  const replay = e.target.closest("[data-replay-process]");
+  if (replay) {
+    const panel = replay.closest(".model-process");
+    panel.classList.remove("process-playing");
+    void panel.offsetWidth;
+    panel.classList.add("process-playing");
+    return;
+  }
   if (e.target.id !== "toDefault") return;
   state.t = state.origins.default;
   $("origin").value = state.t;
@@ -433,16 +441,46 @@ async function pageScan() {
   const s = state.scan;
   return `<div class="page-head"><div><p class="eyebrow">Tuần điều hành ${fmt(weekDate(state.t))}</p><h1>Quét ảnh &amp; dự báo</h1>
       <p>Tải ảnh một sản phẩm: hệ thống nhận diện, xếp vào nhóm style gần nhất và dự báo xu hướng 4 tuần ${windowText(state.t)}.</p></div></div>
-    <div class="scan-layout"><section class="card">
+    <div class="scan-layout scan-compare-layout"><section class="card">
       <div class="drop" id="drop" tabindex="0" role="button" aria-label="Chọn ảnh để quét">${s.url ? `<img src="${s.url}" alt="Ảnh đã chọn">` : `<div><span class="upload-icon"><svg class="icon"><use href="#i-upload"/></svg></span><b>Kéo thả hoặc bấm để chọn ảnh</b><span class="small">JPG, PNG, WEBP · tối đa 15 MB · hoặc Ctrl + V</span></div>`}</div>
       <input type="file" id="file" accept="image/jpeg,image/png,image/webp" hidden>
       ${s.file ? `<p class="small muted" style="margin:8px 0 0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(s.file.name)} · ${bytes(s.file.size)}</p>` : ""}
       <div class="field"><label for="segment">Tách nền</label><select id="segment">${SEGMENT.map(([v, l]) => `<option value="${v}">${l}</option>`).join("")}</select></div>
       <button class="btn btn-primary btn-block" id="runScan" style="margin-top:16px" ${!s.file || s.busy ? "disabled" : ""}>${s.busy ? `<span class="spinner" style="border-color:#fff6;border-top-color:#fff"></span> Đang phân tích…` : `<svg class="icon"><use href="#i-scan"/></svg> Quét &amp; dự báo`}</button>
       <p class="small muted" style="margin:12px 0 0">Ảnh và kết quả được lưu vào <a href="#/storage/scans" style="color:var(--accent)">Kho dữ liệu › Ảnh đã quét</a>.</p></section>
-      <div id="scanResult">${s.busy ? `<section class="card"><div class="page-loading"><span class="spinner"></span> Đang nhận diện và dự báo… ảnh có người mẫu có thể mất thêm thời gian.</div></section>`
+      <div id="scanResult">${s.busy ? processLoading(s.url)
         : s.result ? scanResult(s.result.scan)
         : `<section class="card"><div class="empty-state"><svg class="icon"><use href="#i-trend"/></svg><h3>Chưa có kết quả</h3><p>Chọn ảnh bên trái rồi bấm “Quét &amp; dự báo”.</p></div></section>`}</div></div>`;
+}
+function processLoading(url) {
+  return `<section class="card" role="status"><h2 class="card-title">Đang phân tích qua hai mô hình</h2><p class="card-sub">Hiệu ứng bên dưới minh họa quá trình xử lý. Kết quả thật sẽ xuất hiện khi máy chủ hoàn tất.</p><div class="model-columns">${["FashionCLIP · ViT-B/32", "CNN · ResNet-50"].map((name) => `<div class="model-wait"><h3>${name}</h3><div class="process-image scanning"><img src="${url}" alt="Ảnh đang được xử lý"><span class="process-beam"></span></div><p><span class="spinner"></span> Tách trang phục → trích đặc trưng → so với 20 tâm cụm</p></div>`).join("")}</div></section>`;
+}
+function modelProcess(s) {
+  if (!s.process?.encoders) return `<div class="notice info">Lượt quét cũ chưa lưu chi tiết hai mô hình. Quét lại ảnh để xem hiệu ứng và khoảng cách K-Means.</div>`;
+  const seg = s.process.segmentation;
+  const source = `/api/m/scans/${s.id}/image`;
+  return `<section class="model-process process-playing"><div class="card process-heading"><div><p class="eyebrow">Một ảnh · hai không gian đặc trưng</p><h2 class="card-title">FashionCLIP và CNN nhìn ảnh như thế nào?</h2><p class="card-sub">Phát lại các bước từ kết quả thật. Hai mô hình có bộ 20 cụm riêng; số cụm giữa hai bên không tương ứng.</p></div><button class="btn" data-replay-process>↻ Phát lại hiệu ứng</button></div>
+    <div class="card shared-segment"><div><b>01 · Tách trang phục — SegFormer dùng chung</b><p class="small muted">${seg.applied ? "Giữ vùng trang phục và đặt lên nền trắng trước khi đưa vào cả hai mô hình." : "Không áp dụng tách nền ở lượt quét này; cả hai mô hình nhận ảnh trước bước tiền xử lý riêng."}</p></div><div class="segment-frames"><figure><img src="${source}" alt="Ảnh gốc"><figcaption>Ảnh gốc</figcaption></figure>${seg.overlay ? `<span>→</span><figure><img src="${seg.overlay}" alt="Phân vùng SegFormer"><figcaption>Phân vùng</figcaption></figure>` : ""}<span>→</span><figure><img src="${seg.isolated || source}" alt="Ảnh đưa vào encoder"><figcaption>${seg.applied ? "Trang phục đã tách" : "Giữ ảnh đầu vào"}</figcaption></figure></div></div>
+    <div class="model-columns">${["fashionclip", "resnet50"].map((enc) => {
+      const d = s.process.encoders[enc];
+      if (!d) return "";
+      const cnn = enc === "resnet50", max = Math.max(...d.ranking.map((r) => r.distance), .001);
+      return `<article class="model-lane ${cnn ? "cnn-lane" : "clip-lane"}"><header><span class="model-tag">${cnn ? "CNN" : "ViT-B/32"}</span><h3>${cnn ? "ResNet-50" : "FashionCLIP"}</h3><p>${cnn ? "Tích chập → bản đồ đặc trưng → gộp trung bình" : "Chia ảnh thành patch → Vision Transformer → chiếu đặc trưng"}</p></header>
+        <section class="process-step" style="--step:0"><h4>02 · Ảnh mô hình thực sự nhận</h4><div class="process-image"><img src="${d.crop}" alt="Ảnh đầu vào ${enc}"><div class="${cnn ? "conv-grid" : "patch-grid"}"></div><span class="process-beam"></span></div><p>${d.info.input_shape.join(" × ")} · ${cnn ? "Lưới minh họa vùng quét của tích chập; đặc trưng cuối trên lưới 7 × 7." : "Ảnh chia thành 49 patch, mỗi patch 32 × 32 pixel."}</p></section>
+        <section class="process-step" style="--step:1"><h4>03 · Vùng ảnh góp phần chọn style</h4><div class="process-image"><img src="${d.evidence}" alt="Bản đồ vùng ảnh liên quan tới cụm ${enc}"></div><p>${esc(d.info.evidence_note)}</p></section>
+        <section class="process-step" style="--step:2"><h4>04 · Vector ${int(d.info.dim)} chiều → chuẩn hóa L2</h4><div class="feature-strip" aria-label="64 giá trị đầu của vector đặc trưng">${d.preview.map((v) => `<i title="${v}" style="height:${Math.max(5, Math.min(100, Math.abs(v) * 500))}%;opacity:${Math.max(.2, Math.min(1, Math.abs(v) * 10))}"></i>`).join("")}</div><p>64 giá trị đầu của vector thật; chiều cao thể hiện độ lớn tuyệt đối. Vector dùng để tính khoảng cách tới tâm cụm.</p></section>
+        <section class="process-step" style="--step:3"><h4>05 · K-Means: so với 20 tâm cụm</h4><p>Tâm cụm đã được học và đóng băng. Khoảng cách Euclid càng nhỏ, cụm càng gần ảnh. Khi quét, hệ thống gán cụm; không huấn luyện lại K-Means.</p><div class="centroid-list">${d.ranking.map((r, i) => `<div class="centroid-row ${i === 0 ? "nearest" : ""}" style="--rank:${i}"><span title="${esc(r.name)}">C${r.id} · ${esc(r.name)}</span><div><i style="--distance:${100 * r.distance / max}%"></i></div><b>${dec(r.distance, 4)}</b></div>`).join("")}</div><div class="cluster-verdict"><b>${d.style.novel ? "Style lạ · chỉ tham chiếu cụm gần nhất" : "Cụm gần nhất"}: C${d.style.id} · ${esc(d.style_name)}</b><p>d = ${dec(d.style.distance, 4)} · ngưỡng khoảng cách 99% = ${dec(d.style.q99, 4)}. ${d.style.novel ? "Ảnh vượt ngưỡng và ít giống các sản phẩm lân cận nên không bị ép vào cụm." : "Kết hợp khoảng cách và độ tương đồng với sản phẩm lân cận để kiểm tra style lạ."}</p></div></section>
+        <section class="process-step" style="--step:4"><h4>06 · Dự báo xu hướng từ cả 4 mô hình</h4><p>4 tuần ${windowText(s.t)} · Dự báo áp dụng cho lịch sử doanh số của nhóm style.${d.style.novel ? " Style lạ: các kết quả dưới đây chỉ là ước lượng tham khảo từ các cụm gần nhất." : ""}</p>${modelForecasts(d.forecasts)}</section>
+      </article>`;
+    }).join("")}</div></section>`;
+}
+function modelForecasts(forecasts = {}) {
+  return `<div class="model-forecasts">${[["random_forest", "Random Forest"], ["lightgbm", "LightGBM"], ["catboost", "CatBoost"], ["tcn", "TCN"]].map(([key, name]) => {
+    const f = forecasts[key];
+    if (!f) return `<div class="forecast-model"><b>${name}</b><p>Chưa có dự báo cho cụm tại tuần này.</p></div>`;
+    const p = f.p, top = p.indexOf(Math.max(...p));
+    return `<div class="forecast-model"><div class="forecast-model-head"><b>${name}</b><span class="forecast-trend trend-${top}">${TREND[top].icon} ${TREND[top].vi} · ${pct(p[top])}</span></div><div class="forecast-probabilities" role="img" aria-label="${p.map((v, i) => TREND[i].vi + ' ' + pct(v)).join(', ')}">${p.map((v, i) => `<i class="prob-${i}" style="width:${v * 100}%"></i>`).join("")}</div><div class="forecast-legend">${p.map((v, i) => `<span><i class="prob-${i}"></i>${TREND[i].vi} ${pct(v)}</span>`).join("")}</div><p>${f.proxy ? "Ước lượng tham khảo · style mới chưa có lịch sử bán" : f.source === "origin_refit" ? "Huấn luyện theo tuần đã chọn · chỉ dùng nhãn đã quan sát đủ 4 tuần" : f.source === "walk_forward" ? "Dự báo walk-forward đã lưu" : "Dự báo từ mô hình triển khai"}</p></div>`;
+  }).join("")}</div>`;
 }
 function scanResult(s) {
   const o = s.outlook, st = s.style;
@@ -451,7 +489,7 @@ function scanResult(s) {
   if (s.novel_both) notices.push(`<div class="notice">Style mới: món đồ khác rõ với cả 20 nhóm style đã có. Chưa có lịch sử bán, nên dự báo bên dưới chỉ là tham khảo từ 3 nhóm gần nhất.</div>`);
   if (s.t !== state.t) notices.push(`<div class="notice info">Dự báo này được tính tại tuần điều hành ${iso(s.week)} (lúc quét), khác với tuần đang chọn.</div>`);
   const colors = s.colors.length ? s.colors.map((c) => `<span style="margin-right:10px">${c.hex ? `<span class="swatch" style="background:${esc(c.hex)}"></span>` : ""}${esc(cap(c.vi))}</span>`).join("") : "—";
-  return `${notices.join("")}<section class="card"><div class="result-hero"><img src="/api/m/scans/${s.id}/image" alt="Ảnh đã quét">
+  return `${notices.join("")}${modelProcess(s)}<section class="card" style="margin-top:20px"><div class="result-hero"><img src="/api/m/scans/${s.id}/image" alt="Ảnh đã quét">
       <div><p class="eyebrow">Kết quả nhận diện</p><h2>${esc(cap(s.category.vi))}</h2><p class="small muted" style="margin:0">${esc(cap(s.description))} · độ khớp ${pct(s.category.p)}</p>
       <dl class="facts"><dt>Màu chủ đạo</dt><dd>${colors}</dd><dt>Nhóm style</dt><dd>${esc(st.name)}${st.novel ? ' <span class="badge proxy">gần nhất</span>' : ""}</dd>
         <dt>Mức điển hình</dt><dd>${dec(st.typicality_pct, 0)}% sản phẩm trong nhóm khác biệt hơn ảnh này</dd>

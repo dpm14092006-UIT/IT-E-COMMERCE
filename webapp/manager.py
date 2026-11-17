@@ -22,6 +22,8 @@ import pandas as pd
 from fastapi import APIRouter, File, Form, HTTPException, UploadFile
 from fastapi.responses import FileResponse, Response
 from .uploads import decode_upload
+from .scan_forecasts import ScanForecaster
+from starlette.concurrency import run_in_threadpool
 from .zero_shot import CATALOGUE_VI
 
 PRIMARY = "resnet50"            # primary grouping of the study (configs/default.yaml)
@@ -196,6 +198,7 @@ class Catalogue:
 def build_router(root: Path, cfg, spaces, analyze_image):
     """analyze_image(raw_bytes, segment) -> the /api/analyze payload (webapp/app.py)."""
     cat = Catalogue(root, cfg, spaces)
+    forecaster = ScanForecaster(root, cfg, spaces)
     scans_dir = root / "outputs" / "web" / "scans"
     raw_dir = root / cfg["paths"]["raw"]
     images_dir = root / cfg["paths"]["images"]
@@ -447,6 +450,16 @@ def build_router(root: Path, cfg, spaces, analyze_image):
             raise HTTPException(413, "Ảnh quá lớn (tối đa 15 MB)")
         analysis = await analyze_image(raw, segment)
         summary = _scan_summary(analysis, t, (file.filename or "upload")[:120])
+        # Keep the actual evidence with the saved scan so replay works after a restart.
+        summary["process"] = {
+            "segmentation": analysis["segmentation"],
+            "encoders": {
+                e: {**data, "style_name": cat.style_name(data["style"]["id"], e),
+                    "forecasts": await run_in_threadpool(forecaster.for_scan, e, t, data),
+                    "ranking": [{**r, "name": cat.style_name(r["id"], e)} for r in data["ranking"]]}
+                for e, data in analysis["encoders"].items()
+            },
+        }
         thumb, _, _ = decode_upload(raw)
         thumb.thumbnail((640, 640))
         buf = io.BytesIO()
