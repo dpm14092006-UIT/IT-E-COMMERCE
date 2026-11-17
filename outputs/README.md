@@ -62,7 +62,8 @@ Python 3.12.16 (WSL2), torch 2.15.0+cpu, torchvision 0.29.2+cpu, transformers 4.
 Cách tái tạo checkpoint (đối chiếu SHA-256 ở trên để xác nhận):
 
 ```bash
-python scripts/02b_finetune_resnet.py
+python scripts/02b_finetune_resnet.py --encoder resnet50ft
+python scripts/02b_finetune_resnet.py --encoder fashionclipft
 ```
 
 Các embedding đã trích xuất (`embeddings/*.npy`) và toàn bộ kết quả downstream vẫn có trong repo, nên không cần checkpoint để xem lại kết quả.
