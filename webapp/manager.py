@@ -13,7 +13,6 @@ import json
 import os
 import re
 import tempfile
-import uuid
 from datetime import datetime
 from functools import lru_cache
 from pathlib import Path
@@ -195,7 +194,7 @@ class Catalogue:
 
 
 def build_router(root: Path, cfg, spaces, analyze_image):
-    """analyze_image(raw_bytes, segment) -> the /api/analyze payload (web/app.py)."""
+    """analyze_image(raw_bytes, segment) -> the /api/analyze payload (webapp/app.py)."""
     cat = Catalogue(root, cfg, spaces)
     scans_dir = root / "outputs" / "web" / "scans"
     raw_dir = root / cfg["paths"]["raw"]

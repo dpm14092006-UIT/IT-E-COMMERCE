@@ -9,8 +9,9 @@ Khung sườn thực thi cho **Section 4 – Methodology**: ảnh sản phẩm �
 | [docs/03_PHAN_CONG_ROLE.md](docs/03_PHAN_CONG_ROLE.md) | 4 role. Người 4 giữ ResNet-50 và TCN (hai thành phần CNN) |
 | [docs/decision_log.md](docs/decision_log.md) | D01–D21, gồm lựa chọn bộ model hiện hành và cấu hình visual chính |
 | [docs/04_KET_QUA.md](docs/04_KET_QUA.md) | Kết quả và diễn giải RQ1–RQ3 |
+| [docs/06_METHOD_RESULTS_RESNET50.md](docs/06_METHOD_RESULTS_RESNET50.md) | Phương pháp và kết quả nhánh CNN ResNet-50 (fine-tune Myntra, phân cụm) |
 | [outputs/reports/visual_trend_radar.html](outputs/reports/visual_trend_radar.html) | Dashboard Visual Trend Radar (mở bằng trình duyệt; sinh bởi `scripts/15_trend_radar.py`) |
-| [web/](web/) | **Style Scanner**: upload 1 ảnh (out-of-sample) → ResNet-50 và FashionCLIP → style K-Means hoặc style lạ (zero-shot) → dự báo TCN (`scripts/17_build_web_assets.py` + `web/app.py`) |
+| [webapp/](webapp/) | **Style Scanner**: upload 1 ảnh (out-of-sample) → ResNet-50 và FashionCLIP → style K-Means hoặc style lạ (zero-shot) → dự báo TCN (`scripts/17_build_web_assets.py` + `webapp/app.py`) |
 
 ## Cấu trúc thư mục
 
@@ -18,9 +19,9 @@ Dataset bổ sung cho nhận diện style: [hướng dẫn tải DeepFashion, Fa
 
 ```
 configs/            default.yaml (mọi tham số, có số mục), models.yaml (search space), experiments.yaml
-docs/               bóc tách, tiêu chí đạt, phân công, decision log
+docs/               bóc tách, tiêu chí đạt, phân công, decision log, kết quả ResNet-50 (06)
 src/vstyle/
-  data/             load, audit (G0), calendar (12), product_week (13), gtrends (20)(21), inventory (tắt)
+  data/             load, audit (G0), calendar (12), product_week (13), gtrends (20)(21)
   visual/           encoders (1)-(5), clustering (6)-(11)(60), inspection (contact sheets)
   panel/            style_week (14)-(19)
   features/         historical (23)-(31), blocks B1-B4b, sequences (33)
@@ -32,12 +33,14 @@ src/vstyle/
   interpret/        permutation importance, SHAP
   decision/         cảnh báo, chất lượng cảnh báo, kịch bản (Người 4)
   utils/            leakage guards, manifests, seeds
-scripts/            00 → 13: mỗi script là một giai đoạn, ghi rõ cổng và người phụ trách
+scripts/            00 → 18: mỗi script là một giai đoạn, ghi rõ cổng và người phụ trách (17, 18 phục vụ web)
 tests/              kiểm tra calendar, panel, chống leakage, target, walk-forward, metrics, GT, TCN causal
 outputs/            báo cáo, metrics, manifests, dữ liệu tối thiểu cho manager và assets triển khai web
                     embeddings, clusters, features, panels, predictions lớn được sinh lại bằng scripts và Git bỏ qua
-Data/extracted/     dữ liệu gốc (chỉ đọc)
-EDA_Visuelle2.ipynb, Journal_Figures.ipynb, figures/   EDA và hình đã có (giữ nguyên)
+webapp/             web Style Scanner chạy local: backend FastAPI (app.py, manager.py, ...) + static/ (HTML, CSS, JS)
+notebooks/          EDA_Visuelle2.ipynb, Journal_Figures.ipynb, figure_style.py (style hình dùng chung), render_figures.py
+figures/            hình cho bài báo, xuất từ notebooks/Journal_Figures.ipynb
+Data/extracted/     dữ liệu gốc (chỉ đọc, Git bỏ qua)
 ```
 
 ## Chạy
@@ -79,6 +82,22 @@ Myntra và embedding VISUELLE được lưu trong `outputs/embeddings/`.
 Cấu hình chính là `resnet50` (pretrained), K=20 (D09, giữ lại theo D21); FashionCLIP K=20 chạy
 song song để so sánh. Bước 04 dùng `resnet50` nếu bỏ `--grouping`. Hai nhánh Myntra
 (`resnet50ft`, `fashionclipft`) chỉ là thí nghiệm bổ sung (D20 không chốt).
+
+Hai nguồn ảnh cùng phục vụ pipeline thị giác. VISUELLE 2.0 cung cấp ảnh để xây cụm
+phong cách cho dự báo và chuỗi bán theo tuần. Myntra cung cấp ảnh có nhãn loại và màu
+để fine-tune, kiểm tra nhận diện, và đánh giá phân cụm trên cùng tập validation
+giữ riêng khỏi fine-tuning. Sau khi đã train hai backbone, chạy:
+
+```bash
+python scripts/03c_evaluate_myntra_clusters.py
+```
+
+Bước này fit K-Means riêng trên embedding validation Myntra cho bốn cấu hình
+pretrained và fine-tuned. Báo cáo lưu ARI qua các seed, Silhouette, Davies–Bouldin,
+NMI với nhãn loại và màu, cùng ID cụm của từng ảnh trong `outputs/reports/`.
+Centroid dùng để xây chuỗi phong cách–tuần được fit riêng trên catalogue
+development của VISUELLE.
+
 ```bash
 python scripts/03_cluster_styles.py --encoder fashionclip
 ```
@@ -99,21 +118,21 @@ python scripts/07_walk_forward.py --grouping fashionclip --stage test --frozen
 | Final test (toàn bộ Section 4) | Đã chạy: tuning, final test 4 grouping (resnet50 chính, fashionclip, attribute, resnet50ft), ablation, common endpoint, robustness, explainability, decision layer. Kết quả: `outputs/reports/FINAL_RESULTS.md`; diễn giải: `docs/04_KET_QUA.md` |
 | TCN (Người 4) | Đã chạy walk-forward trên attribute/validation: Macro-F1 0,663 (1 seed, refit mỗi 4 origin, ~43 giây) |
 | Bộ model hiện hành | Random Forest, LightGBM, CatBoost, TCN. XGBoost và TFT đã được loại khỏi cấu hình/code; kết quả cũ được giữ trong báo cáo lịch sử. |
-| Inventory | Tắt cho tới khi chốt D07 |
+| Inventory | Không dùng (D07): dữ liệu không có tồn kho đáng tin cậy |
 
 ## Web Style Scanner
 
 Upload một ảnh thời trang bất kỳ (out-of-sample). Web chạy song song hai encoder và cho xem ở chế độ **so sánh** hoặc **chi tiết từng bước** của mỗi encoder:
 
-0. **Tách trang phục khỏi nền** (`web/segment.py`): SegFormer clothes parsing (`mattmdjaga/segformer_b2_clothes`, chỉ nạp `model.safetensors`) phân vùng ảnh thành áo, quần, váy, mặt, tay, tóc, nền…, giữ món đồ chính rồi đặt lên nền trắng và cắt sát như ảnh catalogue. Chế độ tự động bỏ qua ảnh đã giống catalogue: mặt, tóc, tay, chân chiếm dưới 4% và ít nhất 70% vùng nền gần như trắng. Trên mẫu thử, 0/60 ảnh VISUELLE bị tách và 50/60 ảnh Myntra (phần lớn có người mẫu) được tách. Web hiện cả bảng so sánh style trước và sau khi tách
+0. **Tách trang phục khỏi nền** (`webapp/segment.py`): SegFormer clothes parsing (`mattmdjaga/segformer_b2_clothes`, chỉ nạp `model.safetensors`) phân vùng ảnh thành áo, quần, váy, mặt, tay, tóc, nền…, giữ món đồ chính rồi đặt lên nền trắng và cắt sát như ảnh catalogue. Chế độ tự động bỏ qua ảnh đã giống catalogue: mặt, tóc, tay, chân chiếm dưới 4% và ít nhất 70% vùng nền gần như trắng. Trên mẫu thử, 0/60 ảnh VISUELLE bị tách và 50/60 ảnh Myntra (phần lớn có người mẫu) được tách. Web hiện cả bảng so sánh style trước và sau khi tách
 1. Tiền xử lý giống lúc train: RGBA → nền trắng, sau đó transforms riêng của từng encoder
 2. ResNet-50 (frozen ImageNet, 2048-d) và FashionCLIP (ViT-B/32, 512-d) → L2, kèm bản đồ vùng ảnh quyết định style. Với ResNet-50 bản đồ này chính xác, với FashionCLIP là xấp xỉ qua patch token
 3. Gán style theo centroid K-Means K = 20 đã đóng băng (11). **Style lạ**: ảnh xa centroid gần nhất hơn 99% sản phẩm của chính style đó thì không bị ép vào style ấy
 4. Dự báo Emerging / Stable / Declining 4 tuần của style bằng TCN (chính) và CatBoost. Style lạ không có lịch sử bán (cold start), nên web chỉ hiện ước lượng tham khảo từ 3 style gần nhất, có ghi rõ là không phải dự báo
 
 Nhận diện món đồ (tab **Tổng quan**):
-- **Loại sản phẩm, họa tiết, chi tiết, phong cách, chất liệu**: FashionCLIP so ảnh với mô tả bằng chữ, mỗi nhãn chấm bằng nhiều câu mẫu rồi lấy trung bình (prompt ensembling, `web/zero_shot.py`)
-- **Màu chủ đạo và sọc** đo trực tiếp trên điểm ảnh của món đồ (`web/colors.py`): K-Means trong không gian CIELAB rồi gán tên màu tiếng Việt; sọc dọc/ngang phát hiện từ hồ sơ sắc độ a*/b* theo cột/hàng (bóng đổ gần như không ảnh hưởng). Trên 60 ảnh VISUELLE chỉ 1 ảnh được gọi là sọc, và đó đúng là váy sọc dọc
+- **Loại sản phẩm, họa tiết, chi tiết, phong cách, chất liệu**: FashionCLIP so ảnh với mô tả bằng chữ, mỗi nhãn chấm bằng nhiều câu mẫu rồi lấy trung bình (prompt ensembling, `webapp/zero_shot.py`)
+- **Màu chủ đạo và sọc** đo trực tiếp trên điểm ảnh của món đồ (`webapp/colors.py`): K-Means trong không gian CIELAB rồi gán tên màu tiếng Việt; sọc dọc/ngang phát hiện từ hồ sơ sắc độ a*/b* theo cột/hàng (bóng đổ gần như không ảnh hưởng). Trên 60 ảnh VISUELLE chỉ 1 ảnh được gọi là sọc, và đó đúng là váy sọc dọc
 
 Giao diện có 3 tab: **Tổng quan** (dành cho người dùng), **So sánh hai mô hình** và **Quy trình xử lý** (chi tiết kỹ thuật từng bước).
 
@@ -122,7 +141,7 @@ Giao diện có ảnh mẫu từ catalogue để thử nhanh, hướng dẫn tro
 Bấm ảnh sản phẩm tương tự để xem ảnh lớn. Bấm một phong cách đã lưu để xem thư viện tối đa 6 ảnh gần nhất; dùng nút mũi tên, ảnh thu nhỏ hoặc phím **← / →** để chuyển ảnh, **Esc** để đóng. Các nút đổi mô hình và đổi ảnh gốc/tách nền giữ vị trí bàn phím sau khi cập nhật kết quả.
 
 Nhận diện style lạ gồm:
-- **Mô tả zero-shot** bằng text encoder FashionCLIP (`web/zero_shot.py`): loại sản phẩm, họa tiết, màu, chất liệu, ngữ cảnh ảnh. Từ vựng gồm thuộc tính VISUELLE cộng từ vựng mở, có đánh dấu "mới"
+- **Mô tả zero-shot** bằng text encoder FashionCLIP (`webapp/zero_shot.py`): loại sản phẩm, họa tiết, màu, chất liệu, ngữ cảnh ảnh. Từ vựng gồm thuộc tính VISUELLE cộng từ vựng mở, có đánh dấu "mới"
 - **Ghi nhận style mới** (N1, N2…) vào `outputs/web/novel_styles.json`. Ảnh sau nằm trong bán kính điển hình (trung vị khoảng cách sản phẩm → centroid, không gian FashionCLIP) sẽ được nhận ra là cùng style mới
 - Cờ ảnh trùng catalogue (cosine ≥ 0,95) và cảnh báo khi ảnh không phải ảnh sản phẩm nền trơn
 
@@ -135,7 +154,7 @@ python scripts/17_build_web_assets.py --grouping resnet50
 python scripts/17_build_web_assets.py --grouping fashionclip
 ```
 ```bash
-python -m uvicorn web.app:app --port 8000
+python -m uvicorn webapp.app:app --port 8000
 ```
 
 Lần đầu cần tải trọng số SegFormer (~110 MB, chỉ file safetensors):
@@ -149,7 +168,7 @@ Mở http://localhost:8000 để vào **Bảng điều hành** cho nhà quản l
 
 ### Bảng điều hành cho nhà quản lý
 
-`web/manager.py` + `web/static/manager.{html,css,js}`, API dưới `/api/m/*`. Chỉ đọc dữ liệu và dự báo đã có, không train lại. Một ô **Tuần điều hành** trên thanh đầu trang áp dụng cho mọi trang:
+`webapp/manager.py` + `webapp/static/manager.{html,css,js}`, API dưới `/api/m/*`. Chỉ đọc dữ liệu và dự báo đã có, không train lại. Một ô **Tuần điều hành** trên thanh đầu trang áp dụng cho mọi trang:
 
 - **Tổng quan**: KPI toàn chuỗi, doanh số theo tuần, triển vọng 4 tuần của 20 nhóm style (đối chiếu với thực tế khi đã có), loại sản phẩm bán chạy, doanh số theo mùa, độ tin cậy của mô hình
 - **Quét ảnh & dự báo**: upload ảnh, nhận diện, nhóm style, dự báo 4 tuần, khuyến nghị, sản phẩm tương tự và doanh số tham chiếu. Ảnh và kết quả được lưu ở `outputs/web/scans/`

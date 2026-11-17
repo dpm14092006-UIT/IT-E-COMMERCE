@@ -3,7 +3,6 @@
 --grouping fashionclip|resnet50 needs visual.selected.k set after G2; `attribute` needs nothing.
 Output: outputs/panels/style_week_{grouping}.parquet
 """
-import pandas as pd
 from _common import log, parse
 
 from vstyle.config import path

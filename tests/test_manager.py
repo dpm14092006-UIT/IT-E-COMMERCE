@@ -1,4 +1,4 @@
-"""Manager console API (web/manager.py) on the real outputs; no encoder is loaded."""
+"""Manager console API (webapp/manager.py) on the real outputs; no encoder is loaded."""
 import json
 import types
 from pathlib import Path
@@ -16,7 +16,7 @@ pytestmark = pytest.mark.skipif(not (WEB / "resnet50" / "meta.json").exists(), r
 @pytest.fixture(scope="module")
 def client():
     from vstyle.config import load_config
-    from web.manager import build_router
+    from webapp.manager import build_router
     spaces = {}
     for e in ("resnet50", "fashionclip"):
         a = np.load(WEB / e / "assets.npz")

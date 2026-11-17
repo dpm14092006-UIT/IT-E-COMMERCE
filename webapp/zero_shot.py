@@ -3,7 +3,7 @@
 Each label is scored with several prompt templates whose text embeddings are averaged (prompt ensembling),
 which is steadier than a single template. Groups mix the VISUELLE 2.0 vocabulary (known=True) with an open
 vocabulary (known=False), so an item the catalogue never sold can still be named. Colour and stripes are
-measured on the pixels instead (web/colors.py): CLIP is unreliable for both.
+measured on the pixels instead (webapp/colors.py): CLIP is unreliable for both.
 """
 import numpy as np
 
@@ -92,7 +92,7 @@ def text_bank(encode_text):
 
 def describe(z, bank, scale, known_only=False, top=3, pixels=None):
     """Softmax over each group; `known_only` restricts to the VISUELLE vocabulary. `pixels`
-    (web/colors.analyse output) replaces the pattern with measured stripes and supplies the colours."""
+    (webapp/colors.analyse output) replaces the pattern with measured stripes and supplies the colours."""
     groups, best = [], {}
     for g in GROUPS:
         logits = scale * (bank[g["key"]] @ z)

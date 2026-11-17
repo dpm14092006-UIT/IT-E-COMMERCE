@@ -74,7 +74,7 @@ docs/_build/
 
 # PyBuilder
 .pybuilder/
-target/
+/target/
 
 # Jupyter Notebook
 .ipynb_checkpoints
@@ -228,8 +228,7 @@ __pycache__/
 .figure_qa/
 outputs/web/ui-review/backups/
 outputs/archive/
-Data/downloads/
-Data/
+/Data/
 
 # Generated analysis intermediates are rebuilt from local dataset with scripts.
 outputs/embeddings/**
@@ -252,3 +251,9 @@ outputs/clusters/resnet50/**
 
 # User-uploaded scan history stays local and is not committed.
 outputs/web/scans/**
+
+# Override configs written by scripts/11_robustness.py at run time
+configs/robustness/
+
+# Claude Code local settings
+.claude/

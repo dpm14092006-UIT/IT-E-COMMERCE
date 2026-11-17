@@ -4,8 +4,8 @@ import json
 import pytest
 from PIL import Image
 
-from web.storage import read_registry, write_registry
-from web.uploads import decode_upload
+from webapp.storage import read_registry, write_registry
+from webapp.uploads import decode_upload
 
 
 def image_bytes(image, format="PNG", **kwargs):
@@ -31,7 +31,7 @@ def test_failed_registry_replace_preserves_previous_file(tmp_path, monkeypatch):
     def fail(*args):
         raise OSError("simulated disk error")
 
-    monkeypatch.setattr("web.storage.os.replace", fail)
+    monkeypatch.setattr("webapp.storage.os.replace", fail)
     with pytest.raises(OSError):
         write_registry(path, {"styles": []})
     assert path.read_bytes() == original
@@ -79,6 +79,6 @@ def test_invalid_upload_is_rejected(raw):
 
 
 def test_upload_pixel_limit_checked_before_full_decode(monkeypatch):
-    monkeypatch.setattr("web.uploads.MAX_PIXELS", 16)
+    monkeypatch.setattr("webapp.uploads.MAX_PIXELS", 16)
     with pytest.raises(ValueError, match="điểm ảnh"):
         decode_upload(image_bytes(Image.new("RGB", (5, 5))))

@@ -27,7 +27,7 @@ Việc tiếp theo:
 2. Viết insight từ `outputs/reports/P1_*.csv`. Kết quả sơ bộ:
    - Doanh số tuần 0 chiếm 12,2% tổng 12 tuần (vòng đời giảm dần).
    - GT tăng trước sales khoảng **2 tuần**, nhưng tương quan trung bình chỉ khoảng **0,11**: tín hiệu yếu, chỉ là liên hệ.
-3. Nối với `EDA_Visuelle2.ipynb` và `figures/` đã có, không nhân đôi.
+3. Nối với `notebooks/EDA_Visuelle2.ipynb` và `figures/` đã có, không nhân đôi.
 4. Giao `interim/products.parquet` cho P2/P4 (danh sách ảnh) và `interim/product_week.parquet` cho P3.
 
 ```bash

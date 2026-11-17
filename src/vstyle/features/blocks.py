@@ -2,15 +2,14 @@
 
 B1  historical sales level      sales, spap, pmr_past4 (+ lags, moving averages)
 B2  market dynamics             growth / trend / volatility of the above, pmr_change4
-B3  retailer operations         active_products, shop_exposure, price, discount, mean_age, share_new, inventory
+B3  retailer operations         active_products, shop_exposure, price, discount, mean_age, share_new
 B4a calendar                    cal__sin, cal__cos
 B4b external signals            gt_* (+ transforms)
 """
 import re
 
 SALES_BASE = {"sales", "spap", "pmr_past4"}
-OPS_BASE = {"active_products", "shop_exposure", "price", "discount", "mean_age", "share_new",
-            "inventory", "availability"}
+OPS_BASE = {"active_products", "shop_exposure", "price", "discount", "mean_age", "share_new"}
 BLOCKS = ("B1", "B2", "B3", "B4a", "B4b", "B5")
 
 

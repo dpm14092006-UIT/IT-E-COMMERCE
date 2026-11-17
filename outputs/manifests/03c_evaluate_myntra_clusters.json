@@ -1,20 +1,19 @@
 {
-  "stage": "02b_finetune_resnet",
-  "time": "2026-10-12T19:01:19",
-  "python": "3.11.9",
-  "platform": "Windows-10-10.0.26300-SP0",
+  "stage": "03c_evaluate_myntra_clusters",
+  "time": "2026-11-16T16:18:27",
+  "python": "3.12.16",
+  "platform": "Linux-6.6.114.1-microsoft-standard-WSL2-x86_64-with-glibc2.43",
   "packages": {
-    "numpy": "2.4.6",
-    "pandas": "2.3.3",
-    "sklearn": "1.4.2",
-    "xgboost": "3.2.0",
-    "lightgbm": "4.6.0",
+    "numpy": "2.5.4",
+    "pandas": "3.1.1",
+    "sklearn": "1.9.1",
+    "lightgbm": "4.7.0",
     "catboost": "1.2.10",
-    "torch": "2.14.0+cpu",
-    "torchvision": "0.29.0+cpu",
-    "transformers": "5.13.0"
+    "torch": "2.15.0+cpu",
+    "torchvision": "0.29.2+cpu",
+    "transformers": "4.57.6"
   },
-  "config_sha256": "0abf01332b23feb9a4eaa05482478b66cdbd08e102081cd8ad82ebb8f1b50ed1",
+  "config_sha256": "b30bce42858dd4634b1dbf36999ca62b3bd2e5f05521330fa29d5756f24aca9c",
   "config": {
     "project": {
       "name": "visual-style-trend-forecasting",
@@ -75,6 +74,11 @@
           "epochs": 3,
           "learning_rate": 0.001,
           "batch_size": 64
+        },
+        "fashionclipft": {
+          "epochs": 3,
+          "learning_rate": 1e-05,
+          "batch_size": 32
         }
       },
       "device": "auto",
@@ -237,84 +241,32 @@
       }
     }
   },
-  "inputs": [],
+  "inputs": [
+    {
+      "path": "/mnt/e/IT in E-commerce/Data/images(SMALL).zip",
+      "sha256": null
+    },
+    {
+      "path": "/mnt/e/IT in E-commerce/outputs/embeddings/resnet50ft_backbone.pt",
+      "sha256": "6145650c7316a4dc6bec1b8e042f5e5e14fd5cf2f56f01688afa9bf09ec5f1ea"
+    },
+    {
+      "path": "/mnt/e/IT in E-commerce/outputs/embeddings/fashionclipft_backbone.pt",
+      "sha256": "262c06a449718e062a93d5f7c52d1e5932745780fcbe61869c38bb2fc218282b"
+    }
+  ],
   "outputs": [
     {
-      "path": "E:\\IT in E-commerce\\outputs\\embeddings\\resnet50ft.npy",
-      "sha256": "feeef37a24db3ed7d16ac7812de909d97ae001cf6e5f2123b46fa4e7ed118af4"
+      "path": "/mnt/e/IT in E-commerce/outputs/reports/myntra_cluster_validation.csv",
+      "sha256": "02b7093fc8a9c631d2bcd503ddd1a2d17b9cdd3a1af539ccddd038e03da608d0"
     },
     {
-      "path": "E:\\IT in E-commerce\\outputs\\embeddings\\resnet50ft_backbone.pt",
-      "sha256": "9e4eaf234709ebff1a6ff55c937e78a3f7074917f0ce41d54ac4c5cf9c277686"
-    },
-    {
-      "path": "E:\\IT in E-commerce\\outputs\\embeddings\\resnet50ft_ids.parquet",
-      "sha256": "d79bbf68f88184f81c41373e4b9a5aa096bcd4c8209d736639478ae2088e1c55"
-    },
-    {
-      "path": "E:\\IT in E-commerce\\outputs\\embeddings\\resnet50ft_G1.json",
-      "sha256": "00d24b2ef4bf2682b1b4293ee67db035263a3632a8b97d661ffbfb2bba27aff1"
+      "path": "/mnt/e/IT in E-commerce/outputs/reports/myntra_cluster_assignments.csv",
+      "sha256": "d156c8e4e91a48577e2dbe0024b4d50ce28d9b1497a5635d2a8e9c8508a1d061"
     }
   ],
   "extra": {
-    "n": 5354,
-    "dim": 2048,
-    "dim_ok": true,
-    "nan": 0,
-    "zero_norm": 0,
-    "norm_min": 16.739765167236328,
-    "norm_max": 74.07943725585938,
-    "finetune_history": [
-      {
-        "epoch": 1,
-        "train_loss": 2.7051,
-        "val_acc_type": 0.7288,
-        "val_acc_colour": 0.6169
-      },
-      {
-        "epoch": 2,
-        "train_loss": 1.6642,
-        "val_acc_type": 0.7367,
-        "val_acc_colour": 0.6531
-      },
-      {
-        "epoch": 3,
-        "train_loss": 1.3318,
-        "val_acc_type": 0.765,
-        "val_acc_colour": 0.6621
-      }
-    ],
-    "n_myntra": 8850,
-    "article_types": [
-      "Bra",
-      "Briefs",
-      "Camisoles",
-      "Capris",
-      "Dresses",
-      "Dupatta",
-      "Jackets",
-      "Jeans",
-      "Jeggings",
-      "Kurta Sets",
-      "Kurtas",
-      "Kurtis",
-      "Leggings",
-      "Night suits",
-      "Nightdress",
-      "Patiala",
-      "Salwar",
-      "Sarees",
-      "Shirts",
-      "Shorts",
-      "Skirts",
-      "Stockings",
-      "Sweaters",
-      "Sweatshirts",
-      "Tops",
-      "Track Pants",
-      "Trousers",
-      "Tshirts",
-      "Tunics"
-    ]
+    "split": "Myntra validation",
+    "k": 20
   }
 }

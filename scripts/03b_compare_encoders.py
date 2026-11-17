@@ -17,7 +17,7 @@ from vstyle.visual.inspection import overview_sheet, representatives
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 
-sys.path.insert(0, str(ROOT))
+sys.path.insert(0, str(ROOT / "notebooks"))
 from figure_style import apply_theme  # noqa: E402
 
 if __name__ == "__main__":

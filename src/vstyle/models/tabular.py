@@ -2,8 +2,6 @@
 import numpy as np
 from sklearn.utils.class_weight import compute_sample_weight
 
-from . import TABULAR_MODELS
-
 
 class AlignedClassifier:
     """Fits on the classes present in the training window; predict_proba is always (n, 3)

@@ -1,4 +1,4 @@
-"""Nguoi 4 - training/packaging step for the Style Scanner web app (web/app.py).
+"""Nguoi 4 - training/packaging step for the Style Scanner web app (webapp/app.py).
 
 What is trained here (once, offline) so the web app only has to run inference:
   * deployment TCN (tuned params, several seeds) + CatBoost, fitted on every label that has matured

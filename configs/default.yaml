@@ -18,7 +18,6 @@ paths:
   predictions: outputs/predictions
   metrics: outputs/metrics
   reports: outputs/reports
-  figures: outputs/figures
   manifests: outputs/manifests
 
 data:                               # 3.4, 4.2.1, 4.2.5
@@ -83,8 +82,6 @@ panel:                              # 4.2.2–4.2.4
   active_definition: observation_window   # a_{i,t}=1 nếu >=1 shop có cửa sổ 12 tuần phủ tuần t
   weighting: none                   # none | n_shops  — trọng số w_{i,t} cho (19), (21)
   new_product_age_weeks: 1          # share_new = tỉ lệ sản phẩm active có tuổi <= giá trị này
-  inventory:
-    enabled: false                  # [CHỐT] chỉ bật sau khi G0 xác nhận ngữ nghĩa restock
   gtrends:
     enabled: true
     missing_sentinel: -1            # audit: file chứa giá trị -1

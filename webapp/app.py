@@ -2,7 +2,7 @@
 
 Inference only; everything trained lives in outputs/web/{encoder}/ (scripts/17_build_web_assets.py):
   1. preprocessing   same as training: RGBA -> white background. A photo with a person or a backdrop first goes
-                     through garment isolation (web/segment.py, SegFormer clothes parsing) so that it is framed
+                     through garment isolation (webapp/segment.py, SegFormer clothes parsing) so that it is framed
                      like a catalogue image; then each encoder's own transforms
   2. encoders        ResNet-50 (frozen ImageNet, GAP of layer4, 2048-d) and FashionCLIP (ViT-B/32, 512-d),
                      both L2-normalised (2)(4)(5)
@@ -15,8 +15,8 @@ Inference only; everything trained lives in outputs/web/{encoder}/ (scripts/17_b
   4. trend           TCN / CatBoost forecast of the style at the chosen origin (served from meta.json);
                      a new style has no sales history, so only a labelled proxy from its nearest styles is shown
 
-Pages: / is the manager console (web/manager.py, /api/m/*), /scanner is this technical scanner.
-Run:  python -m uvicorn web.app:app --port 8000
+Pages: / is the manager console (webapp/manager.py, /api/m/*), /scanner is this technical scanner.
+Run:  python -m uvicorn webapp.app:app --port 8000
 """
 import base64
 import io

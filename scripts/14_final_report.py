@@ -16,7 +16,7 @@ from vstyle.io import load_json, load_table
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 
-sys.path.insert(0, str(ROOT))
+sys.path.insert(0, str(ROOT / "notebooks"))
 from figure_style import apply_theme  # noqa: E402
 
 PRIMARY = "resnet50"

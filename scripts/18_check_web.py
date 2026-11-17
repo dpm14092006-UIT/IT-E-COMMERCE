@@ -1,7 +1,7 @@
 """Exercise the running Style Scanner API with real images; never change existing saved styles.
 
 python scripts/18_check_web.py --check-saved-styles
-Start the server first: python -m uvicorn web.app:app --port 8000
+Start the server first: python -m uvicorn webapp.app:app --port 8000
 """
 import argparse
 import concurrent.futures

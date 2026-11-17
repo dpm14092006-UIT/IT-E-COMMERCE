@@ -39,6 +39,12 @@ def extract(zip_path, subset, out_dir):
     return out_dir
 
 
+def myntra_split(n_images, seed, val_frac=0.1):
+    indices = np.random.default_rng(seed).permutation(n_images)
+    n_val = int(n_images * val_frac)
+    return indices[n_val:], indices[:n_val]
+
+
 def finetune_resnet50(subset, image_dir, epochs=3, lr=1e-3, batch_size=64, val_frac=0.1, seed=0,
                       train_layers=("layer4",), log=print, device="cpu"):
     from torch import nn
@@ -85,9 +91,7 @@ def _train_attributes(net, forward, dim, subset, image_dir, train_tf, eval_tf,
     from torch import nn
     torch.manual_seed(seed)
     rng = np.random.default_rng(seed)
-    indices = rng.permutation(len(subset))
-    n_val = int(len(indices) * val_frac)
-    val_idx, tr_idx = indices[:n_val], indices[n_val:]
+    tr_idx, val_idx = myntra_split(len(subset), rng, val_frac)
     paths = [Path(image_dir) / f"{i}.jpg" for i in subset["id"]]
     y1 = subset["type_id"].to_numpy(dtype=np.int64)
     y2 = subset["colour_id"].to_numpy(dtype=np.int64)
