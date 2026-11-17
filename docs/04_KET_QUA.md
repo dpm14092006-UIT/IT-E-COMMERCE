@@ -103,15 +103,16 @@ Lưu ý quy trình: một lượt chạy trước bị lẫn cột `ctx_resnet50
 
 Kết luận vượt baseline ổn định qua mọi biến thể; mức tuyệt đối phụ thuộc nhiều vào định nghĩa target.
 
-## RQ1 chi tiết – ba biểu diễn ảnh (K = 20)
+## RQ1 chi tiết – bốn biểu diễn ảnh (K = 20)
 
 | Encoder | ARI ổn định | Silhouette (trong không gian riêng) | NMI category / color / fabric | Qua gate |
 | --- | --- | --- | --- | --- |
 | FashionCLIP | 0,636 | 0,065 | 0,41 / 0,13 / 0,37 | Không (ARI) |
 | ResNet-50 (ImageNet, frozen) | 0,723 | 0,066 | 0,35 / 0,10 / 0,33 | Có (chọn) |
-| ResNet-50 fine-tuned Myntra (Người 4, bổ sung sau chốt) | 0,705 | 0,095 | 0,24 / 0,21 / 0,25 | Có |
+| ResNet-50 fine-tuned Myntra (Người 4, bổ sung sau chốt) | 0,684 | 0,085 | 0,25 / 0,23 / 0,24 | Không (ARI < 0,70) |
+| FashionCLIP fine-tuned Myntra (bổ sung sau chốt) | 0,816 | 0,111 | 0,32 / 0,31 / 0,26 | Có |
 
-Fine-tune trên 8.850 ảnh đồ nữ Myntra (3 epoch, chỉ `layer4`; validation: đúng 76,5% loại sản phẩm, 66,2% màu) làm style nghiêng sang **màu** (NMI color tăng gấp đôi) và ít trùng category hơn. Ở cấp style, final test của cấu hình này cho Macro-F1 0,632–0,647, tương đương các cấu hình khác.
+Fine-tune trên 8.850 ảnh đồ nữ Myntra (3 epoch, chỉ `layer4`; validation epoch 3: đúng 75,1% loại sản phẩm, 65,0% màu) làm style nghiêng sang **màu** (NMI color tăng gấp đôi) và ít trùng category hơn. Ở cấp style, final test của cấu hình này cho Macro-F1 0,632–0,647, tương đương các cấu hình khác.
 
 Lưu ý: cấu hình fine-tuned được thêm **sau** khi đã chốt quyết định và chạy final test chính, theo dataset bổ sung. Đây là phân tích bổ sung, không thay cấu hình chính.
 
