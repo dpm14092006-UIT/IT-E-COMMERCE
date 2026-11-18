@@ -1,6 +1,6 @@
 """Shared, reproducible visual style for the Visuelle analysis notebooks."""
-import numpy as np
 import matplotlib as mpl
+import numpy as np
 from matplotlib.colors import LinearSegmentedColormap, to_rgb
 from matplotlib.container import BarContainer
 

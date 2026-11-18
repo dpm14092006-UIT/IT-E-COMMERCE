@@ -11,7 +11,6 @@ from vstyle.visual import clustering as cl
 from vstyle.visual import encoders as enc
 from vstyle.visual.finetune import extract, myntra_split, myntra_subset
 
-
 if __name__ == "__main__":
     args, cfg = parse(__doc__)
     import torch

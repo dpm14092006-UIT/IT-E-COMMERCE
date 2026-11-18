@@ -8,6 +8,7 @@ import numpy as np
 
 from ..constants import STYLE, TIME
 from ..features.sequences import apply_standardizer, build_sequences, fit_standardizer
+from .base import ForecastModel
 
 
 def receptive_field(kernel_size, dilations, convs_per_block=2):
@@ -58,7 +59,7 @@ def build_tcn(n_inputs, channels=32, kernel_size=3, dilations=(1, 2, 4), dropout
     return TCNClassifier()
 
 
-class SequenceClassifier:
+class SequenceClassifier(ForecastModel):
     """Trains a torch network with (weighted) cross-entropy (52)-(53) and chronological early stopping."""
 
     def __init__(self, panel, feature_cols, lookback, net_factory, learning_rate=1e-3, batch_size=64,

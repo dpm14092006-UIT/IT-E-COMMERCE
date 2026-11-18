@@ -10,7 +10,6 @@ import pandas as pd
 from ..constants import DECLINING, EMERGING, STABLE, STYLE, TIME
 from ..features.historical import check_full_grid
 
-
 # 4.4.1 primary = "spap"; the others are the 4.9.4 operational alternatives (robustness only)
 DENOMINATORS = {
     "spap": "active_products",        # sales per active product (primary)

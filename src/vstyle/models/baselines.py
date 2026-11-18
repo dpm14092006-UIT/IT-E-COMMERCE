@@ -2,9 +2,10 @@
 import numpy as np
 
 from ..constants import DECLINING, EMERGING, STABLE
+from .base import ForecastModel
 
 
-class MajorityClass:
+class MajorityClass(ForecastModel):
     """(66) most frequent class in the matured training labels at each origin."""
 
     def fit(self, X, y):
@@ -17,7 +18,7 @@ class MajorityClass:
         return out
 
 
-class Persistence:
+class Persistence(ForecastModel):
     """The last observed 4-week change (pmr_change4, fully past) classified with the same theta."""
 
     def __init__(self, theta, column="pmr_change4"):

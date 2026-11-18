@@ -619,6 +619,17 @@ async function init() {
     if (health.status !== "ready") throw new Error("Mô hình chưa sẵn sàng.");
     state.origins = await api("/api/m/origins");
     state.t = state.origins.default;
+    const params = new URLSearchParams(location.search);
+    const requestedWeek = params.get("t");
+    if (requestedWeek !== null && state.origins.origins.some((o) => o.t === +requestedWeek)) state.t = +requestedWeek;
+    const savedScan = params.get("scan");
+    if (route().page === "scan" && /^[0-9a-f]{32}$/.test(savedScan || "")) {
+      try {
+        const scan = await api("/api/m/scans/" + savedScan);
+        state.scan.result = { scan };
+        state.scan.url = `/api/m/scans/${scan.id}/image`;
+      } catch (error) { toast(error.message); }
+    }
     const sel = $("origin");
     sel.innerHTML = state.origins.origins.slice().reverse().map((o) =>
       `<option value="${o.t}">${fmt(weekDate(o.t))}${o.t === state.origins.default ? " (mặc định)" : ""}${o.t >= state.origins.late_from ? " · cuối kỳ" : ""}${o.t > state.origins.t_last_label ? " · chưa có thực tế" : ""}</option>`).join("");

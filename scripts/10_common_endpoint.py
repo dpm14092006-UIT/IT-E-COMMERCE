@@ -76,7 +76,7 @@ if __name__ == "__main__":
     for cname, cols in configs.items():
         for m in args.models:
             p = load_yaml("models.yaml")[m]["defaults"]
-            preds = run_walk_forward(pp, cols, lambda: make_model(m, p, seed), sets[args.stage], H,
+            preds = run_walk_forward(pp, cols, lambda m=m, p=p: make_model(m, p, seed), sets[args.stage], H,
                                      args.refit_every)
             frames.append(preds.assign(config=cname, model=m))
             log(f"{cname} / {m} done")

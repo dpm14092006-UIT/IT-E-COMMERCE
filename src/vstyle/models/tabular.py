@@ -2,8 +2,11 @@
 import numpy as np
 from sklearn.utils.class_weight import compute_sample_weight
 
+from .base import ForecastModel
+from .registry import ESTIMATORS
 
-class AlignedClassifier:
+
+class AlignedClassifier(ForecastModel):
     """Fits on the classes present in the training window; predict_proba is always (n, 3)
     in CLASSES order, so a class missing from an early window cannot shift the columns."""
 
@@ -28,22 +31,26 @@ class AlignedClassifier:
             out[:, self.present_] = self.estimator.predict_proba(X)
         return out
 
-    def predict(self, X):
-        return self.predict_proba(X).argmax(1)
+
+@ESTIMATORS.register("random_forest")
+def _random_forest(params, seed):
+    from sklearn.ensemble import RandomForestClassifier
+    return RandomForestClassifier(random_state=seed, n_jobs=-1, **params)
+
+
+@ESTIMATORS.register("lightgbm")
+def _lightgbm(params, seed):
+    from lightgbm import LGBMClassifier
+    return LGBMClassifier(random_state=seed, n_jobs=-1, verbose=-1, **params)
+
+
+@ESTIMATORS.register("catboost")
+def _catboost(params, seed):
+    from catboost import CatBoostClassifier
+    return CatBoostClassifier(random_seed=seed, loss_function="MultiClass", verbose=False,
+                              allow_writing_files=False, thread_count=-1, **params)
 
 
 def make_model(name, params, seed, class_weighting="none"):
-    params = dict(params)
-    if name == "random_forest":
-        from sklearn.ensemble import RandomForestClassifier
-        est = RandomForestClassifier(random_state=seed, n_jobs=-1, **params)
-    elif name == "lightgbm":
-        from lightgbm import LGBMClassifier
-        est = LGBMClassifier(random_state=seed, n_jobs=-1, verbose=-1, **params)
-    elif name == "catboost":
-        from catboost import CatBoostClassifier
-        est = CatBoostClassifier(random_seed=seed, loss_function="MultiClass", verbose=False,
-                                 allow_writing_files=False, thread_count=-1, **params)
-    else:
-        raise ValueError(f"unknown tabular model {name}")
-    return AlignedClassifier(est, class_weighting)
+    """Registry lookup; raises ValueError for an unregistered name."""
+    return AlignedClassifier(ESTIMATORS.create(name, dict(params), seed), class_weighting)

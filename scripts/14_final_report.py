@@ -2,12 +2,11 @@
 
 Narrative interpretation is written in docs/04_KET_QUA.md; this file only assembles numbers.
 """
-import sys
 
 import matplotlib
 import numpy as np
 import pandas as pd
-from _common import ROOT, log, parse
+from _common import log, parse
 
 from vstyle.config import path
 from vstyle.constants import CLASSES
@@ -16,8 +15,7 @@ from vstyle.io import load_json, load_table
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 
-sys.path.insert(0, str(ROOT / "notebooks"))
-from figure_style import apply_theme  # noqa: E402
+from vstyle.plotting.style import apply_theme  # noqa: E402
 
 PRIMARY = "resnet50"
 

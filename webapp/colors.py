@@ -60,7 +60,7 @@ def analyse(rgb, mask=None, k=6, size=128, seed=0):
         e["rgb"] = (e["rgb"] * e["share"] + rgb_c * s) / (e["share"] + s)
         e["share"] += s
     colors = [{"vi": NAMED[n][0], "en": NAMED[n][1], "family": NAMED[n][3], "share": round(float(e["share"]), 3),
-               "hex": "#%02x%02x%02x" % tuple(int(v) for v in e["rgb"])}
+               "hex": "#{:02x}{:02x}{:02x}".format(*(int(v) for v in e["rgb"]))}
               for n, e in sorted(merged.items(), key=lambda x: -x[1]["share"]) if e["share"] >= 0.05]
     families = {}
     for c in colors:

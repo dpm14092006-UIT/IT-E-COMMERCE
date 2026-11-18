@@ -26,22 +26,17 @@ if __name__ == "__main__":
     cols = select_features(data.columns, cfg["features"]["primary_blocks"])
     v = cfg["validation"]
     for name in [m for m in args.models if m == "tcn"]:
-        import importlib.util
-        from pathlib import Path
-
         import pandas as pd
         from sklearn.model_selection import ParameterSampler
 
         from vstyle.evaluation.metrics import macro_f1
-        spec = importlib.util.spec_from_file_location("wf", Path(__file__).with_name("07_walk_forward.py"))
-        wf = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(wf)
+        from vstyle.experiments.walk_forward_experiment import WalkForwardExperiment
         rows = []
         for params in ParameterSampler(spaces[name]["space"], n_iter=args.n_iter or v["n_iter"],
                                        random_state=cfg["project"]["seed"]):
             sp = {**spaces, name: {**spaces[name], "defaults": {**spaces[name]["defaults"], **params}}}
-            preds, _ = wf.sequence_predictions(name, data, cols, sets["validation"], cfg, sp, n_repeats=1,
-                                               grouping="__none__")
+            experiment = WalkForwardExperiment(cfg, sp, "__none__", 0.0, log=log)
+            preds, _ = experiment.sequence_predictions(name, data, cols, sets["validation"], n_repeats=1)
             sc = preds[preds["y_true"].notna()]
             rows.append({"model": name, "class_weighting": "none", "params": {**spaces[name]["defaults"], **params},
                          "macro_f1": macro_f1(sc["y_true"].astype(int), sc["y_pred"]), "n_scored": len(sc)})

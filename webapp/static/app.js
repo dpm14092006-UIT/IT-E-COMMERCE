@@ -187,7 +187,8 @@ async function init() {
     const m = state.meta.resnet50;
     $("origin").innerHTML = m.origins.slice().reverse().map((t) =>
       `<option value="${t}">${fmt(weekDate(t))}${t === m.default_origin ? " (mặc định)" : ""}</option>`).join("");
-    $("origin").value = m.default_origin;
+    const requestedWeek = new URLSearchParams(location.search).get("t");
+    $("origin").value = requestedWeek !== null && m.origins.includes(+requestedWeek) ? +requestedWeek : m.default_origin;
     $("origin").disabled = false;
     state.connected = true;
     updateRunButton();

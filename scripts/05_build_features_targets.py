@@ -29,6 +29,7 @@ if __name__ == "__main__":
     variables = dict(f["variables"])
     if args.visual_features:
         from _visual import product_grid, visual_product_features
+
         from vstyle.visual.vfeatures import style_visual_panel
         enc = args.visual_features
         pp, products = product_grid(cfg)

@@ -57,7 +57,7 @@ def finetune_resnet50(subset, image_dir, epochs=3, lr=1e-3, batch_size=64, val_f
     eval_tf = T.Compose([T.Resize(256), T.CenterCrop(224), T.ToTensor(), norm])
     net = resnet50(weights=ResNet50_Weights.IMAGENET1K_V2)
     for name, p in net.named_parameters():
-        p.requires_grad = any(name.startswith(l) for l in train_layers)
+        p.requires_grad = any(name.startswith(layer) for layer in train_layers)
     net.fc = nn.Identity()
     return _train_attributes(net, net, 2048, subset, image_dir, train_tf, eval_tf,
                              epochs, lr, batch_size, val_frac, seed, log, device)
@@ -65,6 +65,7 @@ def finetune_resnet50(subset, image_dir, epochs=3, lr=1e-3, batch_size=64, val_f
 
 def finetune_fashionclip(subset, image_dir, checkpoint, epochs, lr, batch_size, seed, log, device):
     from transformers import CLIPModel, CLIPProcessor
+
     from .encoders import fashionclip_features
 
     model = CLIPModel.from_pretrained(checkpoint).to(device).eval()

@@ -2,6 +2,8 @@
 
 Both encoders run in eval mode under no_grad; weights are never updated (primary analysis).
 """
+from abc import ABC, abstractmethod
+
 import numpy as np
 from PIL import Image
 
@@ -100,3 +102,44 @@ def check_embeddings(z, expected_dim):
     return {"n": int(z.shape[0]), "dim": int(z.shape[1]), "dim_ok": z.shape[1] == expected_dim,
             "nan": int(np.isnan(z).sum()), "zero_norm": int((norms == 0).sum()),
             "norm_min": float(norms.min()), "norm_max": float(norms.max())}
+
+
+class ImageEncoder(ABC):
+    """A frozen image encoder producing one raw embedding per image path."""
+
+    name: str
+    dim: int
+
+    def __init__(self, batch_size=64, device="auto", background="white", state_dict=None):
+        self.batch_size, self.device, self.background, self.state_dict = batch_size, device, background, state_dict
+
+    @abstractmethod
+    def encode(self, image_paths) -> np.ndarray:
+        """float32 array of shape (n_images, dim), not yet L2-normalised."""
+
+    def check(self, z):
+        return check_embeddings(z, self.dim)
+
+
+class FashionClipEncoder(ImageEncoder):
+    name, dim = "fashionclip", 512
+
+    def __init__(self, checkpoint, **kwargs):
+        super().__init__(**kwargs)
+        self.checkpoint = checkpoint
+
+    def encode(self, image_paths):
+        return encode_fashionclip(image_paths, self.checkpoint, self.batch_size, self.device,
+                                  self.background, self.state_dict)
+
+
+class ResNet50Encoder(ImageEncoder):
+    name, dim = "resnet50", 2048
+
+    def __init__(self, weights="IMAGENET1K_V2", **kwargs):
+        super().__init__(**kwargs)
+        self.weights = weights
+
+    def encode(self, image_paths):
+        return encode_resnet50(image_paths, self.weights, self.batch_size, self.device,
+                               self.background, self.state_dict)

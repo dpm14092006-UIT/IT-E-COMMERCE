@@ -2,7 +2,25 @@
 name = "vstyle"
 version = "0.1.0"
 description = "Visual-style trend forecasting on VISUELLE 2.0"
+readme = "README.md"
 requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.26",
+    "pandas>=2.2",
+    "pyarrow>=15",
+    "scikit-learn>=1.4",
+    "scipy>=1.11",
+    "lightgbm>=4.0",
+    "catboost>=1.2",
+    "pyyaml>=6.0",
+    "pillow>=10",
+]
+
+[project.optional-dependencies]
+deep = ["torch>=2.1", "torchvision>=0.16", "transformers>=4.40"]
+web = ["fastapi>=0.110", "uvicorn>=0.29", "python-multipart>=0.0.9", "httpx>=0.27"]
+notebooks = ["matplotlib>=3.8", "nbformat", "nbclient"]
+dev = ["pytest>=8", "ruff>=0.5"]
 
 [build-system]
 requires = ["setuptools>=68"]
@@ -13,3 +31,17 @@ where = ["src"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+extend-exclude = ["Data", "outputs", "notebooks"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["E501", "E731", "B905", "UP007"]
+
+[tool.ruff.lint.per-file-ignores]
+"scripts/*" = ["E402"]
+"tests/*" = ["E402"]
+"webapp/*" = ["B008", "B019"]   # FastAPI File()/Form() defaults; single long-lived forecaster instance

@@ -14,7 +14,7 @@ def search(data, feature_cols, model_name, space, defaults, origins, horizon, n_
         full = {**defaults, **params}
         for cw in class_weighting:
             preds = run_walk_forward(data, feature_cols,
-                                     lambda: make_model(model_name, full, seed, cw),
+                                     lambda full=full, cw=cw: make_model(model_name, full, seed, cw),
                                      origins, horizon, refit_every)
             scored = preds[preds["y_true"].notna()]
             rows.append({"model": model_name, "class_weighting": cw, "params": full,

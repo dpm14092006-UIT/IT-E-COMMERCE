@@ -10,8 +10,7 @@ from vstyle.config import path
 from vstyle.constants import TIME, WEEK
 from vstyle.data import gtrends as gtr
 from vstyle.data.calendar import add_week_index, to_item_shop_week
-from vstyle.data.load import (REL_WEEKS, image_decodes, load_gtrends, load_price_discount, load_sales,
-                              product_table)
+from vstyle.data.load import REL_WEEKS, image_decodes, load_gtrends, load_price_discount, load_sales, product_table
 from vstyle.data.product_week import build_product_week, lifecycle_curve
 from vstyle.io import save_json, save_table
 from vstyle.utils.repro import write_manifest

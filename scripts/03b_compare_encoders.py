@@ -4,11 +4,10 @@ are reported within each space only (4.7.1).
 
 Outputs: outputs/reports/G2_encoder_comparison.{md,csv,png}
 """
-import sys
 
 import matplotlib
 import pandas as pd
-from _common import ROOT, log, parse
+from _common import log, parse
 
 from vstyle.config import path
 from vstyle.io import load_json, load_table
@@ -17,8 +16,7 @@ from vstyle.visual.inspection import overview_sheet, representatives
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 
-sys.path.insert(0, str(ROOT / "notebooks"))
-from figure_style import apply_theme  # noqa: E402
+from vstyle.plotting.style import apply_theme  # noqa: E402
 
 if __name__ == "__main__":
     args, cfg = parse(__doc__)
@@ -30,7 +28,7 @@ if __name__ == "__main__":
         g = pd.read_csv(d / "grid.csv").assign(encoder=enc)
         agree = load_json(d / "attribute_agreement.json")
         for a in ("category", "color", "fabric"):
-            g[f"nmi_{a}"] = g["k"].map(lambda k: agree[str(k)][a]["nmi"])
+            g[f"nmi_{a}"] = g["k"].map(lambda k, agree=agree, a=a: agree[str(k)][a]["nmi"])
         frames.append(g)
     t = pd.concat(frames, ignore_index=True)
     cols = ["encoder", "k", "silhouette", "davies_bouldin", "ari_mean", "ari_sd", "size_min", "size_max",

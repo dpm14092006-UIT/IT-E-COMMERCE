@@ -19,28 +19,41 @@ Dataset bổ sung cho nhận diện style: [hướng dẫn tải DeepFashion, Fa
 
 ```
 configs/            default.yaml (mọi tham số, có số mục), models.yaml (search space), experiments.yaml
-docs/               bóc tách, tiêu chí đạt, phân công, decision log, kết quả ResNet-50 (06)
+docs/               bóc tách, tiêu chí đạt, phân công, decision log, kết quả ResNet-50 (06), previews/ (ảnh chụp giao diện)
 src/vstyle/
+  config.py         Config (dict + seed, path()), load_config
   data/             load, audit (G0), calendar (12), product_week (13), gtrends (20)(21)
-  visual/           encoders (1)-(5), clustering (6)-(11)(60), inspection (contact sheets)
+  visual/           ImageEncoder (ABC) → FashionClipEncoder, ResNet50Encoder; clustering (6)-(11)(60), inspection
   panel/            style_week (14)-(19)
   features/         historical (23)-(31), blocks B1-B4b, sequences (33)
   target/           labels (36)-(40), threshold (41), eligibility (42)
   validation/       splits, walk_forward (54)-(58), tuning (59)
-  models/           baselines (66), tabular: Random Forest, LightGBM, CatBoost; sequence: TCN
+  models/           ForecastModel (ABC) → MajorityClass, Persistence, AlignedClassifier, SequenceClassifier (TCN)
+                    registry.py: ESTIMATORS ("random_forest", "lightgbm", "catboost") thay cho if/elif
   evaluation/       metrics (61)-(65), bootstrap (69)(70)
-  experiments/      common_endpoint (68)
+  experiments/      WalkForwardExperiment (baseline + tabular + TCN nhiều seed), common_endpoint (68)
   interpret/        permutation importance, SHAP
   decision/         cảnh báo, chất lượng cảnh báo, kịch bản (Người 4)
+  plotting/         style: theme và bảng màu dùng chung cho hình và báo cáo
   utils/            leakage guards, manifests, seeds
-scripts/            00 → 18: mỗi script là một giai đoạn, ghi rõ cổng và người phụ trách (17, 18 phục vụ web)
-tests/              kiểm tra calendar, panel, chống leakage, target, walk-forward, metrics, GT, TCN causal
+scripts/            00 → 20: mỗi script là một giai đoạn mỏng gọi vào src/vstyle (17, 18, 20 phục vụ web; 19 render notebooks)
+tests/              calendar, panel, chống leakage, target, walk-forward, metrics, TCN causal, kiến trúc OOP, webapp
 outputs/            báo cáo, metrics, manifests, dữ liệu tối thiểu cho manager và assets triển khai web
                     embeddings, clusters, features, panels, predictions lớn được sinh lại bằng scripts và Git bỏ qua
-webapp/             web Style Scanner chạy local: backend FastAPI (app.py, manager.py, ...) + static/ (HTML, CSS, JS)
-notebooks/          EDA_Visuelle2.ipynb, Journal_Figures.ipynb, figure_style.py (style hình dùng chung), render_figures.py
+webapp/             Style Scanner (FastAPI): app.py (create_app) | settings | encoders | spaces | analyzer | novel
+                    scanner.py, manager.py (routes) | catalogue, datafiles, scan_store (services) | static/ (HTML, CSS, JS)
+notebooks/          EDA_Visuelle2.ipynb, Journal_Figures.ipynb (chạy lại bằng scripts/19_render_notebooks.py)
 figures/            hình cho bài báo, xuất từ notebooks/Journal_Figures.ipynb
 Data/extracted/     dữ liệu gốc (chỉ đọc, Git bỏ qua)
+```
+
+### Cài đặt
+
+```bash
+pip install -e .[deep,web,notebooks,dev]
+```
+
+`pyproject.toml` là nguồn khai báo dependency duy nhất (`requirements.txt` chỉ trỏ tới nó). Lint: `ruff check .` (cấu hình trong `pyproject.toml`).
 ```
 
 ## Chạy
@@ -197,3 +210,9 @@ python -m pytest tests -q
 ```
 
 Dự báo sử dụng lịch sử VISUELLE 2.0 và tuần được chọn trong giao diện; không phải dự báo theo ngày hiện tại. Trạng thái xử lý đợi phản hồi API thật, không mô phỏng phần trăm hoàn tất.
+
+### Ngôn ngữ giao diện
+
+Chọn **Tiếng Việt / English** trên thanh đầu trang. Lựa chọn được ghi nhớ trên trình duyệt và dùng chung cho bảng điều hành và trang phân tích kỹ thuật. Mở trực tiếp bản tiếng Anh bằng `/?lang=en` hoặc `/scanner?lang=en`. Khi đổi ngôn ngữ trên màn quét, tuần đang chọn và kết quả quét đã lưu được giữ lại.
+
+Bản dịch được quản lý tại `webapp/i18n/en.tsv`. Sau khi sửa nội dung giao diện hoặc bản dịch, chạy `python scripts/20_build_english.py` để tạo lại thư mục `webapp/static/en/` (HTML, JS và từ điển hiển thị, không commit). Không sửa trực tiếp các tệp sinh tự động. Lớp dịch dữ liệu chỉ đổi nhãn hiển thị; giữ nguyên ID, bộ lọc, xác suất, dữ liệu bảng gốc và tên tệp/tên phong cách do người dùng đặt. Kiểm tra bằng `python -m pytest tests/test_i18n.py -q`.

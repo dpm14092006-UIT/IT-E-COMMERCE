@@ -9,7 +9,10 @@ except (ImportError, OSError):
     pass
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "src"))
+try:
+    import vstyle  # noqa: F401  - installed with `pip install -e .`
+except ImportError:                      # fallback for a checkout that has not been installed
+    sys.path.insert(0, str(ROOT / "src"))
 
 from vstyle.config import CONFIG_DIR, load_config  # noqa: E402
 from vstyle.utils.repro import set_global_seed  # noqa: E402

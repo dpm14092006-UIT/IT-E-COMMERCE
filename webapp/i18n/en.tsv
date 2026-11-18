@@ -1,0 +1,725 @@
+Đang giảm	Declining
+Ổn định	Stable
+Đang lên	Emerging
+Ưu tiên mở rộng	Consider expansion
+Rà soát nhập hàng	Review purchasing
+Duy trì, theo dõi	Maintain and monitor
+Tự động	Automatic
+Chỉ giữ món đồ chính	Keep the main garment
+Giữ toàn bộ trang phục	Keep all garments
+Không tách nền	Keep the background
+Bảng điều hành	Dashboard
+Tổng quan điều hành	Business overview
+Tổng quan	Overview
+Quét ảnh &amp; dự báo	Scan &amp; forecast
+Quét ảnh & dự báo	Scan & forecast
+Loại sản phẩm	Product categories
+Kho dữ liệu	Data library
+Phân tích kỹ thuật	Technical analysis
+Tuần điều hành	Reference week
+tuần điều hành	reference week
+Đến nội dung chính	Skip to main content
+Điều hướng	Navigation
+Dữ liệu VISUELLE 2.0 · chuỗi bán lẻ thời trang tại Ý	VISUELLE 2.0 data · an Italian fashion retail chain
+Bảng điều hành cho nhà quản lý: doanh số, dự báo xu hướng theo loại sản phẩm, kho dữ liệu VISUELLE 2.0 và quét ảnh dự báo.	A management dashboard for sales, category trend forecasts, the VISUELLE 2.0 data library, and image-based style analysis.
+Đang tải dữ liệu…	Loading data…
+Đang kết nối…	Connecting…
+Đang tải…	Loading…
+Đã kết nối	Connected
+Chưa có dự báo cho tuần này.	No forecast is available for this week.
+Chưa có dự báo	No forecast available
+Máy chủ phản hồi quá lâu. Hãy thử lại.	The server took too long to respond. Please try again.
+Không kết nối được máy chủ. Kiểm tra kết nối rồi thử kết nối lại.	Cannot reach the server. Check your connection and reconnect.
+Không kết nối được máy chủ.	Cannot reach the server.
+Máy chủ trả lỗi	Server error
+Yêu cầu thất bại	Request failed
+Máy chủ trả về dữ liệu không hợp lệ.	The server returned an invalid response.
+Thực tế sau đó:	Observed outcome:
+✓ đúng	✓ correct
+✗ lệch	✗ incorrect
+Khuyến nghị:	Recommendation:
+khả năng	probability
+Xác suất: giảm	Probabilities: declining
+, ổn định	, stable
+, tăng	, emerging
+Dữ liệu cuối kỳ:	End-of-dataset effects:
+chuỗi gần như không còn sản phẩm mới	the catalogue contains almost no new product launches
+(lần ra mắt cuối	(last launch
+) và dữ liệu dừng ở	) and observations end on
+, nên hầu hết nhóm style trông như đang giảm.	, so most style groups appear to decline.
+Đây là giới hạn của dataset, không phải tín hiệu kinh doanh.	This reflects dataset coverage rather than a business signal.
+Về tuần giữa mùa	Return to the mid-season week of
+Thử lại	Try again
+CatBoost (dùng cho khuyến nghị)	CatBoost (used for recommendations)
+Giữ nguyên xu hướng gần nhất	Persistence baseline
+Luôn đoán lớp phổ biến nhất	Majority-class baseline
+Luôn đoán lớp phổ biến	Majority-class baseline
+Toàn chuỗi	Across the chain:
+cửa hàng	stores
+dự báo cho 4 tuần	four-week forecast for
+Quét ảnh sản phẩm mới	Scan a new product
+Sản phẩm trong kho dữ liệu	Products in the data library
+Tổng đơn vị đã bán	Total units sold
+Sản phẩm đang bán	Active products
+Nhóm style theo dõi	Style groups monitored
+học từ ảnh sản phẩm	learned from product images
+Ảnh đã quét	Saved scans
+Xem lịch sử	View scan history
+Doanh số toàn chuỗi theo tuần	Weekly chain-wide sales
+Đơn vị bán mỗi tuần; vùng xanh là 4 tuần được dự báo	Weekly units sold; the shaded area marks the four-week forecast horizon
+Triển vọng 4 tuần tới	Four-week outlook
+nhóm style · tính theo sản phẩm đang bán	style groups · weighted by active products
+sản phẩm đang bán	active products
+Đối chiếu thực tế tuần này: dự báo đúng xu hướng	Observed outcomes for this week: correct trend predictions for
+Chưa có số liệu thực tế sau tuần này để đối chiếu.	Observed outcomes are not yet available for this forecast.
+Bảng theo dõi nhóm style	Style group monitor
+Cảnh báo được xếp lên đầu. Ngưỡng cảnh báo chọn trên dữ liệu validation, không chỉnh theo kết quả test.	Alerts appear first. Alert thresholds were selected on validation data and were not adjusted using test results.
+Nhóm style	Style group
+SP trong nhóm	Products in group
+Đang bán tại tuần điều hành	Active at the reference week
+Đang bán	Active
+Xu hướng 4 tuần	Four-week trend
+Phân bố xác suất	Probability distribution
+Khuyến nghị	Recommendation
+Thực tế	Observed outcome
+Xem sản phẩm	View product
+Chưa có	Not available
+Loại sản phẩm bán chạy	Best-selling categories
+Tổng đơn vị bán · bấm để mở dashboard	Total units sold · select a category to open its dashboard
+Doanh số theo mùa	Sales by season
+Tổng đơn vị bán theo bộ sưu tập	Total units sold by collection
+Độ tin cậy của dự báo	Forecast performance
+Macro-F1 trên giai đoạn test 2019 (càng cao càng tốt)	Macro-F1 on the 2019 test period (higher is better)
+Khi hệ thống báo	When the system recommends
+trường hợp style thật sự tăng; báo	of flagged styles actually emerge; the recommendation
+Hệ thống bắt được	The system identifies
+các style tăng và	of emerging styles and
+các style giảm. Đây là tín hiệu để rà soát, không phải số lượng đặt hàng.	of declining styles. These are review signals, not order quantities.
+Dashboard theo loại sản phẩm	Product category dashboard
+loại sản phẩm. Dự báo của mỗi loại là trung bình dự báo các nhóm style, theo số sản phẩm đang bán.	product categories. Each category forecast averages style-group predictions, weighted by active product counts.
+Tìm loại sản phẩm…	Search categories…
+Tìm loại sản phẩm	Search categories
+Sắp xếp	Sort by
+Bán chạy nhất	Best sellers
+Nhiều sản phẩm nhất	Most products
+Triển vọng tăng	Emerging outlook
+Cảnh báo giảm	Declining outlook
+Không có loại sản phẩm phù hợp.	No matching categories.
+Tất cả loại sản phẩm	All product categories
+Xem trong kho dữ liệu	View in the data library
+Tổng đơn vị bán	Total units sold
+Bán TB mỗi sản phẩm	Average units per product
+đơn vị trong 12 tuần	units over 12 weeks
+Chiết khấu trung bình	Average discount
+Chỉ số giá TB	Average price index
+giá đã chuẩn hoá trong dataset	normalised prices in the dataset
+Doanh số theo tuần của	Weekly sales for
+Doanh số theo tuần	Weekly sales
+Đơn vị bán mỗi tuần của toàn bộ	Weekly units sold across the category:
+Dự báo 4 tuần tới	Four-week forecast
+Trung bình theo	Average weighted by
+của loại này (không có SP đang bán)	in this category (no active products)
+Trong số sản phẩm này:	Of these products:
+thuộc style “ưu tiên mở rộng”	belong to styles flagged for expansion
+thuộc style “rà soát nhập hàng”	belong to styles flagged for purchasing review
+Theo màu	By colour
+Theo mùa	By season
+Theo chất liệu	By fabric
+8 chất liệu bán chạy nhất	Top eight fabrics by units sold
+Nhóm style trong loại này	Style groups in this category
+Mỗi sản phẩm thuộc một nhóm style; dự báo được tính cho nhóm style	Each product belongs to a style group; forecasts apply to the group
+Số SP của loại này	Products in this category
+Xác suất	Probability
+Sản phẩm bán chạy nhất	Best-selling products
+Bấm vào một dòng để xem chi tiết và dự báo của sản phẩm	Select a row to view product details and its style-group forecast
+Đã hết vòng đời	Lifecycle ended
+Chưa ra mắt	Not yet launched
+Không có doanh số	No sales recorded
+Không có sản phẩm phù hợp	No matching products
+Thử bỏ bớt bộ lọc.	Try removing some filters.
+Ảnh	Image
+Mã	Code
+Loại	Category
+Màu	Colour
+Chất liệu	Fabric
+Mùa	Season
+Ra mắt	Launch date
+Cửa hàng	Stores
+Đơn vị bán	Units sold
+Trạng thái	Status
+Dự báo style	Style forecast
+Tệp dữ liệu gốc	Raw data files
+Sản phẩm	Products
+Khu vực kho dữ liệu	Data library sections
+Kho lưu trữ	Storage
+Toàn bộ dữ liệu VISUELLE 2.0: sản phẩm, ảnh, doanh số, tệp gốc và lịch sử ảnh đã quét.	The VISUELLE 2.0 dataset: products, images, sales, raw files, and saved scan history.
+Tìm mã, loại, màu, chất liệu, mùa…	Search by code, category, colour, fabric, or season…
+Tìm sản phẩm	Search products
+Bán chậm nhất	Lowest sales
+Mới ra mắt	Latest launches
+Nhiều cửa hàng	Most stores
+Theo mã	Product code
+Xoá bộ lọc	Clear filters
+Trước	Previous
+Sau	Next
+Tệp	File
+Nội dung	Description
+Số dòng	Rows
+Số cột	Columns
+Dung lượng	Size
+Xem	Preview
+Tải	Download
+Ảnh sản phẩm	Product images
+thư mục mùa	season folders
+Bảng đã xử lý	Processed tables
+dùng cho dashboard và mô hình	used by the dashboard and models
+Dữ liệu gốc VISUELLE 2.0	VISUELLE 2.0 raw data
+xem trước 50 dòng đầu hoặc tải nguyên tệp	preview the first 50 rows or download the full file
+Mỗi sản phẩm một ảnh PNG; xem từng ảnh ở tab “Sản phẩm”	One PNG image per product; view individual images in the Products tab
+Đang đọc tệp…	Reading file…
+Đóng	Close
+cột · hiển thị	columns · showing
+Chưa có ảnh nào được quét	No saved scans yet
+Mỗi ảnh quét ở trang “Quét ảnh &amp; dự báo” sẽ được lưu tại đây cùng kết quả dự báo.	Images scanned on the Scan &amp; forecast page are saved here with their forecasts.
+Quét ảnh đầu tiên	Scan your first image
+lượt quét · lưu tại outputs/web/scans. Dự báo giữ nguyên theo tuần điều hành lúc quét.	scans · stored in outputs/web/scans. Forecasts retain the reference week selected when the scan was created.
+Mở kết quả quét	Open scan results for
+Xoá lượt quét	Delete scan
+Xoá	Delete
+Tải ảnh một sản phẩm: hệ thống nhận diện, xếp vào nhóm style gần nhất và dự báo xu hướng 4 tuần	Upload a product photo to identify its attributes, find the closest style group, and forecast its four-week trend for
+Chọn ảnh để quét	Choose an image to scan
+Ảnh đã chọn	Selected image
+Kéo thả hoặc bấm để chọn ảnh	Drop an image here or click to browse
+JPG, PNG, WEBP · tối đa 15 MB · hoặc Ctrl + V	JPG, PNG, WEBP · up to 15 MB · or paste with Ctrl + V
+Tách nền	Background removal
+Đang phân tích…	Analysing…
+Quét &amp; dự báo	Scan &amp; forecast
+Ảnh và kết quả được lưu vào	Images and results are saved in
+Chưa có kết quả	No results yet
+Chọn ảnh bên trái rồi bấm “Quét &amp; dự báo”.	Choose an image above, then select Scan &amp; forecast.
+Đang phân tích qua hai mô hình	Analysing with both encoders
+Hiệu ứng bên dưới minh họa quá trình xử lý. Kết quả thật sẽ xuất hiện khi máy chủ hoàn tất.	The animation illustrates the processing steps. Actual results appear once processing is complete.
+Ảnh đang được xử lý	Image being processed
+Tách trang phục → trích đặc trưng → so với 20 tâm cụm	Isolate garment → extract features → compare with 20 centroids
+Lượt quét cũ chưa lưu chi tiết hai mô hình. Quét lại ảnh để xem hiệu ứng và khoảng cách K-Means.	This older scan does not include encoder details. Scan the image again to see the animation and K-Means distances.
+Một ảnh · hai không gian đặc trưng	One image · two feature spaces
+FashionCLIP và CNN nhìn ảnh như thế nào?	How do FashionCLIP and the CNN interpret the image?
+Phát lại các bước từ kết quả thật. Hai mô hình có bộ 20 cụm riêng; số cụm giữa hai bên không tương ứng.	Replay the steps using actual results. Each encoder has its own 20 clusters; cluster IDs are not equivalent across encoders.
+↻ Phát lại hiệu ứng	↻ Replay animation
+Tách trang phục — SegFormer dùng chung	Garment segmentation — shared SegFormer model
+Giữ vùng trang phục và đặt lên nền trắng trước khi đưa vào cả hai mô hình.	Keep the garment region and place it on a white background before passing it to both encoders.
+Không áp dụng tách nền ở lượt quét này; cả hai mô hình nhận ảnh trước bước tiền xử lý riêng.	Background removal was not applied to this scan; each encoder then applies its own preprocessing.
+Ảnh gốc	Original image
+Phân vùng SegFormer	SegFormer segmentation
+Phân vùng	Segmentation
+Ảnh đưa vào encoder	Image passed to the encoders
+Trang phục đã tách	Isolated garment
+Giữ ảnh đầu vào	Original input retained
+Tích chập → bản đồ đặc trưng → gộp trung bình	Convolutions → feature map → global average pooling
+Chia ảnh thành patch → Vision Transformer → chiếu đặc trưng	Image patches → Vision Transformer → feature projection
+Ảnh mô hình thực sự nhận	Actual encoder input
+Lưới minh họa vùng quét của tích chập; đặc trưng cuối trên lưới 7 × 7.	The grid illustrates convolutional processing; the final feature map has a 7 × 7 spatial grid.
+Ảnh chia thành 49 patch, mỗi patch 32 × 32 pixel.	The image is divided into 49 patches of 32 × 32 pixels.
+Vùng ảnh góp phần chọn style	Image regions contributing to style assignment
+Bản đồ vùng ảnh liên quan tới cụm	Image regions associated with the cluster:
+chiều → chuẩn hóa L2	dimensions → L2 normalisation
+64 giá trị đầu của vector đặc trưng	First 64 feature-vector values
+64 giá trị đầu của vector thật; chiều cao thể hiện độ lớn tuyệt đối. Vector dùng để tính khoảng cách tới tâm cụm.	The first 64 values of the actual vector; bar height shows absolute magnitude. The vector is used to calculate distances to cluster centroids.
+K-Means: so với 20 tâm cụm	K-Means: compare with 20 centroids
+Tâm cụm đã được học và đóng băng. Khoảng cách Euclid càng nhỏ, cụm càng gần ảnh. Khi quét, hệ thống gán cụm; không huấn luyện lại K-Means.	The centroids were learned offline and are fixed. A smaller Euclidean distance indicates a closer cluster. Scanning assigns the image to a cluster; it does not retrain K-Means.
+Style lạ · chỉ tham chiếu cụm gần nhất	Novel style · closest cluster shown for reference only
+Cụm gần nhất	Closest cluster
+ngưỡng khoảng cách 99%	99th-percentile distance threshold
+Ảnh vượt ngưỡng và ít giống các sản phẩm lân cận nên không bị ép vào cụm.	The image exceeds the threshold and has low similarity to nearby catalogue products, so it is flagged as a novel style.
+Kết hợp khoảng cách và độ tương đồng với sản phẩm lân cận để kiểm tra style lạ.	Distance and similarity to neighbouring products are both used to detect novel styles.
+Dự báo xu hướng từ cả 4 mô hình	Trend forecasts from all four models
+Dự báo áp dụng cho lịch sử doanh số của nhóm style.	Forecasts use the style group sales history.
+Style lạ: các kết quả dưới đây chỉ là ước lượng tham khảo từ các cụm gần nhất.	Novel style: the results below are reference estimates derived from nearby style groups.
+Chưa có dự báo cho cụm tại tuần này.	No forecast is available for this cluster at the selected week.
+Ước lượng tham khảo · style mới chưa có lịch sử bán	Reference estimate · this novel style has no sales history
+Huấn luyện theo tuần đã chọn · chỉ dùng nhãn đã quan sát đủ 4 tuần	Refitted at the selected week · uses only labels with a fully observed four-week outcome
+Dự báo walk-forward đã lưu	Saved walk-forward prediction
+Dự báo từ mô hình triển khai	Prediction from the deployment model
+Ảnh này gần như trùng với sản phẩm	This image is a near duplicate of product
+đã có trong kho dữ liệu.	already in the data library.
+Style mới: món đồ khác rõ với cả 20 nhóm style đã có. Chưa có lịch sử bán, nên dự báo bên dưới chỉ là tham khảo từ 3 nhóm gần nhất.	Novel style: this item differs substantially from all 20 existing style groups. It has no sales history, so the estimates below are for reference and use the three closest groups.
+Dự báo này được tính tại tuần điều hành	This forecast uses reference week
+(lúc quét), khác với tuần đang chọn.	(selected when scanned), which differs from the current selection.
+Kết quả nhận diện	Recognition results
+độ khớp	match score
+Màu chủ đạo	Dominant colours
+gần nhất	closest
+Mức điển hình	Typicality
+sản phẩm trong nhóm khác biệt hơn ảnh này	products in the group are farther from the centroid than this image
+Loại gần nhất trong kho	Closest catalogue category
+xem dashboard	view dashboard
+Tham chiếu doanh số	Sales reference
+đơn vị / sản phẩm tương tự (12 tuần đầu)	units per similar product (first 12 weeks)
+Dự báo 4 tuần tới cho nhóm style của sản phẩm	Four-week forecast for the product style group
+Ước lượng tham khảo từ các nhóm style gần nhất	Reference estimate based on the closest style groups
+Mô hình CatBoost, áp dụng cho cả nhóm style	CatBoost model · applies to the entire style group
+Ước lượng tham khảo	Reference estimate
+Sản phẩm tương tự trong kho dữ liệu	Similar products in the data library
+Theo ResNet-50 · số đơn vị đã bán giúp ước lượng nhu cầu	Selected by ResNet-50 · units sold provide demand context
+Chỉ nhận ảnh JPG, PNG hoặc WEBP.	Please choose a JPG, PNG, or WEBP image.
+Ảnh quá lớn (tối đa 15 MB).	The image is too large (maximum 15 MB).
+Đã quét và lưu vào kho dữ liệu.	Scan completed and saved to the data library.
+Kết quả quét	Scan results
+Xoá vĩnh viễn ảnh và kết quả của lượt quét này?	Permanently delete the image and results for this scan?
+Đã xoá lượt quét.	Scan deleted.
+Tất cả	All
+Xuân Hè	Spring/Summer
+Thu Đông	Autumn/Winter
+mặc định	default
+cuối kỳ	end of dataset
+chưa có thực tế	outcome not yet observed
+Đang kết nối backend…	Connecting to the backend…
+Mất kết nối máy chủ	Server disconnected
+Sẵn sàng phân tích	Ready to analyse
+Chưa kết nối máy chủ	Server not connected
+Mô hình chưa sẵn sàng.	The models are not ready yet.
+Dữ liệu mô hình chưa đầy đủ.	The model data is incomplete.
+Phân tích hoàn tất	Analysis complete
+Ảnh sẵn sàng	Image ready
+Chưa chọn ảnh	No image selected
+Chưa tải được phong cách đã lưu.	Could not load saved styles.
+Dữ liệu bán hàng:	Sales data:
+chuỗi bán lẻ thời trang tại Ý	an Italian fashion retail chain
+Nhóm style được học từ	Style groups were learned from
+Dự báo áp dụng cho cả nhóm style, không phải cho riêng một sản phẩm.	Forecasts apply to an entire style group, rather than an individual product.
+Sau thời điểm này chưa có số liệu thực tế để đối chiếu.	Observed outcomes are not yet available after this date.
+Có số liệu thực tế 4 tuần sau để đối chiếu với dự báo.	Observed outcomes for the following four weeks are available for comparison.
+Cuối kỳ dữ liệu, số liệu bán thưa dần nên dự báo kém tin cậy.	Sales observations become sparse at the end of the dataset, reducing forecast reliability.
+Đang phân tích ảnh	Analysing image
+Quét ảnh xem trước	Preview scan
+Ảnh hiện tại đang được phân tích. Bạn có thể đổi ảnh khi hoàn tất.	The current image is being analysed. You can choose another image once it finishes.
+File này không phải ảnh.	This file is not an image.
+Ảnh lớn hơn 15 MB. Hãy chọn ảnh có dung lượng nhỏ hơn.	The image exceeds 15 MB. Please choose a smaller file.
+Ảnh đã được chọn	Image selected
+Ảnh của bạn đã sẵn sàng. Bấm “Quét ảnh” để nhận diện trang phục và khám phá nhóm phong cách tương ứng.	Your image is ready. Select Scan image to identify the garment and explore its style group.
+Đang đọc ảnh…	Reading image…
+Tải lại danh sách	Reload list
+Danh sách phong cách không hợp lệ.	The saved-style list is invalid.
+Xem phong cách	View style
+Xoá phong cách	Delete style
+Xoá phong cách này?	Delete this style?
+Huỷ	Cancel
+Bộ sưu tập của bạn bắt đầu ở đây.	Your collection starts here.
+Phong cách mới có thể được lưu lại sau khi quét ảnh.	Novel styles can be saved after scanning an image.
+Đã xoá phong cách.	Style deleted.
+Không xoá được:	Could not delete:
+Phong cách đã được xoá. Quét lại ảnh để lưu mới.	This style was deleted. Scan the image again to save a new style.
+Đã lưu vào	Saved to
+Đang lưu…	Saving…
+Không lưu được:	Could not save:
+Lưu phong cách	Save style
+Style mới, chưa có trong bộ sưu tập	Novel style not found in the catalogue
+Món đồ này khác rõ với cả 20 nhóm style học từ dữ liệu bán hàng, theo cả hai mô hình. Gần nhất là	Both encoders find this item substantially different from all 20 style groups learned from the sales catalogue. The closest groups are
+Có thể là style mới	Potentially a novel style
+xếp món đồ vào nhóm	assigns the item to group
+cho rằng món đồ khác rõ với mọi nhóm đã học.	finds the item substantially different from all learned groups.
+Thuộc nhóm style đã có	Matches an existing style group
+rất điển hình của nhóm	highly typical of the group
+điển hình của nhóm	typical of the group
+nằm ở rìa nhóm	on the edge of the group
+khác biệt rõ với nhóm	substantially different from the group
+nằm ngoài rìa nhóm nhưng vẫn có sản phẩm rất giống trong bộ sưu tập	far from the centroid, but very similar products exist in the catalogue
+Xu hướng 4 tuần tới	Four-week trend outlook
+Nhóm style này không đủ số liệu bán tại thời điểm đã chọn. Hãy chọn thời điểm khác trong phần Tuỳ chọn.	This style group has insufficient sales data at the selected date. Choose another forecast date in the analysis settings.
+Chưa thể dự báo	Forecast unavailable
+Style mới chưa có lịch sử bán hàng nên chưa có số liệu để dự báo trực tiếp.	This novel style has no sales history, so a direct forecast is unavailable.
+Tham khảo	For reference:
+xu hướng của các nhóm gần nhất (không phải dự báo):	trends in the closest groups (not a direct forecast):
+Thực tế sau 4 tuần:	Observed outcome after four weeks:
+dự báo đúng	correct prediction
+dự báo chưa đúng	incorrect prediction
+Mô hình TCN, điểm F1 trên dữ liệu kiểm tra	TCN model, test-set macro-F1:
+(đoán ngẫu nhiên khoảng 0,33).	(random guessing is approximately 0.33).
+Doanh số trung bình mỗi sản phẩm của nhóm style theo tuần	Weekly average sales per product in the style group
+4 tuần dự báo	Four-week forecast
+Doanh số trung bình mỗi sản phẩm của nhóm, theo tuần	Weekly average sales per product in the group
+Thực tế sau đó	Observed outcome
+Sản phẩm gần nhất trong bộ sưu tập	Closest products in the catalogue
+Sản phẩm tương tự trong bộ sưu tập	Similar products in the catalogue
+Chọn mô hình	Select encoder
+Đặc điểm chi tiết	Detailed attributes
+Mức độ khớp giữa ảnh và từng mô tả. Nhãn	Image-to-text match scores. The label
+là thuộc tính không có trong dữ liệu bán hàng.	marks an attribute outside the sales dataset vocabulary.
+Họa tiết sọc (nếu có) được đo trực tiếp trên điểm ảnh; các mục còn lại do FashionCLIP so khớp ảnh với mô tả bằng chữ.	Stripes, when detected, are measured directly from pixels. Other attributes use FashionCLIP image-to-text matching.
+Nhóm style gần nhất	Closest style group
+Kết luận	Result
+Style mới	Novel style
+Thuộc nhóm này	Assigned to this group
+Mức độ giống nhóm	Group typicality
+Độ chính xác dự báo (F1)	Forecast macro-F1
+Hai cách nhìn một món đồ	Two perspectives on one garment
+Mỗi mô hình tự chia bộ sưu tập thành 20 nhóm style riêng, nên tên nhóm của hai bên không trùng nhau.	Each encoder partitions the catalogue into its own 20 style groups, so group labels are not equivalent across encoders.
+Mô hình nhìn vào đâu	Which image regions influence the assignment?
+Vùng màu cam là phần ảnh kéo món đồ về nhóm style gần nhất.	Orange regions contribute to the association with the closest style group.
+Vùng ảnh quan trọng theo	Relevant image regions for
+Sản phẩm gần nhất theo từng mô hình	Closest products for each encoder
+Hai mô hình chọn chung	The encoders share
+Tách món đồ khỏi nền	Isolate the garment from its background
+Mô hình phân vùng quần áo SegFormer gán từng điểm ảnh vào 18 loại (áo, quần, váy, mặt, tay, tóc, nền…). Phần trang phục được giữ lại, đặt lên nền trắng và cắt sát như ảnh trong bộ sưu tập.	SegFormer assigns each pixel to one of 18 classes, including clothing, face, arms, hair, and background. Garment pixels are retained, placed on white, and cropped to resemble catalogue images.
+Bản đồ phân vùng	Segmentation map
+Phân vùng: phần giữ lại có màu, phần bỏ đi làm mờ	Segmentation: retained regions are coloured; removed regions are faded
+Món đồ đã tách	Isolated garment
+Ảnh đưa vào mô hình	Image passed to the encoder
+Tác động của bước tách nền	Effect of background removal
+Có tách nền	Background removed
+Các vùng nhận ra trong ảnh gốc	Regions detected in the original image
+Các bước xử lý bên trong, dành cho người muốn xem kỹ thuật.	A closer look at the processing steps.
+Chuẩn hoá ảnh	Image preprocessing
+Đổi kích thước cạnh ngắn về 224 điểm ảnh, cắt vuông ở giữa, chuẩn hoá màu theo FashionCLIP.	Resize the shorter edge to 224 pixels, take a square centre crop, and normalise using FashionCLIP statistics.
+Đổi kích thước về 232, cắt vuông 224 ở giữa, chuẩn hoá màu theo ImageNet, giống hệt lúc huấn luyện.	Resize to 232 pixels, take a 224-pixel square centre crop, and normalise using ImageNet statistics, matching training preprocessing.
+Ảnh đầu vào của mô hình	Encoder input image
+Ảnh mô hình thực sự nhìn thấy	The image the encoder actually receives
+Đã tách nền	Background removed
+Đầu vào	Input
+Trích đặc trưng hình ảnh	Extract visual features
+FashionCLIP (ViT-B/32) chia ảnh thành 49 ô 32×32 và tóm tắt cả ảnh thành một vector 512 số.	FashionCLIP (ViT-B/32) divides the image into 49 patches of 32 × 32 pixels and represents the full image as a 512-dimensional vector.
+ResNet-50 tạo bản đồ đặc trưng 2048 × 7 × 7 rồi lấy trung bình thành một vector 2048 số.	ResNet-50 produces a 2048 × 7 × 7 feature map and applies global average pooling to obtain a 2048-dimensional vector.
+Vùng ảnh quan trọng	Relevant image regions
+Số chiều	Dimensions
+Bản đồ đặc trưng	Feature map
+Độ lớn vector	Vector norm
+64 giá trị đầu của vector (sau chuẩn hoá):	First 64 vector values after normalisation:
+Đối chiếu với 20 nhóm style	Compare with 20 style groups
+Nhóm gần nhất	Closest group
+Khoảng cách	Distance
+Ngưỡng style mới của nhóm	Group novelty distance threshold
+Độ giống trung bình	Average similarity of
+Ngưỡng không có sản phẩm giống	Low-neighbour-similarity threshold
+Thuộc nhóm	Assigned to group
+5 nhóm gần nhất (khoảng cách càng nhỏ càng giống)	Five closest groups (smaller distance means a closer match)
+Sản phẩm tiêu biểu của nhóm	Representative products from group
+Dự báo xu hướng	Forecast the trend
+Mô hình đọc chuỗi doanh số theo tuần của nhóm style tới thời điểm dự báo và phân loại 4 tuần tiếp theo thành Đang giảm, Ổn định hoặc Đang lên.	The model reads the style group sales history up to the forecast date and classifies the following four weeks as Declining, Stable, or Emerging.
+Dự báo lấy từ lần kiểm tra lùi theo thời gian (walk-forward): mô hình chỉ được học dữ liệu trước thời điểm dự báo.	This is a saved walk-forward prediction: the model was trained only on data available before the forecast date.
+Dự báo từ mô hình huấn luyện trên toàn bộ số liệu đã có kết quả.	Prediction from a model trained on all labels with observed outcomes.
+TCN (mạng tích chập theo thời gian)	TCN (Temporal Convolutional Network)
+CatBoost (cây quyết định)	CatBoost (gradient-boosted decision trees)
+Mô hình dự báo	Forecasting model
+Điểm F1 trung bình ba lớp (Đang giảm, Ổn định, Đang lên) trên dữ liệu kiểm tra 01/2019	Macro-F1 across Declining, Stable, and Emerging on test data from Jan 2019
+Càng cao càng tốt, tối đa 1.	Higher is better; the maximum is 1.
+Mạng CNN học từ ảnh tổng quát (ImageNet). Nhạy với màu sắc, kết cấu bề mặt và hình dáng.	A CNN pretrained on general-purpose ImageNet images, sensitive to colour, texture, and shape.
+Mô hình học từ ảnh thời trang kèm mô tả bằng chữ. Nhạy với loại sản phẩm và ý nghĩa thời trang.	An encoder trained on fashion images and text descriptions, sensitive to product categories and fashion semantics.
+4 tuần	4 weeks
+đơn vị	units
+Tuần	Week
+từ	from
+loại	categories
+màu	colours
+tuần dữ liệu	weeks of data
+tại tuần	at week
+nhóm style	style groups
+sản phẩm	products
+đúng	is correct in
+đang bán	active
+sản phẩm · chiếm	products ·
+tổng doanh số toàn chuỗi	of total chain-wide sales
+tất cả	all
+sản phẩm · trang	products · page
+ảnh	images
+tạo bởi	generated by
+dòng đầu	first rows
+dòng	rows
+Ảnh đầu vào	Input image
+đơn vị · giống	units · similarity
+Trạng thái tại tuần điều hành	Status at the reference week
+Đơn vị đã bán	Units sold
+Số cửa hàng	Number of stores
+Xếp hạng trong loại	Rank within category
+Trung vị của loại	Category median
+Chiết khấu TB	Average discount
+Tuần có doanh số	Weeks with recorded sales
+Doanh số theo tuần của sản phẩm	Weekly product sales
+Dự báo cho nhóm style	Forecast for style group
+sản phẩm cùng nhóm, bán TB	products in the group; average sales:
+Mô hình dự báo xu hướng của nhóm style, không dự báo riêng một sản phẩm.	The model forecasts the group trend, rather than an individual product.
+Dự báo tại tuần ra mắt	Forecast at launch week
+Doanh số TB mỗi sản phẩm của nhóm style	Average sales per product in the style group
+Doanh số trung bình mỗi sản phẩm của nhóm style	Average sales per product in the style group
+Sản phẩm không có ảnh hợp lệ nên chưa được xếp nhóm style.	This product has no usable image, so no style group has been assigned.
+Kết nối lại	Reconnect
+nhóm pha trộn:	mixed group:
+Xem ảnh	View image
+mã	code
+Độ giống	Similarity
+SẢN PHẨM TRONG BỘ SƯU TẬP	CATALOGUE PRODUCT
+Ảnh sản phẩm từ bộ sưu tập VISUELLE 2.0.	Product image from the VISUELLE 2.0 catalogue.
+PHONG CÁCH ĐÃ LƯU	SAVED STYLE
+ảnh đã ghi nhận	images recorded
+Tạo ngày	Created on
+Ảnh đã lưu trong phong cách	Saved image for style
+ảnh gần nhất của phong cách này.	most recent images for this style.
+Ảnh xem trước được lưu cùng phong cách.	Preview image saved with this style.
+Một bức ảnh.	One image.
+Nhiều điều để khám phá.	So much to discover.
+Chọn ảnh trang phục để nhận diện đặc điểm, tìm sản phẩm tương tự và khám phá xu hướng của nhóm phong cách.	Choose a garment photo to identify its attributes, find similar products, and explore its style group trend.
+Ảnh mẫu chưa tải được. Hãy thử lại hoặc chọn ảnh từ thiết bị.	Could not load the sample image. Try again or choose an image from your device.
+Đã chọn	Selected:
+Bấm “Quét ảnh” để xem kết quả phân tích ảnh mẫu từ bộ sưu tập VISUELLE 2.0.	Select Scan image to analyse this sample from the VISUELLE 2.0 catalogue.
+Tải ảnh mẫu quá lâu. Hãy thử lại.	The sample image took too long to load. Please try again.
+STYLE SCANNER — TÓM TẮT PHÂN TÍCH	STYLE SCANNER — ANALYSIS SUMMARY
+Thời điểm dự báo	Forecast date
+Khoảng dự báo	Forecast horizon
+ĐẶC ĐIỂM TRANG PHỤC	GARMENT ATTRIBUTES
+đo từ ảnh	measured from pixels
+Không xác định	Unknown
+NHÓM PHONG CÁCH VÀ XU HƯỚNG	STYLE GROUPS AND TRENDS
+Phong cách mới	Novel style
+Dự báo TCN	TCN forecast
+Chưa thể dự báo trực tiếp. Tham khảo các nhóm gần nhất:	Direct forecast unavailable. Closest-group reference estimate:
+Chưa đủ số liệu để dự báo tại thời điểm đã chọn.	Insufficient data to forecast at the selected date.
+LƯU Ý	NOTES
+Thuộc tính nhận diện và chất liệu là ước đoán từ ảnh; màu sắc được đo từ điểm ảnh.	Recognised attributes and fabrics are estimates from the image; colours are measured from pixels.
+Dự báo dựa trên lịch sử VISUELLE 2.0 và tuần được chọn, áp dụng cho nhóm phong cách, không phải một sản phẩm riêng lẻ hay ngày hiện tại.	Forecasts use VISUELLE 2.0 history and the selected reference week. They apply to style groups, rather than individual products or the current date.
+Phong cách mới chỉ có xu hướng tham khảo từ các nhóm gần nhất.	Novel styles have only reference estimates based on the closest groups.
+Đã tải bản tóm tắt kết quả.	Analysis summary downloaded.
+Hãy chọn một ảnh khác	Please choose another image
+Không đọc được ảnh	Could not read the image
+Chọn một ảnh JPG, PNG hoặc WEBP hợp lệ.	Choose a valid JPG, PNG, or WEBP image.
+Không đọc được ảnh này. Hãy thử một ảnh JPG, PNG hoặc WEBP khác.	Could not read this image. Try another JPG, PNG, or WEBP file.
+giây	seconds
+Đang xử lý ảnh…	Processing image…
+Máy chủ trả về kết quả không đầy đủ. Hãy quét lại ảnh.	The server returned incomplete results. Please scan the image again.
+Không phân tích được ảnh:	Could not analyse the image:
+Quét ảnh	Scan image
+Sẵn sàng thử lại	Ready to try again
+nhưng	but
+thấy nó khác biệt với mọi nhóm đã biết.	finds it substantially different from all known groups.
+Nhóm có	This group contains
+sản phẩm trong bộ sưu tập; món đồ	catalogue products; this item is
+FashionCLIP xếp vào nhóm	FashionCLIP assigns it to group
+món đồ	the item is
+Giống style bạn đã lưu:	Similar to a saved style:
+Thêm ảnh này vào style đó	Add image to this style
+Tên style mới	New style name
+Lưu style mới	Save new style
+hoặc	or
+Chọn ảnh hiển thị	Choose image view
+Độ tin cậy	Confidence
+Chưa chắc chắn, độ tin cậy	Uncertain identification · confidence
+loại hàng chưa có trong dữ liệu bán	category outside the sales dataset
+Ảnh món đồ	Garment image
+Họa tiết	Pattern
+Phong cách	Style
+Chi tiết	Details
+Không có chi tiết nổi bật	No prominent details
+ước đoán từ ảnh	estimated from the image
+chưa chắc chắn, ước đoán từ ảnh	uncertain · estimated from the image
+Nhóm	Group
+Không có sản phẩm nào thật sự giống: độ giống trung bình của	No close match was found: the average similarity of the
+sản phẩm gần nhất là	closest products is
+thấp hơn 99% sản phẩm trong bộ sưu tập (ngưỡng	below that of 99% of catalogue products (threshold:
+Đây chỉ là các món gần nhất để tham khảo.	These are only the nearest items for reference.
+mới	new
+đo	measured
+style mới	novel style
+Không đủ số liệu	Insufficient data
+khoảng cách	distance
+ngưỡng	threshold
+thuộc nhóm	assigned to group
+Mỗi nhóm có một điểm trung tâm học từ bộ sưu tập. Món đồ chỉ được coi là style mới khi thoả cả hai điều kiện: (1) xa điểm trung tâm gần nhất hơn 99% sản phẩm của chính nhóm đó, và (2)	Each group has a centroid learned from the catalogue. An item is flagged as novel only if both conditions hold: (1) it is farther from the nearest centroid than 99% of the members of that group, and (2) its
+sản phẩm gần nhất trong bộ sưu tập kém giống hơn so với 99% sản phẩm. Chỉ thoả (1) nghĩa là món đồ nằm ở rìa nhóm nhưng vẫn có sản phẩm giống.	nearest catalogue neighbours have lower average similarity than for 99% of catalogue products. Meeting only condition (1) means the item is far from the centroid but still has similar catalogue products.
+Bật JavaScript để dùng bảng điều hành.	Enable JavaScript to use the dashboard.
+Quét trang phục	Garment scanner
+Quét ảnh trang phục, nhận diện thuộc tính, so sánh mô hình và xem dự báo xu hướng.	Scan garment photos, identify attributes, compare encoders, and explore trend forecasts.
+Đến khu vực quét ảnh	Skip to the scanner
+Trang chủ	Home
+Hướng dẫn	Guide
+GÓC NHÌN DỮ LIỆU · CẢM HỨNG THỜI TRANG	DATA INSIGHTS · FASHION INSPIRATION
+Khám phá đặc điểm, phong cách và xu hướng từ một bức ảnh.	Explore garment attributes, styles, and trends from a single photo.
+Tiến trình phân tích	Analysis progress
+Chọn ảnh	Choose image
+Phân tích trang phục	Analyse garment
+Khám phá kết quả	Explore results
+Chọn ảnh để phân tích	Choose an image to analyse
+Kéo thả ảnh vào đây	Drop an image here
+Chọn ảnh từ thiết bị	Choose an image from your device
+Tối đa 15 MB	Up to 15 MB
+Đổi ảnh	Change image
+Bỏ ảnh đã chọn	Remove selected image
+Bỏ ảnh	Remove image
+Hoặc dán ảnh bằng	Or paste an image with
+Cài đặt phân tích	Analysis settings
+Phong cách đã lưu	Saved styles
+Kết quả phân tích	Analysis results
+TỪ ẢNH ĐẾN PHONG CÁCH	FROM IMAGE TO STYLE
+Loại trang phục	Garment category
+Màu sắc & họa tiết	Colours & patterns
+Khám phá phong cách	Discover styles
+Hiểu từng chi tiết	Understand the details
+Loại trang phục, màu sắc, họa tiết và chất liệu.	Garment category, colours, patterns, and fabrics.
+Tìm điểm tương đồng	Find similar items
+Đối chiếu với bộ sưu tập và hai mô hình nhận diện.	Compare against the catalogue using two visual encoders.
+Nắm bắt xu hướng	Explore trends
+Xem dự báo 4 tuần của nhóm phong cách tương ứng.	View a four-week forecast for the matching style group.
+Bắt đầu với một ảnh mẫu	Start with a sample image
+Chọn ảnh bên dưới, sau đó bấm “Quét ảnh”.	Choose an image below, then select Scan image.
+BỘ SƯU TẬP VISUELLE	VISUELLE CATALOGUE
+Chọn ảnh mẫu áo trắng	Choose the white top sample
+Chọn ảnh mẫu váy dài	Choose the long dress sample
+Chọn ảnh mẫu áo khoác	Choose the jacket sample
+Chọn ảnh mẫu quần jeans	Choose the jeans sample
+Áo trắng	White top
+Váy dài tối màu	Dark long dress
+Váy dài	Long dress
+Áo khoác tối màu	Dark jacket
+Áo khoác	Jacket
+Quần jeans xanh	Blue jeans
+Quần jeans	Jeans
+Ảnh mẫu đã thuộc bộ sưu tập. Tải ảnh của bạn lên để khám phá một phong cách khác.	Sample images are already in the catalogue. Upload your own photo to explore a different style.
+ĐANG KHÁM PHÁ PHONG CÁCH	EXPLORING YOUR STYLE
+Ảnh trang phục đang được phân tích	Garment image being analysed
+Đang quét trang phục	Scanning garment
+Đang nhận diện đặc điểm và đối chiếu các nhóm phong cách.	Identifying attributes and comparing style groups.
+Kết quả sẽ hiển thị ngay khi xử lý hoàn tất.	Results will appear when processing is complete.
+Đang chờ kết quả	Waiting for results
+Ảnh có người mẫu có thể cần thêm thời gian để tách trang phục.	Photos of people may take longer because the garment needs to be isolated.
+Hoàn tất	Complete
+Tải tóm tắt	Download summary
+Chế độ xem kết quả	Result views
+So sánh mô hình	Compare encoders
+Quy trình xử lý	Processing steps
+Dự báo áp dụng cho nhóm phong cách.	Forecasts apply to style groups.
+BẮT ĐẦU CÙNG STYLE SCANNER	GET STARTED WITH STYLE SCANNER
+Khám phá trang phục trong 3 bước	Explore a garment in three steps
+Đóng hướng dẫn	Close guide
+Chọn một ảnh rõ nét	Choose a clear image
+Dùng ảnh một món đồ hoặc ảnh người mặc, ưu tiên thấy trọn trang phục. Bạn có thể kéo thả, chọn file hoặc dán ảnh.	Use a product photo or a photo of someone wearing the garment, ideally showing the whole item. Drop, browse for, or paste an image.
+Quét và chờ xử lý	Scan and wait for processing
+Giữ chế độ tách nền tự động để bắt đầu. Hệ thống nhận diện đặc điểm và tìm nhóm phong cách gần nhất.	Start with automatic background removal. The system identifies attributes and finds the closest style group.
+Xem tổng quan, so sánh hai mô hình hoặc tìm hiểu quy trình. Dùng “Tải tóm tắt” để lưu kết quả về máy.	Explore the overview, compare encoders, or inspect the processing steps. Select Download summary to save the results.
+Dự báo dựa trên lịch sử VISUELLE 2.0 và tuần bạn chọn, áp dụng cho nhóm phong cách. Phong cách mới chỉ có xu hướng tham khảo từ các nhóm gần nhất.	Forecasts use VISUELLE 2.0 history and the selected week, and apply to style groups. Novel styles have only reference estimates based on the closest groups.
+Bắt đầu khám phá	Start exploring
+CHI TIẾT SẢN PHẨM	PRODUCT DETAILS
+Ảnh trang phục	Garment image
+Đóng ảnh	Close image
+Xem ảnh trước	Previous image
+Xem ảnh tiếp theo	Next image
+Dùng phím ← → để chuyển ảnh	Use the ← → keys to browse images
+Chọn ảnh đã lưu	Choose a saved image
+Bật JavaScript để tải ảnh và xem kết quả.	Enable JavaScript to upload images and view results.
+ và 	 and 
+"có"	"yes"
+"không"	"no"
+Váy/áo họa tiết hoa	Floral dresses and tops
+Áo len trơn dài tay	Plain long-sleeved knitwear
+Đồ đen dáng rộng	Loose-fitting black garments
+Quần dáng ôm tối màu/kẻ	Dark or checked slim-fit trousers
+Blouse sáng màu/pastel	Light-coloured and pastel blouses
+Áo sát nách	Sleeveless tops
+Áo len dệt kim mélange	Mélange knitwear
+Jumpsuit/chân váy/short (hỗn hợp)	Jumpsuits, skirts and shorts (mixed)
+Blazer/áo khoác tailored	Blazers and tailored jackets
+Quần đen ống côn	Black tapered trousers
+Áo dài tay họa tiết hoa	Floral long-sleeved tops
+Váy suông họa tiết	Patterned shift dresses
+Áo phao/áo khoác mùa đông	Puffer jackets and winter coats
+Váy dài hoa nền tối	Long floral dresses with dark backgrounds
+Áo ngắn tay ren/chất liệu nổi	Lace and textured short-sleeved tops
+Áo khoác da/biker	Leather and biker jackets
+Váy xoè màu (doll dress)	Coloured babydoll dresses
+Áo dài tay đen/cardigan	Black long-sleeved tops and cardigans
+Áo thun in hình (graphic)	Graphic T-shirts
+Màu cam là vùng ảnh góp phần nhiều nhất vào việc xếp món đồ vào nhóm gần nhất, tính chính xác trên lưới 7×7 của ResNet-50.	Orange highlights the regions contributing most to the nearest style-group assignment, calculated exactly on the ResNet-50 7 × 7 feature grid.
+Màu cam là vùng ảnh liên quan nhất tới nhóm gần nhất, ước lượng trên	Orange highlights regions associated with the nearest style group, approximated using
+ô ảnh của FashionCLIP nên chỉ mang tính gợi ý.	FashionCLIP image patches; this is an indicative visualisation.
+Bạn đã tắt bước tách nền, ảnh được phân tích nguyên trạng	Background removal is disabled; the original image is analysed
+Không tìm thấy món đồ đủ lớn trong ảnh, nên ảnh được phân tích nguyên trạng	No sufficiently large garment region was found, so the original image is analysed
+Ảnh đã là ảnh sản phẩm trên nền trắng, giống ảnh trong bộ sưu tập, nên không cần tách nền	The image already resembles a catalogue product photo on white, so background removal is unnecessary
+Đã giữ lại	Retained:
+bỏ người và phông nền, rồi đặt món đồ lên nền trắng giống ảnh trong bộ sưu tập	removed the person and background, then placed the garment on white to match catalogue images
+Ưu tiên theo dõi; cân nhắc mở rộng assortment của style.	Monitor closely and consider expanding the style assortment.
+Rà soát nhập mới; cân nhắc markdown hoặc giảm độ phủ.	Review new purchases and consider markdowns or reducing assortment coverage.
+Duy trì; theo dõi định kỳ.	Maintain the current approach and monitor regularly.
+Thời điểm dự báo phải nằm trong tuần	The forecast origin must be within weeks
+Không có loại sản phẩm này trong dữ liệu.	This product category was not found in the dataset.
+Không có sản phẩm này trong dữ liệu.	This product was not found in the dataset.
+Doanh số 12 tuần đầu của từng sản phẩm tại từng cửa hàng, kèm thuộc tính sản phẩm	Sales over the first 12 weeks for each product and store, with product attributes
+Giao dịch theo khách hàng (mã khách, cửa hàng, sản phẩm, thời điểm, số lượng)	Customer transactions: customer ID, store, product, date, and quantity
+Chuỗi chiết khấu 12 tuần và giá (đã chuẩn hoá) theo sản phẩm × cửa hàng	Twelve-week discount series and normalised prices by product and store
+Lượt bổ sung hàng theo sản phẩm × cửa hàng × tuần	Restocking events by product, store, and week
+Google Trends theo tuần cho loại sản phẩm, màu, chất liệu	Weekly Google Trends for product categories, colours, and fabrics
+Thời tiết theo ngày tại các địa phương có cửa hàng	Daily weather for store locations
+Tập train chuẩn của benchmark VISUELLE (doanh số đã chuẩn hoá)	VISUELLE benchmark training set (normalised sales)
+Tập test chuẩn của benchmark VISUELLE (doanh số đã chuẩn hoá)	VISUELLE benchmark test set (normalised sales)
+Từ điển nhãn loại sản phẩm (PyTorch)	Product category label dictionary (PyTorch)
+Từ điển nhãn màu (PyTorch)	Colour label dictionary (PyTorch)
+Từ điển nhãn chất liệu (PyTorch)	Fabric label dictionary (PyTorch)
+Ghép cửa hàng với trạm thời tiết (PyTorch)	Store-to-weather-station mapping (PyTorch)
+Hệ số chuẩn hoá doanh số của benchmark	Benchmark sales normalisation factor
+Đã xử lý: một dòng mỗi sản phẩm (thuộc tính, ngày ra mắt, số cửa hàng)	Processed: one row per product with attributes, launch date, and store count
+Đã xử lý: doanh số theo sản phẩm × tuần lịch (giá, chiết khấu, số cửa hàng)	Processed: weekly product sales, prices, discounts, and store counts
+Đã xử lý: doanh số theo sản phẩm × cửa hàng × tuần lịch	Processed: weekly sales by product and store
+Đã xử lý: lịch tuần và kiểm tra bảo toàn doanh số	Processed: weekly calendar and sales conservation checks
+Không có tệp này trong kho dữ liệu.	This file was not found in the data library.
+Tệp nhị phân, chỉ có thể tải về.	This is a binary file and can only be downloaded.
+Ảnh quá lớn (tối đa 15 MB)	The image is too large (maximum 15 MB)
+Không có lượt quét này.	This scan was not found.
+Máy chủ không xử lý được ảnh. Hãy thử lại hoặc đổi chế độ tách nền.	The server could not process the image. Please try again or change the background-removal setting.
+nền	background
+mũ	hat
+tóc	hair
+kính	sunglasses
+áo	upper-body clothing
+chân váy	skirt
+quần	trousers
+váy liền	dress
+thắt lưng	belt
+giày	shoes
+mặt	face
+chân	leg
+tay	arm
+túi	bag
+khăn	scarf
+Ảnh vượt quá 20 triệu điểm ảnh. Hãy giảm kích thước ảnh.	The image exceeds 20 megapixels. Please resize it.
+Không đọc được file ảnh. Hãy chọn ảnh JPG, PNG hoặc WEBP hợp lệ.	Could not read the image file. Please choose a valid JPG, PNG, or WEBP image.
+Không đọc được phong cách đã lưu. Hãy thử lại sau.	Could not read saved styles. Please try again later.
+Không ghi được phong cách đã lưu. Hãy thử lại sau.	Could not save styles. Please try again later.
+Kết quả quét đã hết hạn, hãy quét lại ảnh	This scan result has expired. Please scan the image again.
+Phong cách đã được xoá. Hãy quét lại ảnh trước khi lưu.	This style was deleted. Please scan the image again before saving.
+Phong cách này không còn trong danh sách đã lưu.	This style is no longer in the saved list.
+segment phải là một trong	The background-removal mode must be one of
+có	yes
+không	no
+áo dài tay	long-sleeved top
+áo ngắn tay	short-sleeved top
+áo sát nách	sleeveless top
+áo trễ vai	dropped-sleeve top
+áo kiểu	blouse
+váy babydoll	babydoll dress
+áo trơn	plain top
+váy suông	A-line dress
+long sleeve	long-sleeved top
+short sleeves	short-sleeved top
+sleeveless	sleeveless top
+drop sleeve	dropped-sleeve top
+doll dress	babydoll dress
+solid color top	plain top
+medium coat	mid-length coat
+medium cardigan	mid-length cardigan
+maxi	maxi dress
+long duster	long duster coat
+Sản phẩm #	Product #
+Sản phẩm ${code}	Product ${code}
+sản phẩm gần nhất	closest products
+SP	products
+02/2020	Feb 2020
+Trung bình theo ${int(o.n_weighted)} sản phẩm ${o.weighted_by === "active" ? "đang bán" : "của loại này (không có SP đang bán)"}	Weighted average across ${int(o.n_weighted)} ${o.weighted_by === "active" ? "active products" : "products in this category (no active products)"}
+Độ giống trung bình ${s.knn_k} sản phẩm gần nhất	Average similarity of the ${s.knn_k} closest products
+Ngữ cảnh ảnh	Image context
+cột · hiển thị ${d.data.length} dòng đầu	columns · showing the first ${d.data.length} rows
+Thuộc nhóm style	Assigned to style group
+đơn vị / SP	units per product
+sản phẩm trong nhóm khác biệt hơn ảnh này	of products in the group are farther from the centroid than this image
+Áo dài tay hoa	Floral long-sleeved tops
+Áo sát nách ren	Lace sleeveless tops
+Quần culottes sọc dọc	Vertically striped culottes
+Áo sát nách hoa	Floral sleeveless tops
+Váy babydoll hoa	Floral babydoll dresses
+sọc dọc	vertical stripes
+drop sleeve top	dropped-sleeve top
+solid plain color	solid colour

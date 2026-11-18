@@ -30,7 +30,7 @@ def knn_context(pp, Z_of, k=20, value="spap"):
     """pp: product-week grid with external_code, t_idx, n_shops, value. Z_of: dict code -> unit vector."""
     out = pd.Series(np.nan, index=pp.index)
     active = pp[(pp["n_shops"] > 0) & pp[value].notna() & pp[PRODUCT].isin(Z_of.keys())]
-    for t, g in active.groupby(TIME):
+    for _, g in active.groupby(TIME):
         if len(g) < 2:
             continue
         Z = np.stack([Z_of[c] for c in g[PRODUCT]])
